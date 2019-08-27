@@ -1,0 +1,1 @@
+  alter table [dbo].[BillingDetails] add Comments nvarchar(MAX)

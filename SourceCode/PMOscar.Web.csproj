@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1B25D723-E405-4617-A8C7-5CB73EEF5305}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PMOscar</RootNamespace>
+    <AssemblyName>PMOscar</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=1.0.10301.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Shared Binaries\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Shared Binaries\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Services">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Services.Client">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AddBillingDetails.aspx" />
+    <Content Include="AddRole.aspx" />
+    <Content Include="BillingDetails.aspx" />
+    <Content Include="BillingDetailsEntry.aspx" />
+    <Content Include="Images\AddNew.png" />
+    <Content Include="Images\bg_btn_leftEnd.gif" />
+    <Content Include="Images\bg_btn_leftEnd_over.gif" />
+    <Content Include="Images\bg_btn_rightEnd.gif" />
+    <Content Include="Images\bg_btn_rightEnd_over.gif" />
+    <Content Include="Images\bg_contentArea.gif" />
+    <Content Include="Images\bg_footer.gif" />
+    <Content Include="Images\bg_menuBar.gif" />
+    <Content Include="Images\bg_menuBottomStrip.gif" />
+    <Content Include="Images\bg_searchBar.gif" />
+    <Content Include="Images\blank.gif" />
+    <Content Include="Images\blank_active.gif" />
+    <Content Include="Images\blank_over.gif" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\excel.png" />
+    <Content Include="Images\Refrsh.png" />
+    <Content Include="Images\Sync.png" />
+    <Content Include="InvoiceSummary.aspx" />
+    <Content Include="ProjectEstimation.ascx" />
+    <Content Include="Images\calendar.jpg" />
+    <Content Include="Reports.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Images\loader.gif" />
+    <Content Include="Scripts\jquery-1.3.2.min.js" />
+    <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.12.custom.min.js" />
+    <Content Include="Shared Binaries\AjaxControlToolkit.dll" />
+    <Content Include="Shared Binaries\log4net.dll" />
+    <Content Include="Style\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Style\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Style\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Style\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Style\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Style\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Style\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Style\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Style\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Style\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Style\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Style\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Style\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Style\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Style\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Style\jquery-ui-1.8.12.custom.css" />
+    <Content Include="Template\demowork\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Template\demowork\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Template\demowork\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Template\demowork\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Template\demowork\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Template\demowork\fonts\GulimChe.ttf" />
+    <Content Include="Template\demowork\images\Logo.png" />
+    <Content Include="Template\demowork\index.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessDenied.aspx.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccessDenied.aspx.designer.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActualHoursuctrl.ascx.cs">
+      <DependentUpon>ActualHoursuctrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActualHoursuctrl.ascx.designer.cs">
+      <DependentUpon>ActualHoursuctrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AddBillingDetails.aspx.cs">
+      <DependentUpon>AddBillingDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddBillingDetails.aspx.designer.cs">
+      <DependentUpon>AddBillingDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddRole.aspx.cs">
+      <DependentUpon>AddRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddRole.aspx.designer.cs">
+      <DependentUpon>AddRole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BillingDetails.aspx.cs">
+      <DependentUpon>BillingDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BillingDetails.aspx.designer.cs">
+      <DependentUpon>BillingDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BillingDetailsEntry.aspx.cs">
+      <DependentUpon>BillingDetailsEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BillingDetailsEntry.aspx.designer.cs">
+      <DependentUpon>BillingDetailsEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceSummary.aspx.cs">
+      <DependentUpon>InvoiceSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InvoiceSummary.aspx.designer.cs">
+      <DependentUpon>InvoiceSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectEstimation.ascx.cs">
+      <DependentUpon>ProjectEstimation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectEstimation.ascx.designer.cs">
+      <DependentUpon>ProjectEstimation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateDashboard.aspx.cs">
+      <DependentUpon>CreateDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateDashboard.aspx.designer.cs">
+      <DependentUpon>CreateDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="NotAdjustedActualHours.ascx.cs">
+      <DependentUpon>NotAdjustedActualHours.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NotAdjustedActualHours.ascx.designer.cs">
+      <DependentUpon>NotAdjustedActualHours.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PMOMaster.master.cs">
+      <DependentUpon>PMOMaster.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Project.aspx.cs">
+      <DependentUpon>Project.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Project.aspx.designer.cs">
+      <DependentUpon>Project.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectAudit.aspx.cs">
+      <DependentUpon>ProjectAudit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectAudit.aspx.designer.cs">
+      <DependentUpon>ProjectAudit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectAudituserctrl.ascx.cs">
+      <DependentUpon>ProjectAudituserctrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectAudituserctrl.ascx.designer.cs">
+      <DependentUpon>ProjectAudituserctrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectDashboard.aspx.cs">
+      <DependentUpon>ProjectDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectDashboard.aspx.designer.cs">
+      <DependentUpon>ProjectDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectDashboardEntry.aspx.cs">
+      <DependentUpon>ProjectDashboardEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectDashboardEntry.aspx.designer.cs">
+      <DependentUpon>ProjectDashboardEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectEstimationAudit.aspx.cs">
+      <DependentUpon>ProjectEstimationAudit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectEstimationAudit.aspx.designer.cs">
+      <DependentUpon>ProjectEstimationAudit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectEstimationAuditusrctrl.ascx.cs">
+      <DependentUpon>ProjectEstimationAuditusrctrl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectEstimationAuditusrctrl.ascx.designer.cs">
+      <DependentUpon>ProjectEstimationAuditusrctrl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectListing.aspx.cs">
+      <DependentUpon>ProjectListing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectListing.aspx.designer.cs">
+      <DependentUpon>ProjectListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectPlanningEntry.aspx.cs">
+      <DependentUpon>ProjectPlanningEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectPlanningEntry.aspx.designer.cs">
+      <DependentUpon>ProjectPlanningEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Resource.aspx.cs">
+      <DependentUpon>Resource.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resource.aspx.designer.cs">
+      <DependentUpon>Resource.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceClone.aspx.cs">
+      <DependentUpon>ResourceClone.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResourceClone.aspx.designer.cs">
+      <DependentUpon>ResourceClone.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceListing.aspx.cs">
+      <DependentUpon>ResourceListing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResourceListing.aspx.designer.cs">
+      <DependentUpon>ResourceListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourcePlanning.aspx.cs">
+      <DependentUpon>ResourcePlanning.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResourcePlanning.aspx.designer.cs">
+      <DependentUpon>ResourcePlanning.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourcePlanningEntry.aspx.cs">
+      <DependentUpon>ResourcePlanningEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResourcePlanningEntry.aspx.designer.cs">
+      <DependentUpon>ResourcePlanningEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeTrackerAudit.ascx.cs">
+      <DependentUpon>TimeTrackerAudit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeTrackerAudit.ascx.designer.cs">
+      <DependentUpon>TimeTrackerAudit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserCreation.aspx.cs">
+      <DependentUpon>UserCreation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserCreation.aspx.designer.cs">
+      <DependentUpon>UserCreation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserEdit.aspx.cs">
+      <DependentUpon>UserEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserEdit.aspx.designer.cs">
+      <DependentUpon>UserEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserListing.aspx.cs">
+      <DependentUpon>UserListing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserListing.aspx.designer.cs">
+      <DependentUpon>UserListing.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PMOMaster.master" />
+    <Content Include="Project.aspx" />
+    <Content Include="ProjectListing.aspx" />
+    <Content Include="Resource.aspx" />
+    <Content Include="ResourceListing.aspx" />
+    <Content Include="ResourcePlanning.aspx" />
+    <Content Include="ResourcePlanningEntry.aspx" />
+    <Content Include="Style\pmoscar_style.css" />
+    <Content Include="Style\style.css" />
+    <Content Include="UserCreation.aspx" />
+    <Content Include="UserEdit.aspx" />
+    <Content Include="UserListing.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AccessDenied.aspx" />
+    <Content Include="ActualHoursuctrl.ascx" />
+    <Content Include="CreateDashboard.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\budgetgreen.png" />
+    <Content Include="Images\budgetred.png" />
+    <Content Include="Images\budgetyellow.png" />
+    <Content Include="Images\clientgreen.png" />
+    <Content Include="Images\clientred.png" />
+    <Content Include="Images\clientyellow.png" />
+    <Content Include="Images\escalategreen.png" />
+    <Content Include="Images\escalatered.png" />
+    <Content Include="Images\escalateyellow.png" />
+    <Content Include="Images\logo_pmoscar.gif" />
+    <Content Include="Images\timelinegreen.png" />
+    <Content Include="Images\timelinered.png" />
+    <Content Include="Images\timelineyellow.png" />
+    <Content Include="NotAdjustedActualHours.ascx" />
+    <Content Include="ProjectAudit.aspx" />
+    <Content Include="ProjectAudituserctrl.ascx" />
+    <Content Include="ProjectDashboard.aspx" />
+    <Content Include="ProjectDashboardEntry.aspx" />
+    <Content Include="ProjectEstimationAudit.aspx" />
+    <Content Include="ProjectEstimationAuditusrctrl.ascx" />
+    <Content Include="ProjectPlanningEntry.aspx" />
+    <Content Include="ResetPassword.aspx" />
+    <Content Include="ResourceClone.aspx" />
+    <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.3.2.js" />
+    <Content Include="Scripts\jquery-1.3.2.min-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="TimeTrackerAudit.ascx" />
+    <Content Include="Web.demo.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\" />
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="PMOscar.Core\PMOscar.Core.csproj">
+      <Project>{F214CE9A-761E-41C9-83AC-DEF22E12698C}</Project>
+      <Name>PMOscar.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="PMOscar.DAL\PMOscar.DAL.csproj">
+      <Project>{AA234AF5-A009-4B14-9BFF-8F30B9A836BE}</Project>
+      <Name>PMOscar.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="PMOscar.Model\PMOscar.Model.csproj">
+      <Project>{2C40E499-4F0F-49DB-AE87-13B43A32FF57}</Project>
+      <Name>PMOscar.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.test.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\PMOscar.pubxml" />
+    <None Include="Web.prod.config" />
+    <None Include="Web.stage.config" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4963</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

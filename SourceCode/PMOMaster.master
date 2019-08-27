@@ -1,0 +1,180 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PMOMaster.master.cs"
+    Inherits="PMOMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PMOscar</title>
+    <link href="./Style/pmoscar_style.css" rel="stylesheet" type="text/css" />
+    <link href="./Style/style.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="Scripts/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <style type="text/css" media="screen">
+   
+                BODY { margin: 0px; padding: 0; font: 1em "Trebuchet MS", verdana, arial, sans-serif; font-size: 100%;}
+                H1 { margin-bottom: 2px; font-family: Garamond, "Times New Roman", Times, Serif;}
+                DIV.container { margin: auto; width: 90%; margin-bottom: 10px;}
+                TEXTAREA { width: 80%;}
+                FIELDSET { border: 1px solid #ccc; padding: 1em; margin: 0; }
+                LEGEND { color: #ccc; font-size: 120%; }
+
+             <%--   LABEL { display: block; margin-top: 10px; } --%>
+                IMG { margin: 5px; }
+
+                UL.tabNavigation {
+                    list-style: none;
+                    margin-top: -19px;
+                    margin-left:0px;
+                    padding: 0;
+                    float:left;
+
+                    
+                }
+
+                UL.tabNavigation LI {
+                    display: inline;
+                    
+                }
+
+                UL.tabNavigation LI A {
+                    padding: 5px 10px;
+                    background-color: #ccc;
+                    color: #000;
+                    text-decoration: none;
+                    
+                }
+
+                UL.tabNavigation LI A.selected,
+                UL.tabNavigation LI A:hover {
+                    background-color: #368ac8;
+                    color: #fff;
+                    padding-top: 0px;
+                    padding: 5px 10px;
+
+                   
+                }
+                
+                UL.tabNavigation LI A:focus {
+                        outline: 0;
+
+                }
+
+                div.tabs > div {
+                        padding: 0px;
+                        margin-top: 0px;
+                        border: 0px solid #368ac8;
+                        
+                        
+                }
+                
+                div.tabs > div h2 {
+                        margin-top: 0;
+                }
+
+                
+              
+    
+    </style>
+</head>
+<body>
+    <form runat="server">
+    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" background="../images/bg_searchBar.gif"
+        style="background-repeat: repeat-x;">
+        <tr>
+            <td height="60">
+                <table width="937" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="250" rowspan="2" valign="top">
+                            <a href="ResourcePlanning.aspx">
+                                <img style="border: 0;" src="../images/logo_pmoscar.gif" alt="" width="180" height="49" /></a>
+                        </td>
+                        <td height="30" colspan="2" align="right" valign="bottom">
+                            <span class="smallText">Welcome</span>&nbsp;<strong><%=Session["UserName"]%></strong>
+                            | <strong>
+                                <asp:LinkButton ID="lnkResetpwd" runat="server" Text="Reset Password" CausesValidation="false"
+                                    OnClick="lnkResetpwd_Click" TabIndex="-1"></asp:LinkButton></strong> | <strong>
+                                        <asp:LinkButton ID="lnkLogout" runat="server" Text="Logout" CausesValidation="false"
+                                            OnClick="lnkLogout_Click" TabIndex="-1"></asp:LinkButton></strong>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!--Menu_start_here-->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" id="menuHolder">
+        <tr>
+            <td>
+                <div class="menu">
+                    <%string url = Request.Url.ToString().ToLower();%>
+                    <ul>
+                        <li runat="server" id="liadminWO"><a href="<%=ConfigurationManager.AppSettings["PMOscarV2_Url"] %>Account/LoginSession?Email=<%=Session["UserName"]%>&Password=<%=Session["EncryptedPassword"] %>&returnUrl=/WorkOrder/ListWorkOrders"
+                            class="" tabindex="-1">Work Orders</a></li>
+                        <li runat="server" id="liadminPM"><a href="<%=ConfigurationManager.AppSettings["PMOscarV2_Url"] %>Account/LoginSession?Email=<%=Session["UserName"]%>&Password=<%=Session["EncryptedPassword"] %>&returnUrl=/PaymentMilestone/ListAllPaymentMilestones/0"
+                            class="" tabindex="-1">Payment Milestones</a></li>
+                        <li runat="server" id="liadminCR"><a href="<%=ConfigurationManager.AppSettings["PMOscarV2_Url"] %>Account/LoginSession?Email=<%=Session["UserName"]%>&Password=<%=Session["EncryptedPassword"] %>&returnUrl=/ChangeRequest/ListChangeRequests/0"
+                            class="" tabindex="-1">Change Request</a></li>
+                        <li runat="server" id="liadminPD"><a href="ProjectDashboard.aspx" runat="server" id="adminPD"
+                      
+                            tabindex="-1">Project Dashboard</a></li>
+                        <li runat="server" id="liadminRP"><a href="ResourcePlanning.aspx"  runat="server" id="adminRP"
+                       
+                            tabindex="-1">Resource Planning</a></li>
+                        <li runat="server" id="liadminR"><a href="Reports.aspx"  runat="server" id="adminR"
+                      
+                            tabindex="-1">Reports</a></li>
+                        <li runat="server" id="liadminBD"><a href="BillingDetails.aspx"  runat="server" id="adminBD"
+                    
+                            tabindex="-1">Project Billing</a></li>
+                        <li runat="server" id="liadminPL"><a href="ProjectListing.aspx"  runat="server" id="adminPL"
+                      
+                            tabindex="-1">Projects</a></li>
+                        <li runat="server" id="liadminRL"><a href="ResourceListing.aspx"  runat="server" id="adminRL"
+                    
+                            tabindex="-1">Resources</a></li>
+                        <li runat="server" id="liuser" class="liadmin"><a href="UserListing.aspx" tabindex="-1" runat="server" id="auser">
+                            Users</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <!--Menu_ends_here-->
+    <table width="100%" height="680px" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td height="10" style="background-color: #FFFFFF;">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td valign="top" align="center" class="contentArea">
+                <div class="outerDIV" style="width: 95%; background: url(../images/bg_searchBar.gif) repeat-x;">
+                    <asp:ContentPlaceHolder ID="cntHead" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <asp:ContentPlaceHolder ID="cntBody" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 40px;">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td height="25" background="../images/bg_footer.gif">
+                <table width="937" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="center">
+                            <span class="colorcodewyte">Powered by NAICO</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>

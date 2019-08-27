@@ -1,0 +1,148 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Email Notification</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<style>
+	/* CSS Document */
+@font-face {
+	font-family: 'Open Sans', sans-serif;
+}
+body, p, h1, h2, h3, h4, h5, h6, span, li, label {
+	font-family: 'Open Sans', sans-serif;
+}
+td{border-right:solid 0.5px;
+   border-color:#378ac7
+}
+.main
+{
+	width:100%;
+	height:auto;
+	float:left;
+}
+.header
+{
+	width:100%;
+	height:auto;
+	float:left;
+	background-color: #378ac7;
+	padding: 20px;
+	margin: auto;
+	text-align: center;
+}
+.img-cntr
+{
+	margin: auto;
+	text-align: center;
+}
+.text-common
+{
+	font-size: 18px;
+	color:#666;
+}
+.content
+{
+	width:100%;
+	float: left;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+.nopad
+{
+	padding: 0;
+	margin: 0;
+}
+.footer
+{
+	width:100%;
+	height:auto;
+	float:left;
+	background-color: #378ac7;
+	padding: 10px;
+	margin: auto;
+	text-align: center;
+}
+.footer-text
+{
+	color:#fff;
+	font-size: 16px;
+	margin: 0;
+}
+.footer-link
+{
+	color:#fff;
+	font-size: 16px;
+	margin: 0;
+}
+.footer-link:hover
+{
+	color:#fff;
+	font-size: 16px;
+	text-decoration: underline;
+}
+@media screen and (max-width:767px)
+{
+	.tables
+{
+	overflow: auto !important;
+	width: 100% !important;
+}
+}
+</style>
+</head>
+<body>
+	<div class="main">
+		<div class="header">
+			<img class="img-responsive img-cntr" src="http://pmoscar.naicotech.com/images/logo_pmoscar.gif" alt="logo"/>
+		</div>
+		<div class="container">
+			<div class="content">
+				<p class="text-common">Hi,<br><br>
+
+A new project /**name**/ has been created in PMOSCAR on /**createdDate**/ by /**createdUser**/.​<br><br>
+
+Details of the newly created project is mentioned below: <br></p>
+			
+				<div class="col-xs-12 nopad">
+					<div class="tables">
+						<table class="table style-tble"  style="border: 0.5px solid #378ac7;">
+							<thead>
+							  <tr style="background-color: #378ac7 !important;color:#fff !important; font-weight: 400 !important; font-size: 16px !important;">
+								<th>Project Name</th>
+								<th>Project Type</th>
+								<th>Start Date</th>
+								 <th>End Date</th>
+								<th>Owner</th>
+								<th>Work Order Name</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr>
+								<td>/**name**/</td>
+								<td>/**projecttype**/ </td>
+								<td>/**startdate**/</td>
+								 <td>/**enddate**/</td>
+								<td>/**projectowner**/ </td>
+								<td style="border-right:1px">/**workorder**/ </td>
+							  </tr>
+							</tbody>
+						  </table>
+					</div>
+				</div>
+			<p class="text-common">To view the Project details, please go to <a href="http://pmoscar.naicotech.com">PMOscar Site</a>.<br><br>
+Best Regards, <br><br>
+PMOscar <br><br>
+				</div>	
+			</div>
+			<div class="footer">
+					<p class="footer-text">Powered By <a class="footer-link" href="http://www.naicoits.com/">Naico ITS</a></p>
+				</div>
+		</div>
+</body>
+</html>

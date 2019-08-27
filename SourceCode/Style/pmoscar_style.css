@@ -1,0 +1,545 @@
+@charset "utf-8";
+/* CSS Document */
+
+html {
+	font-size: 11px;
+	color:#333333;
+}
+html * {
+	font-family: Tahoma, Arial, Helvetica, Calibri, sans-serif, Verdana;
+    margin-bottom: 0px;
+    margin-top: 0px;
+   
+}
+body {
+	margin: 0px;
+}
+.colorcodewyte {
+	color:#ffffff;
+}
+select {
+	color:#4a6a3a;
+	height:20px;
+	padding:0px;
+	margin:0px;
+	text-transform:none;
+	z-index:-10;
+	font-size:11px;
+}
+input {
+	color:#4a6a3a;
+	font-size:11px;
+	padding:1px 3px 0px 3px;
+	text-transform:none;
+}
+textarea {
+	color:#4a6a3a;
+	padding:3px;
+	font-size:11px;
+}
+input.button {
+	height:22px;
+	color:#666666;
+	text-transform:uppercase;
+	font-size:11px;
+	font-weight:bold;
+}
+a {
+	color: #1e87ca;
+	text-decoration:none;
+	outline:none;
+}
+a:hover {
+	color: #CC0000;
+	text-decoration:none;
+	outline:none;
+}
+.smallText {
+	font-size: 11px;
+}
+.contentArea {
+	background-color:#FFFFFF;
+}
+#pageTitle {
+	font-size:13px;
+	font-weight:bold;
+	color:#666;/*
+	width:233px;*/
+	float:left;/*
+	height:20px;*/
+	margin:4px 0 0 0;
+	line-height:14px;/*
+	border:1px solid red;*/
+	display:block;
+	overflow:hidden;
+}
+#pageTitle div {
+	font-size:9px;
+	line-height:12px;
+	height:12px;
+	color:#999999;
+	font-weight:normal;/**/
+}
+#maintainLinks {/*
+	 width:700px;*/
+	display:block;
+	float:right;/**/
+	font-size:9px;
+	text-align:right;
+	padding:10px 0 10px 0;
+	color:#999999;/*
+	border:1px solid red;*/
+}
+#maintainLinks a {
+	padding:0 5px;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+.searchBar {
+	color:#666666;
+	font-size:11px;
+	font-weight:bold;
+	zindex:-100;
+}
+.groupCombo * {
+	padding:0px;
+	margin:0px;
+}
+.groupCombo option {
+	margin:0px;
+	padding:0px;
+}
+.groupCombo .spacer {
+	margin:0px;
+	padding:0px;
+	background-color:#ececec;
+}
+a.butStyle_normal {
+	height:21px;
+	padding:0 0 0 6px;
+	display:inline;/**/
+	float:left;
+	background-image: url(../images/bg_btn_leftEnd.gif);
+	background-repeat: repeat-y;
+	background-position: left bottom;
+}
+a.butStyle_normal:hover {
+	display:inline;/**/
+	float:left;
+	background-image: url(../images/bg_btn_leftEnd_over.gif);
+	background-repeat: repeat-y;
+	background-position: left bottom;
+}
+a.butStyle_normal span {
+	font-size:11px;
+	height:18px;
+	font-weight:bold;
+	display:inline;
+	float:left;/**/
+	text-transform:none;
+	padding:3px 6px 0 0;
+	background-image: url(../images/bg_btn_rightEnd.gif);
+	background-repeat: repeat-x;
+	background-position: right top;
+	color:#666666;/*padding:4px 8px 0 0;*/
+}
+a.butStyle_normal span:hover {
+	display:inline;
+	float:left;
+	background-image: url(../images/bg_btn_rightEnd_over.gif);
+	background-repeat: repeat-x;
+	background-position:right top;
+}
+a.butStyle_normal:hover span {
+	color:#CC0000;
+	cursor:pointer;
+}
+.contentArea {
+	background-color:#FFFFFF;
+}
+#menuHolder {
+	background-image:url(../images/bg_menuBar.gif);
+}
+#menuBar {
+	width:937px;
+	margin:auto;
+	border:0px solid red;
+}
+
+.maintainTable {
+	border-collapse:collapse;
+	border:1px solid #b2d2eb;
+}
+.maintainTable th, .maintainTable td {
+	border:1px solid #b2d2eb;
+	border-collapse:collapse;
+}
+.maintainTable td {
+	padding:0 8px;
+	font-size:11px;
+	border:1px solid #b2d2eb;
+	border-collapse:collapse;
+	overflow:hidden;
+}
+.maintainTable .noBorder td {
+	border:none;
+	border-collapse:collapse;
+}
+.borderright {
+	border:1px solid #b2d2eb;
+	border-collapse:collapse;
+}
+.maintainTable tr.headRow td {
+	height:26px;
+	background-color: #95b8d2;
+	border-collapse:collapse;
+	color:#FFFFFF;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+.maintainTable tr.odd td {
+	height:23px;
+	border-collapse:collapse;
+}
+.maintainTable tr.even td {
+	height:23px;
+	background-color:#f3f8fc;
+	border-collapse:collapse;
+}
+.maintainTable tr.highlighted td {
+	height:23px;
+	background-color:#f3f8fc;
+	border-collapse:collapse;
+}
+.loginBox {
+	display:block;
+	width:350px;
+	padding:20px 15px 10px 15px;
+	margin:auto;
+	font-size:12px;
+	color:666;
+	background-color:#fff;
+	border:1px solid #3ecbd5;
+}
+.outerDIV {
+	display:block;
+	padding:2px 15px 10px 15px;
+	margin:auto;
+	font-size:12px;
+	color:666;
+
+	
+}
+.submitButton {
+ padding:0px 5px 0px 5px;
+    height: 21px;
+}
+
+
+.menu {
+ /*width: 937px;*/
+ /*width:1500px;*/
+ margin:auto;
+ font-size:13px;
+ font-weight:bold;
+ font-family:Arial, Helvetica, sans-serif;
+}
+.menu ul {
+ list-style: none;
+ margin:  0px 0px 0px 108px;
+ padding: 0px;
+ /*width: 937px;*/
+ /*width:1500px;*/
+ border-collapse:collapse;
+ line-height:30px;
+}
+.menu li { 
+ list-style: none;
+ display:block;
+ margin: 0px;
+ float: left;
+ text-align:center;
+background:url(../images/blank.gif) repeat-x;
+ background-repeat:repeat-x;
+ padding: 0px 0px 0px 0px;
+}
+.menu li a {
+ display:block;
+ list-style: none;
+ margin: 0px;
+ padding: 0px 20px 0px 20px;
+ text-decoration: none;
+ color:#fff;
+ 
+}
+.menu li a:hover {
+ list-style: none;
+ margin: 0px;
+ padding: 0px 20px 0px 20px;
+ background:url(../images/blank_over.gif) repeat-x;
+ background-repeat:repeat-x;
+ color:#000000;
+}
+.menu .active {
+ color:#000;
+ background: url(../images/blank_active.gif);
+ 
+}
+ 
+.gridfade
+{
+  color: gray !important;
+}
+.dropedownbox
+{
+    padding:0px;
+    margin:0px;
+    
+}
+
+.modalBackground
+{
+ background-color:Gray;
+filter:alpha(opacity=70);
+opacity:0.7;
+}
+.ModalWindow
+{
+ background-color:white;
+border:5px solid #539cd1;
+
+padding:6px;
+width:auto;
+height:auto;
+  
+  
+}
+.dashboardType
+{
+    width:100%;
+    text-align: left;
+    margin:10px 0px 10px 5px;
+}
+.periodDashboard
+{
+    width:100%;
+    text-align: left;
+    margin: 10px 0px 10px 5px;
+    /*display: none; */
+}
+.periodDashboard div.dropdown
+{
+    padding-bottom:10px;
+}
+.periodDashboard div.info
+{
+    padding-bottom:40px;
+}
+.periodDashboard td.label
+{
+    width: 8%;
+    height:20px;
+    text-align:left;
+}
+.periodDashboard div td.dropdown
+{
+    width:13%;
+    height:20px;
+    text-align:left;
+}
+.periodDashboard td.info
+{
+    width: 20%;
+    height:20px;
+    text-align:left;
+}
+.periodDashboard label
+{
+    padding-left:5px;
+    font-weight:bold;
+}
+.goButton
+{
+    width:40px;
+    height:23px;
+    font-size:12px;
+}
+.dashboardBorder
+{
+    border: 3px solid rgb(54, 138, 200); 
+    display: block;
+}
+.dashboardTable
+{
+    width:100%;
+    color:#333333;
+    border-collapse:collapse;
+    border:1px solid #333333;
+}
+.dashboardTable .headerRow, .dashboardTable .footerRow
+{
+    color:White;
+    background-color:#368AC8;
+    font-weight:bold;
+    border:1px solid White;
+}
+.dashboardTable .headerRow td, .dashboardTable .footerRow td
+{
+   border:1 solid White;
+}
+.dashboardTable .innerTable
+{
+    color:White;
+    background-color:#368AC8;
+    font-weight:bold;
+    width:100%;
+}
+.dashboardTable .innerTable td
+{
+    color:White;
+    background-color:#368AC8;
+    font-weight:bold;
+}
+.dashboardTable .innerTable td.billType
+{
+    color:White;
+    background-color:#368AC8;
+    font-size:11px;
+    text-align:center;
+    width:25%;
+}
+.dashboardTable .innerTable td.upper
+{
+    border-bottom:1px solid white;
+    padding:3px;
+}
+.dashboardTable tbody th
+{
+    text-align:center;
+}
+.dashboardTable tr 
+{
+    background-color:#EFF3FB;
+    height:15px;
+}
+/*
+.dashboardTable tr td
+{
+    border: solid 1px black;
+    padding:6px;
+}
+*/
+.dashboardTable tr.alt 
+{
+    background-color:#FFFFFF;
+    height:15px;
+}
+.dashboardTable tr td.number
+{
+    text-align:right;
+    width:5%;
+    padding-right:5px;
+}
+.dashboardTable tr td.total
+{
+    text-align:right;
+    width:5%;
+    padding-right:5px;
+    font-weight:bold;
+}
+.dashboardTable tr td.number4
+{
+    text-align:right;
+    width:3%;
+    padding-right:5px;
+}
+.dashboardTable tr td.total4
+{
+    text-align:right;
+    width:3%;
+    padding-right:5px;
+    font-weight:bold;
+}
+.dashboardTable .slCol
+{
+    width:1.2%;
+}
+.dashboardTable .commentsCol
+{
+    width:14%;
+}
+.dashboardTable .dateCol
+{
+    width:5%;
+}
+.dashboardTable .periodCol
+{
+    width:13%;
+}
+.dashboardTable .periodCol_20perc
+{
+    width:20%;
+}
+.dashboardTable .projectCol
+{
+    width:14%;
+}
+.dashboardTable .phaseCol
+{
+    width:6%;
+}
+
+.divLoading {
+    height: 400px;
+    position: relative;
+    background-color: gray; /* for demonstration */
+}
+.ajax-loader {
+    position:absolute;
+    vertical-align: middle;
+    text-align:center;
+    left: 36%;
+    top: 30%;
+    margin-left: -32px; /* -1 * image width / 2 */
+    margin-top: -32px;  /* -1 * image height / 2 */
+    display: block;     
+}
+.scrollGrid
+{
+    height:500px; 
+    overflow:scroll;
+}
+
+/* new styles */
+
+.reportLabel
+{
+    font-size:15px;
+    border-bottom:1px solid #ccc;
+    width:1000px;
+    margin-left:10;
+}
+
+.reportTiltle
+{
+    font-weight:bold; 
+    font-size:20px;
+    margin-bottom:10px;
+    
+}
+.periodDropdown
+{
+    Height:20px;
+    Width:135px;
+}
+
+.reportExportImage
+{
+ border:0px;
+ vertical-align:middle;   
+}
+
+.CompnySummaryReportItems
+{
+    padding-right:25px;
+}
