@@ -1,0 +1,187 @@
+-=-=-=-=-= ERROR    =-=-=-=-=-
+08/26/2019 16:32:20 File [E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\Logger.cs #53]
+on machine 'NT130' as user ''
+******************************
+Thread was being aborted.
+------------------------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Default.btnLogin_Click(Object sender, EventArgs e) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\Default.aspx.cs:line 82
+
+******************************
+-=-=-=-=-= ERROR    =-=-=-=-=-
+08/26/2019 16:45:30 File [E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\Logger.cs #53]
+on machine 'NT130' as user ''
+******************************
+Thread was being aborted.
+------------------------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Default.btnLogin_Click(Object sender, EventArgs e) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\Default.aspx.cs:line 82
+
+******************************
+-=-=-=-=-= ERROR    =-=-=-=-=-
+08/26/2019 17:56:52 File [E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\Logger.cs #53]
+on machine 'NT130' as user ''
+******************************
+Thread was being aborted.
+------------------------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Default.btnLogin_Click(Object sender, EventArgs e) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\Default.aspx.cs:line 82
+
+******************************
+-=-=-=-=-= ERROR    =-=-=-=-=-
+08/26/2019 18:03:12 File [E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\Logger.cs #53]
+on machine 'NT130' as user ''
+******************************
+Thread was being aborted.
+------------------------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Default.btnLogin_Click(Object sender, EventArgs e) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\Default.aspx.cs:line 82
+
+******************************
+-=-=-=-=-= ERROR    =-=-=-=-=-
+08/26/2019 18:04:54 File [E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\Logger.cs #53]
+on machine 'NT130' as user ''
+******************************
+Could not find stored procedure 'GetResourceUtilizationPercentage'.
+------------------------------
+System.Data.SqlClient.SqlException: Could not find stored procedure 'GetResourceUtilizationPercentage'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at PMOscar.BaseDAL.ExecuteSPDataSet(String spName, IList`1 parameters) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.DAL\BaseDAL.cs:line 57
+   at PMOscar.DAL.ResourceDAL.GetResourceUtilizationPercentageById(Int32 resourceId) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.DAL\ResourceDAL.cs:line 58
+
+******************************
+-=-=-=-=-= ERROR    =-=-=-=-=-
+08/26/2019 18:30:24 File [E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\Logger.cs #53]
+on machine 'NT130' as user ''
+******************************
+Thread was being aborted.
+------------------------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Default.btnLogin_Click(Object sender, EventArgs e) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\Default.aspx.cs:line 82
+
+******************************
+-=-=-=-=-= ERROR    =-=-=-=-=-
+08/26/2019 18:30:31 File [E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\Logger.cs #53]
+on machine 'NT130' as user ''
+******************************
+Could not find stored procedure 'GetResourceUtilizationPercentage'.
+------------------------------
+System.Data.SqlClient.SqlException: Could not find stored procedure 'GetResourceUtilizationPercentage'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   at System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   at PMOscar.BaseDAL.ExecuteSPDataSet(String spName, IList`1 parameters) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.DAL\BaseDAL.cs:line 57
+   at PMOscar.DAL.ResourceDAL.GetResourceUtilizationPercentageById(Int32 resourceId) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.DAL\ResourceDAL.cs:line 58
+
+******************************
+-=-=-=-=-= ERROR    =-=-=-=-=-
+08/26/2019 18:38:53 File [E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\Logger.cs #53]
+on machine 'NT130' as user ''
+******************************
+Thread was being aborted.
+------------------------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Default.btnLogin_Click(Object sender, EventArgs e) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\Default.aspx.cs:line 82
+
+******************************
+-=-=-=-=-= ERROR    =-=-=-=-=-
+08/26/2019 19:58:06 File [E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\Logger.cs #53]
+on machine 'NT130' as user ''
+******************************
+Thread was being aborted.
+------------------------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Default.btnLogin_Click(Object sender, EventArgs e) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\Default.aspx.cs:line 82
+
+******************************
+-=-=-=-=-= ERROR    =-=-=-=-=-
+08/27/2019 08:35:09 File [E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\Logger.cs #53]
+on machine 'NT130' as user ''
+******************************
+Thread was being aborted.
+------------------------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse)
+   at System.Web.HttpResponse.Redirect(String url)
+   at Default.btnLogin_Click(Object sender, EventArgs e) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\Default.aspx.cs:line 82
+
+******************************
+-=-=-=-=-= ERROR    =-=-=-=-=-
+08/27/2019 11:33:55 File [E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\Logger.cs #53]
+on machine 'NT130' as user ''
+******************************
+Thread was being aborted.
+------------------------------
+System.Threading.ThreadAbortException: Thread was being aborted.
+   at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.End()
+   at Default.btnLogin_Click(Object sender, EventArgs e) in E:\SVN\PMOSCAR\PMOSCARV1\trunk\Default.aspx.cs:line 82
+
+******************************

@@ -297,6 +297,8 @@ namespace PMOscar.Core
             public const string FINALIZEDDASHBOARD = "Dashboard has finalized successfully.";
             public const string STATUS = "Status has updated successfully.";
             public const string ZERO = "Weekly hours should not be zero. Please correct.";
+            public const string TRAINEE = "Developer Trainee";
+            public const string QATRAINEE = "Quality Analyst Trainee";
         }
         #endregion
     }

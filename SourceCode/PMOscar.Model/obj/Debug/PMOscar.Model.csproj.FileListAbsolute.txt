@@ -1,0 +1,6 @@
+E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Model\bin\Debug\PMOscar.Model.dll
+E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Model\bin\Debug\PMOscar.Model.pdb
+E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Model\obj\Debug\PMOscar.Model.csproj.CoreCompileInputs.cache
+E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Model\obj\Debug\PMOscar.Model.dll
+E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Model\obj\Debug\PMOscar.Model.pdb
+E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Model\obj\Debug\PMOscar.Model.csprojAssemblyReference.cache
