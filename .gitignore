@@ -1,3 +1,4 @@
 config/applicationhost.config
 .vs/PMOscar
 obj/
+bin/
