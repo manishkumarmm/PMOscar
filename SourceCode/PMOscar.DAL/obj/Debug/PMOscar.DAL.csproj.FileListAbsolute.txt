@@ -12,3 +12,15 @@ E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.DAL\obj\Debug\PMOscar.DAL.csproj.CoreComp
 E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.DAL\obj\Debug\PMOscar.DAL.csproj.CopyComplete
 E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.DAL\obj\Debug\PMOscar.DAL.dll
 E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.DAL\obj\Debug\PMOscar.DAL.pdb
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\bin\Debug\PMOscar.DAL.dll.config
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\bin\Debug\PMOscar.DAL.dll
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\bin\Debug\PMOscar.DAL.pdb
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\bin\Debug\MySql.Data.dll
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\bin\Debug\PMOscar.Core.dll
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\bin\Debug\PMOscar.Model.dll
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\bin\Debug\log4net.dll
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\bin\Debug\PMOscar.Core.pdb
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\bin\Debug\PMOscar.Model.pdb
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\obj\Debug\PMOscar.DAL.csprojResolveAssemblyReference.cache
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\obj\Debug\PMOscar.DAL.dll
+E:\GIT\PM_OSCAR_V1\SourceCode\PMOscar.DAL\obj\Debug\PMOscar.DAL.pdb
