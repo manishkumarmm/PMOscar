@@ -1,7 +1,0 @@
-E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\bin\Debug\PMOscar.Core.dll
-E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\bin\Debug\PMOscar.Core.pdb
-E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\bin\Debug\log4net.dll
-E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\obj\Debug\PMOscar.Core.csproj.CoreCompileInputs.cache
-E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\obj\Debug\PMOscar.Core.csproj.CopyComplete
-E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\obj\Debug\PMOscar.Core.dll
-E:\SVN\PMOSCAR\PMOSCARV1\trunk\PMOscar.Core\obj\Debug\PMOscar.Core.pdb
