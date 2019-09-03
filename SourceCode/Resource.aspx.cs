@@ -595,7 +595,7 @@ namespace PMOscar
                     "alert('Resource has created successfully.');window.location ='ResourceListing.aspx';",
                     true);
 
-                if (ddlRole.SelectedItem.Text == PMOscar.Core.Constants.AddRole.TRAINEE || ddlRole.SelectedItem.Text == PMOscar.Core.Constants.AddRole.TRAINEE || checkBox1.Checked == true)
+                if (ddlRole.SelectedItem.Text == PMOscar.Core.Constants.AddRole.TRAINEE || ddlRole.SelectedItem.Text == PMOscar.Core.Constants.AddRole.QATRAINEE || checkBox1.Checked == true)
                 {
                     PnlEdit.Visible = true;
                 }
