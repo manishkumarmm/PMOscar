@@ -498,6 +498,11 @@
                  left: 892px !important; 
                  
              }
+             .image-style
+             {
+                 width:15px;
+                 height:12px;
+             }
      </style>
         <table width="60%">
             <tr>
@@ -544,11 +549,12 @@
                 </td>
                 <td valign="middle" align="left" nowrap="nowrap" class="auto-style4">
                     <asp:DropDownList ID="ddlRole" OnSelectedIndexChanged="ddlRole_SelectedIndexChanged" AutoPostBack="true"  runat="server" Style="width: 153px;"   TabIndex="2"
-                         >
+                       >
                     </asp:DropDownList>
 
                 </td>
                 <td align="left">
+                    <asp:ImageButton CausesValidation="false" imageUrl="Images/RefreshIcon.png" runat="server" alt="Refresh" title="Refresh" AutoPostBack="true"  class="image-style" onclick="ImgButton_Click" />
                     <asp:LinkButton ID="lnkAddRole" Text="Add Role" runat="server" TabIndex="-1"></asp:LinkButton>
                     <asp:RequiredFieldValidator ID="rfvRole" ControlToValidate="ddlRole" InitialValue="0"
                         runat="server" ErrorMessage="Select Role."></asp:RequiredFieldValidator>
