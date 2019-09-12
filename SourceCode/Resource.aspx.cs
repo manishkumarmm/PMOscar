@@ -585,6 +585,7 @@ namespace PMOscar
             }
             if (!lblEmployeecode.Visible)
             {
+
                 if (resourceEditId != 0)
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
                     "alert('Resource has updated successfully.');window.location ='ResourceListing.aspx';",
@@ -593,7 +594,16 @@ namespace PMOscar
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
                     "alert('Resource has created successfully.');window.location ='ResourceListing.aspx';",
                     true);
-                PnlEdit.Visible = false;
+
+                if (ddlRole.SelectedItem.Text == PMOscar.Core.Constants.AddRole.TRAINEE || ddlRole.SelectedItem.Text == PMOscar.Core.Constants.AddRole.QATRAINEE || checkBox1.Checked == true)
+                {
+                    PnlEdit.Visible = true;
+                }
+                else
+                {
+                    PnlEdit.Visible = false;
+                }
+               
                 //Response.Redirect("ResourceListing.aspx");
             }
 
