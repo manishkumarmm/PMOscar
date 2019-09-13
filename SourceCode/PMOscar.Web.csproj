@@ -103,6 +103,7 @@
     <Content Include="Images\blank_over.gif" />
     <Content Include="Images\delete.png" />
     <Content Include="Images\excel.png" />
+    <Content Include="Images\RefreshIcon.png" />
     <Content Include="Images\Refrsh.png" />
     <Content Include="Images\Sync.png" />
     <Content Include="InvoiceSummary.aspx" />

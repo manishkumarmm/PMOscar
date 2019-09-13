@@ -49,9 +49,6 @@ namespace PMOscar
             {
                 string query = string.Format("select Role from Role ro,Resource r where ro.RoleId=r.RoleId and r.ResourceId = {0}", resource);
                 roleName = PMOscar.BaseDAL.ExecuteScalar(query).ToString();
-                //string query1 = string.Format("select JoinDate from Resource where ResourceId = {0}", resource);
-                //joinDate = (DateTime)PMOscar.BaseDAL.ExecuteScalar(query1);
-
             }
             txtemployeecode.Focus();
 
@@ -134,8 +131,6 @@ namespace PMOscar
                 BindDropDownTeam(); //Method to bind the Team in the DropDownList
                 BindDropDownCostCentre();//Method to bind Cost Centre in the DropDownList
                 BindYearDropDown(); // Fill year drop down
-                //BindDropDownBillingRole(); // Fill Billing role Drop Down
-                //BindDropDownBillingGroup(); //Fill Billing group Drop Down
                 txtemployeecode.Text = employeeCode;
 
                 if (resourceEditId != 0)
@@ -148,9 +143,6 @@ namespace PMOscar
             txtResourceName.Attributes.Add("onkeypress", "return CheckTextValue(event,this);");
             errorSpan.InnerText = "";
             lnkAddRole.Attributes.Add("onclick", "window.open('AddRole.aspx','_blank','height=200,width=400,toolbar=yes,scrollbars=no,resizable=no,top=400,left=500');return false");
-            //lnkAddbillingrole.Attributes.Add("onclick", "window.open('AddBillingRole.aspx','_blank','height=200,width=400,toolbar=yes,scrollbars=no,resizable=no,top=400,left=500');return false");
-            //lnkBillinggroup.Attributes.Add("onclick", "window.open('AddBillingGroup.aspx','_blank','height=200,width=400,toolbar=yes,scrollbars=no,resizable=no,top=400,left=500');return false");
-
         }
 
 
@@ -240,37 +232,6 @@ namespace PMOscar
             }
 
         }
-        // Method to bind the biling roles in the DropDownList
-        //private void BindDropDownBillingRole()
-        //{
-        //    parameter = new List<SqlParameter>();
-        //    DataTable dt = BaseDAL.ExecuteSPDataTable("GetBillingRole", parameter);
-        //    if (dt != null)
-        //    {
-        //        ddlBillingRole.DataSource = dt;
-        //        ddlBillingRole.DataTextField = "BillingRoleName";
-        //        ddlBillingRole.DataValueField = "BillingRoleID";
-        //        ddlBillingRole.DataBind();
-        //        ddlBillingRole.Items.Insert(0, new ListItem("Select", "0"));
-        //    }
-
-        //}
-
-        //private void BindDropDownBillingGroup()
-        //{
-        //    parameter = new List<SqlParameter>();
-        //    DataTable dt = BaseDAL.ExecuteSPDataTable("GetBillingGroup", parameter);
-        //    if (dt != null)
-        //    {
-        //        ddlBillingGroup.DataSource = dt;
-        //        ddlBillingGroup.DataTextField = "BillingGroupName";
-        //        ddlBillingGroup.DataValueField = "BillingGroupID";
-        //        ddlBillingGroup.DataBind();
-        //        ddlBillingGroup.SelectedValue = "1";
-        //    }
-
-        //}
-        //Method to bind team in the drop downlist
         private void BindDropDownTeam()
         {
             parameter = new List<SqlParameter>();
@@ -407,8 +368,6 @@ namespace PMOscar
                 parameter.Add(new SqlParameter("@CostCentreID", Convert.ToInt32(ddlCostCentre.SelectedValue.ToString())));
                 parameter.Add(new SqlParameter("@emp_Code", txtemployeecode.Text.Trim()));
                 parameter.Add(new SqlParameter("@WeeklyHour", txtWeeklyHours.Text.Trim()));
-                //parameter.Add(new SqlParameter("@Billinggroupid", ddlBillingGroup.SelectedValue));
-                //parameter.Add(new SqlParameter("@Billingroleid", ddlBillingRole.SelectedValue));
                 parameter.Add(new SqlParameter("@JoinDate", joinDate));
                 parameter.Add(new SqlParameter("@ExitDate", endDate));
                 try
@@ -474,8 +433,6 @@ namespace PMOscar
                 parameter.Add(new SqlParameter("@CostCentreID", Convert.ToInt32(ddlCostCentre.SelectedValue.ToString())));
                 parameter.Add(new SqlParameter("@emp_Code", txtemployeecode.Text.Trim()));
                 parameter.Add(new SqlParameter("@WeeklyHour", txtWeeklyHours.Text.Trim()));
-                //parameter.Add(new SqlParameter("@Billinggroupid", ddlBillingGroup.SelectedValue));
-                //parameter.Add(new SqlParameter("@Billingroleid", ddlBillingRole.SelectedValue));
                 parameter.Add(new SqlParameter("@JoinDate", joinDate));
                 parameter.Add(new SqlParameter("@ExitDate", endingDate));
                 try
@@ -843,5 +800,9 @@ namespace PMOscar
         }
 
         #endregion
+        protected void ImgButton_Click(object sender, ImageClickEventArgs e)
+        {
+            BindDropDownRole();
+        }
     }
 }
