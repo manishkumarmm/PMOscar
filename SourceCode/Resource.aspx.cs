@@ -343,14 +343,8 @@ namespace PMOscar
                 DateTime endDate;
                 System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                 DateTime joinDate = DateTime.ParseExact(txtJoinDate.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                if (txtExitDate.Text.ToString() != string.Empty)
-                {
-                    endDate = DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture);
-                }
-                else
-                {
-                    endDate = DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
-                }
+                endDate = (txtExitDate.Text.ToString() != string.Empty) ?
+                     DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture) : DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
                 lblEmployeecode.Visible = false;
                 parameter = new List<SqlParameter>();
                 parameter.Add(new SqlParameter("@ResourceId", 1));
@@ -405,17 +399,11 @@ namespace PMOscar
 
             else
             {
+                DateTime endDate;
                 System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                 DateTime joinDate = DateTime.ParseExact(txtJoinDate.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                DateTime endingDate;
-                if (txtExitDate.Text.ToString() != string.Empty)
-                {
-                    endingDate = DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture);
-                }
-                else
-                {
-                    endingDate = DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
-                }
+                endDate = (txtExitDate.Text.ToString() != string.Empty) ?
+                   DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture) : DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
                 lblEmployeecode.Visible = false;
                 parameter = new List<SqlParameter>();
                 parameter.Add(new SqlParameter("@ResourceId", resource));
@@ -434,7 +422,7 @@ namespace PMOscar
                 parameter.Add(new SqlParameter("@emp_Code", txtemployeecode.Text.Trim()));
                 parameter.Add(new SqlParameter("@WeeklyHour", txtWeeklyHours.Text.Trim()));
                 parameter.Add(new SqlParameter("@JoinDate", joinDate));
-                parameter.Add(new SqlParameter("@ExitDate", endingDate));
+                parameter.Add(new SqlParameter("@ExitDate", endDate));
                 try
                 {
                     ResourceId = PMOscar.BaseDAL.ExecuteSPScalar("ResourceOperations", parameter);
@@ -625,6 +613,7 @@ namespace PMOscar
             }
             else if (ddlRole.SelectedItem.Text != "Select" && ddlRole.SelectedItem.Text != PMOscar.Core.Constants.AddRole.TRAINEE)
             {
+                DateTime endDate;
                 var adjustParam = 0;
                 int utilization = Convert.ToInt32(PMOscar.Utility.EnumTypes.Estimation.EstimationPercentage);
                 var isTrainee = 0;
@@ -633,7 +622,8 @@ namespace PMOscar
                 int resource = Convert.ToInt32(resid);
                 System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                 DateTime joinDate = DateTime.ParseExact(txtJoinDate.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                DateTime endDate = DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture);
+                endDate = (txtExitDate.Text.ToString() != string.Empty) ?
+                    DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture) : DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
                 int userid = Convert.ToInt16(Session["UserID"]);
                 DateTime currentDate = DateTime.UtcNow.Date;
                 parameter = new List<SqlParameter>();
@@ -662,12 +652,14 @@ namespace PMOscar
                  roleName == PMOscar.Core.Constants.AddRole.TRAINEE) ||
                 (ddlRole.SelectedItem.Text != PMOscar.Core.Constants.AddRole.QATRAINEE && roleName == PMOscar.Core.Constants.AddRole.QATRAINEE)))
             {
+                DateTime endDate;
                 var adjustParam = 0;
                 int utilization = Convert.ToInt32(PMOscar.Utility.EnumTypes.Estimation.EstimationPercentage);
                 var isTrainee = 0;
                 System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                 DateTime joinDate = DateTime.ParseExact(txtJoinDate.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                DateTime endDate = DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture);
+                endDate=(txtExitDate.Text.ToString() != string.Empty)?
+                    DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture):DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
                 int userid = Convert.ToInt16(Session["UserID"]);
                 DateTime currentDate = DateTime.UtcNow.Date;
                 parameter = new List<SqlParameter>();
@@ -775,12 +767,14 @@ namespace PMOscar
                 }
                 else
                 {
+                    DateTime endDate;
                     var adjustParam = 0;
                     int utilization = Convert.ToInt32(PMOscar.Utility.EnumTypes.Estimation.EstimationPercentage);
                     var isTrainee = 0;
                     System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                     DateTime joinDate = DateTime.ParseExact(txtJoinDate.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                    DateTime endDate = DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture);
+                    endDate = (txtExitDate.Text.ToString() != string.Empty) ?
+              DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture) : DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
                     int userid = Convert.ToInt16(Session["UserID"]);
                     DateTime currentDate = DateTime.UtcNow.Date;
                     parameter = new List<SqlParameter>();
