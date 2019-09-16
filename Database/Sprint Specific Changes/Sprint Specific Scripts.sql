@@ -58,6 +58,28 @@ update [resource] set
 exitdate = updateddate
 where isactive = 0 and exitdate is null
 
+
+Update Resource set JoinDate='2019-04-01' where ResourceName='Aji Gopal V'
+Update Resource set JoinDate='2019-03-11' where ResourceName='Niya K R'
+Update Resource set JoinDate='2019-03-11' where ResourceName='Jibin Joseph'
+Update Resource set JoinDate='2019-08-05' where ResourceName='Rajesh Kummil'
+Update Resource set JoinDate='2019-05-13' where ResourceName='Anjaly Jose'
+Update Resource set JoinDate='2019-08-26' where ResourceName='Jinu Jose'
+Update Resource set JoinDate='2019-09-02' where ResourceName='Sarath K J'
+Update Resource set JoinDate='2019-09-02' where ResourceName='Dona K Johny'
+
+insert into ResourceUtilizationPercentage(ResourceId,StartDate,EndDate,UtilizationPercentage,AdjustmentFactor,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate)
+select Table_A.ResourceId,isnull(table_a.JoinDate,'1900-01-01') as StartDate,'2099-12-31' as EndDate,100 as UtilizationPercentage,
+0 as AdjustmentFactor,Table_A.CreatedBy,Table_A.CreatedDate,null UpdatedBy,null UpdatedDate
+
+FROM resource join 
+(select ResourceId,JoinDate,CreatedBy,createddate from Resource where ResourceId not in(select distinct resourceid from ResourceUtilizationPercentage)) Table_A
+on resource.ResourceId = Table_A.ResourceId
+
+
+
+
+
 --Budget revision--
 
 ALTER TABLE [BudgetRevisionLog]
