@@ -68,7 +68,8 @@ public partial class Default : System.Web.UI.Page
                     else
                     {
                         Session[Constants.SessionName.USERNAME] = user.UserName;
-                        Session[Constants.SessionName.ENCRYPTEDPASSWORD] = PMOscar.BaseDAL.EncryptString(Password);
+                        Session[Constants.SessionName.ENCRYPTEDPASSWORD] = PMOscar.BaseDAL.EncryptString(PMOscar.BaseDAL.DecryptText(user.Password));
+                        // decrypting the password after encrpting the password from db- for gsuite
                         Session[Constants.SessionName.USERID] = user.UserId;
                         Session[Constants.SessionName.USERROLEID] = user.UserRole.UserRoleId;
                         lblmsg.Text = "";
