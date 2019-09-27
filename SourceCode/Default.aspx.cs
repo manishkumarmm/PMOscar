@@ -68,7 +68,8 @@ public partial class Default : System.Web.UI.Page
                     else
                     {
                         Session[Constants.SessionName.USERNAME] = user.UserName;
-                        Session[Constants.SessionName.ENCRYPTEDPASSWORD] = PMOscar.BaseDAL.EncryptString(Password);
+                        Session[Constants.SessionName.ENCRYPTEDPASSWORD] = PMOscar.BaseDAL.EncryptString(PMOscar.BaseDAL.DecryptText(user.Password));
+                        // decrypting the password after encrpting the password from db- for gsuite
                         Session[Constants.SessionName.USERID] = user.UserId;
                         Session[Constants.SessionName.USERROLEID] = user.UserRole.UserRoleId;
                         lblmsg.Text = "";
@@ -112,7 +113,7 @@ public partial class Default : System.Web.UI.Page
 
             if (objUserDAL.CheckUserAuthentication(txtUserName.Text, PMOscar.BaseDAL.EncryptText(txtPassword.Text), out user))
             {
-                if(!user.IsActive)
+                if (!user.IsActive)
                 {
                     lblmsg.Text = "This user account has been disabled!";
                 }
@@ -123,11 +124,11 @@ public partial class Default : System.Web.UI.Page
                     Session[Constants.SessionName.USERID] = user.UserId;
                     Session[Constants.SessionName.USERROLEID] = user.UserRole.UserRoleId;
                     lblmsg.Text = "";
-                    if(Convert.ToInt32(Session[Constants.SessionName.USERROLEID])==4)
+                    if (Convert.ToInt32(Session[Constants.SessionName.USERROLEID]) == 4)
                         Response.Redirect("UserListing.aspx");
                     else
-                    Response.Redirect("ResourcePlanning.aspx");
-                }              
+                        Response.Redirect("ResourcePlanning.aspx");
+                }
             }
             else
             {
