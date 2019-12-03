@@ -12,6 +12,36 @@
             margin-top: 8px;
             margin-bottom: -3px;
         }
+
+        .table-heading {
+            font-size:20px;
+        }
+
+        #holidayTable {
+            margin-top:25px;
+            font-size:15px;
+        }
+
+        #holidayTable tr {
+            padding-bottom:10px;
+            width: 250px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #holidayTable tr td input, #holidayTable tr td select{
+            font-size:13px;
+        }
+
+        .save-btn {
+            font-size: 14px;
+            padding: 4px 15px;
+        }
+
+        #holidayTable tr td #viewOh {
+            padding: 4px 15px;
+        }
+
     </style>
 
     <%--Script section--%>
@@ -269,7 +299,7 @@
         <form action="/">
             <table id="holidayTable">
                 <tr>
-                    <th colspan="2">Optional Holiday</th>
+                    <th class="table-heading" colspan="2">Optional Holiday</th>
                 </tr>
                 <tr>
                     <td></td>
@@ -300,7 +330,7 @@
                 </tr>
                 <tr>
                     <th colspan="2">
-                        <input type="button" value="Save" id="save" />
+                        <input type="button" class="save-btn" value="Save" id="save" />
                     </th>
                 </tr>
                 <tr>
@@ -312,7 +342,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="color:red">
+                    <td colspan="2" style="color:#611818; font-size:13px;">
                         Note : You can not update optional holidays once it is submitted.
                     </td>
                 </tr>
