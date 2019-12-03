@@ -63,7 +63,13 @@ public partial class PMOMaster : System.Web.UI.MasterPage
                 HtmlControl hcadminPD = Page.Master.FindControl("adminRL") as HtmlControl;
                 if (hcadminPD != null)
                     (Page.Master.FindControl("adminRL") as HtmlControl).Attributes.Add("class", "active");
-            }          
+            }
+            else if (url.Contains("OptionalHolidays.aspx") || url.Contains("optionalholidays"))
+            {
+                HtmlControl hcadminPD = Page.Master.FindControl("oHoliday") as HtmlControl;
+                if (hcadminPD != null)
+                    (Page.Master.FindControl("oHoliday") as HtmlControl).Attributes.Add("class", "active");
+            }
         }
 
     }
