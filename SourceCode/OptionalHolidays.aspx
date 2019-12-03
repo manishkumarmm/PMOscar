@@ -18,8 +18,8 @@
     <script type="text/javascript" language="javascript">
 
         //read from config
-        var noOfOptionalHolidays = 9;
-        var natDays = [[1, 26], [5, 1], [8, 15], [10, 2]];
+        var noOfOptionalHolidays =  parseInt(<%=ConfigurationManager.AppSettings["noOfOptionalHolidays"] %>);
+        var natDays = <%=ConfigurationManager.AppSettings["fixedHolidays"] %>;
         var year;
 
         function loadOhDropdown() {
@@ -43,9 +43,9 @@
                 $(Id).remove();
             }
         }
-        //diable national holidays
+        //disable national holidays
         function nationalDays(date) {
-            //avaoid sat and sun
+            //avoid sat and sun
             if (date.getDay() == 0 || date.getDay() == 6) {
                 return [false];
             }
