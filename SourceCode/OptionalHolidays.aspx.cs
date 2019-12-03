@@ -31,9 +31,6 @@ namespace PMOscar
                 if (hcliuser != null)
                     (Page.Master.FindControl("liuser") as HtmlControl).Visible = true;
 
-                HtmlControl hcauser = Page.Master.FindControl("auser") as HtmlControl;
-                if (hcauser != null)
-                    (Page.Master.FindControl("auser") as HtmlControl).Attributes.Add("class", "active");
                 //Hides the tabs other than User for Sys Admin role
                 HtmlControl hcliadminWO = Page.Master.FindControl("liadminWO") as HtmlControl;
                 if (hcliadminWO != null)
@@ -71,10 +68,9 @@ namespace PMOscar
                 if (hcliadminRL != null)
                     (Page.Master.FindControl("liadminRL") as HtmlControl).Style.Add("display", "none");
                 #endregion
-                Response.Redirect("AccessDenied.aspx");
             }
 
-            if (Convert.ToInt16(Session["UserRoleID"]) == (int)PMOscar.Utility.EnumTypes.UserRoles.Employees) // Checking role of user by UserRoleID ( 4=Employee)
+            else if (Convert.ToInt16(Session["UserRoleID"]) == (int)PMOscar.Utility.EnumTypes.UserRoles.Employees) // Checking role of user by UserRoleID ( 4=Employee)
             {
                 #region
 
@@ -119,7 +115,6 @@ namespace PMOscar
                 if (hcliadminRL != null)
                     (Page.Master.FindControl("liadminRL") as HtmlControl).Style.Add("display", "none");
                 #endregion
-                //Response.Redirect("AccessDenied.aspx");
             }
 
             else if (Convert.ToInt16(Session["UserRoleID"]) == 1) // Checking role of user by UserRoleID ( 1 = ProjectOwner , 2 = ProjectManager )
