@@ -14,24 +14,24 @@
         }
 
         .table-heading {
-            font-size:20px;
+            font-size: 20px;
         }
 
         #holidayTable {
-            margin-top:25px;
-            font-size:15px;
+            margin-top: 25px;
+            font-size: 15px;
         }
 
-        #holidayTable tr {
-            padding-bottom:10px;
-            width: 250px;
-            display: flex;
-            justify-content: space-around;
-        }
+            #holidayTable tr {
+                padding-bottom: 10px;
+                width: 250px;
+                display: flex;
+                justify-content: space-around;
+            }
 
-        #holidayTable tr td input, #holidayTable tr td select{
-            font-size:13px;
-        }
+                #holidayTable tr td input, #holidayTable tr td select {
+                    font-size: 13px;
+                }
 
         .save-btn {
             font-size: 14px;
@@ -41,7 +41,6 @@
         #holidayTable tr td #viewOh {
             padding: 4px 15px;
         }
-
     </style>
 
     <%--Script section--%>
@@ -62,7 +61,8 @@
                 //add date picker 
                 $(Id).datepicker({
                     beforeShowDay: nationalDays,
-                    dateFormat: 'dd-M-yy'
+                    dateFormat: 'dd-M-yy',
+                    defaultDate: new Date(year,0,01)
                 });
             }
         }
@@ -116,18 +116,24 @@
             }
             return validateDates(selectedOh);
         }
-        var sortedOh;
+
+        var sortedOh,sortedTotalHolidays;
         //validate dates.
         function validateDates(selectedOh) {
             sortedOh = [];
             sortedOh = selectedOh.sort(sortDates);
+            var diffDays=consecutiveDays(sortedOh);
+            if (!diffDays) {
+                return false;
+            }
 
             var repeatedDates = isRepeatedDates(sortedOh);
             if (!repeatedDates) {
                 return false;
             }
 
-            var monthAllowedOh = [2, 3, 3, 4, 5, 6, 6, 7, 8, 8, 9, 9];
+            var monthAllowedOh = <%=ConfigurationManager.AppSettings["inMonthAllowedOh"] %>;
+            var minOhInMonth = <%=ConfigurationManager.AppSettings["minOhInMonth"] %>;
             var datesInThisMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
             var month = 0;
@@ -139,74 +145,89 @@
             var optionalHolidaysSum = 0;
 
             optionalHolidaysSum = datesInThisMonth[0];
-            if (optionalHolidaysSum > 2) {
-                alert("You can not select more than 2 Optional holidays in January.");
+            if (optionalHolidaysSum > monthAllowedOh[0]) {
+                alert("You cannot select more than "+monthAllowedOh[0]+" Optional holidays in January.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[1];
-            if (optionalHolidaysSum > 3) {
-                alert("You can not select more than 3 Optional holidays upto February.");
+            if (optionalHolidaysSum > monthAllowedOh[1]) {
+                alert("You cannot select more than "+monthAllowedOh[1]+" Optional holidays upto February.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[2];
-            if (datesInThisMonth[2] > 3) {
-                alert("You can not select more than 3 Optional holidays upto March.");
+            if (optionalHolidaysSum > monthAllowedOh[2]) {
+                alert("You cannot select more than "+monthAllowedOh[2]+" Optional holidays upto March.");
+                return false;
+            }
+
+            if(optionalHolidaysSum<minOhInMonth[0][1]){
+                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[0][1]+" holiday upto March.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[3];
-            if (optionalHolidaysSum > 4) {
-                alert("You can not select more than 4 Optional holidays upto April.");
+            if (optionalHolidaysSum > monthAllowedOh[3]) {
+                alert("You cannot select more than "+monthAllowedOh[3]+" Optional holidays upto April.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[4];
-            if (optionalHolidaysSum > 5) {
-                alert("You can not select more than 5 Optional holidays upto May.");
+            if (optionalHolidaysSum > monthAllowedOh[4]) {
+                alert("You cannot select more than "+monthAllowedOh[4]+" Optional holidays upto May.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[5];
-            if (optionalHolidaysSum > 6) {
-                alert("You can not select more than 6 Optional holidays upto June.");
+            if (optionalHolidaysSum > monthAllowedOh[5]) {
+                alert("You cannot select more than "+monthAllowedOh[5]+" Optional holidays upto June.");
+                return false;
+            }
+
+            if(optionalHolidaysSum<minOhInMonth[1][1]){
+                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[1][1]+" holidays upto June.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[6];
-            if (optionalHolidaysSum > 6) {
-                alert("You can not select more than 6 Optional holidays upto July.");
+            if (optionalHolidaysSum > monthAllowedOh[6]) {
+                alert("You cannot select more than "+monthAllowedOh[6]+" Optional holidays upto July.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[7];
-            if (optionalHolidaysSum > 7) {
-                alert("You can not select more than 7 Optional holidays upto August.");
+            if (optionalHolidaysSum > monthAllowedOh[7]) {
+                alert("You cannot select more than "+monthAllowedOh[7]+" Optional holidays upto August.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[8];
-            if (optionalHolidaysSum > 8) {
-                alert("You can not select more than 8 Optional holidays upto September.");
+            if (optionalHolidaysSum > monthAllowedOh[8]) {
+                alert("You cannot select more than "+monthAllowedOh[8]+" Optional holidays upto September.");
+                return false;
+            }
+
+            if(optionalHolidaysSum<minOhInMonth[2][1]){
+                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[2][1]+" holidays upto September.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[9];
-            if (optionalHolidaysSum > 8) {
-                alert("You can not select more than 8 Optional holidays upto October.");
+            if (optionalHolidaysSum > monthAllowedOh[9]) {
+                alert("You can not select more than "+monthAllowedOh[9]+" Optional holidays upto October.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[10];
-            if (optionalHolidaysSum > noOfOptionalHolidays) {
-                alert("You can not select more than " + noOfOptionalHolidays + " Optional holidays upto November.");
+            if (optionalHolidaysSum > monthAllowedOh[10]) {
+                alert("You cannot select more than " + monthAllowedOh[10] + " Optional holidays upto November.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[11];
-            if (optionalHolidaysSum > noOfOptionalHolidays) {
-                alert("You can not select more than " + noOfOptionalHolidays + " Optional holidays upto December.");
+            if (optionalHolidaysSum > monthAllowedOh[11]) {
+                alert("You cannot select more than " + monthAllowedOh[11] + " Optional holidays upto December.");
                 return false;
             }
             return true;
@@ -215,6 +236,43 @@
         //sort dates
         function sortDates(a, b) {
             return new Date(b) - new Date(a);
+        }
+
+        //find is there more than 2 holidays in same week
+        function consecutiveDays(sortedOh){
+            var totalHolidays =[],differnceInDates={};
+            var fixedHolidays = getFixedHolidays();
+            totalHolidays=sortedOh.concat(fixedHolidays);
+            sortedTotalHolidays=totalHolidays.sort(sortDates);
+            var len=sortedTotalHolidays.length;
+            for(var i=0;i<len;i++){
+                var week= getWeekNumber(sortedTotalHolidays[i]);
+                differnceInDates[week]=differnceInDates[week]?differnceInDates[week]+1:1;
+                if(differnceInDates[week] > 2){
+                    alert("You cannot apply more than 2 holidays in same week including fixed holidays.");
+                    return false;
+                }
+            }   
+            return true;
+        }
+
+        //get week number
+        function getWeekNumber(date) {
+            var onejan = new Date(year,0,1);
+            var today = new Date(date);
+            var dayOfYear = ((today - onejan +1)/86400000);
+            return Math.ceil(dayOfYear/7)
+        }
+
+        function getFixedHolidays(){
+            var fixedHolidays=[];
+            for (i = 0; i < natDays.length; i++) {
+                var date=new Date(year, natDays[i][0] - 1, natDays[i][1]);
+                if(date.getDay() != 0 && date.getDay() != 6){
+                    fixedHolidays.push((new Date(year, natDays[i][0] - 1, natDays[i][1])).toString('dd-M-yy'));
+                }
+            }
+            return fixedHolidays;
         }
 
         // check repeated dates
@@ -255,6 +313,7 @@
             
         });
 
+        //save optional holidays
         function FreezeOptionalHolidays() {
             var obj = {
                 oh: sortedOh,
@@ -291,8 +350,6 @@
             }
             return true;
         }
-
-        
 
     </script>
     <div>
@@ -342,8 +399,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="color:#611818; font-size:13px;">
-                        Note : You can not update optional holidays once it is submitted.
+                    <td colspan="2" style="color: #611818; font-size: 13px;">Note : You cannot update optional holidays once it is submitted.
                     </td>
                 </tr>
             </table>
