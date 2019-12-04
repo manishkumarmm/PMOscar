@@ -41,6 +41,7 @@
         #holidayTable tr td #viewOh {
             padding: 4px 15px;
         }
+
     </style>
 
     <%--Script section--%>
@@ -49,13 +50,25 @@
         //read from config
         var noOfOptionalHolidays =  parseInt(<%=ConfigurationManager.AppSettings["noOfOptionalHolidays"] %>);
         var natDays = <%=ConfigurationManager.AppSettings["fixedHolidays"] %>;
+        var minOhInMonth = <%=ConfigurationManager.AppSettings["minOhInMonth"] %>;
         var year;
+
+        function loadwarnings(){
+                 
+            var input = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum '+minOhInMonth[0][1] +' Optional holiday should be availed till March. </td></tr>';
+            $('#warnings').append(input);
+            var input2 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum '+minOhInMonth[1][1] +' Optional holidays should be availed till June. </td></tr>';
+            $('#warnings').append(input2);
+            var input3 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum '+minOhInMonth[2][1] +' Optional holidays should be availed till September. </td></tr>';
+            $('#warnings').append(input3);
+                    
+        }
 
         function loadOhDropdown() {
             removeExistingOptions();
             for (var i = 1; i <= noOfOptionalHolidays; i++) {
                 var Id = "#oh" + i;
-                var input = '<tr id="ohtr' + i + '"><td> OH ' + i + ' </td><td> <input type="text" id="oh' + i + '" value="Choose a Date" readonly="readonly" /> </td></tr>';
+                var input = '<tr id="ohtr' + i + '"><td> OH ' + i + ' </td><td> <input type="text" class="inputStyle" id="oh' + i + '" value="Choose a Date" readonly="readonly" /> </td></tr>';
                 $('#holidayTable').append(input);
 
                 //add date picker 
@@ -122,18 +135,18 @@
         function validateDates(selectedOh) {
             sortedOh = [];
             sortedOh = selectedOh.sort(sortDates);
-            var diffDays=consecutiveDays(sortedOh);
-            if (!diffDays) {
-                return false;
-            }
 
             var repeatedDates = isRepeatedDates(sortedOh);
             if (!repeatedDates) {
                 return false;
             }
 
+            var diffDays=consecutiveDays(sortedOh);
+            if (!diffDays) {
+                return false;
+            }
+
             var monthAllowedOh = <%=ConfigurationManager.AppSettings["inMonthAllowedOh"] %>;
-            var minOhInMonth = <%=ConfigurationManager.AppSettings["minOhInMonth"] %>;
             var datesInThisMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
             var month = 0;
@@ -163,7 +176,7 @@
             }
 
             if(optionalHolidaysSum<minOhInMonth[0][1]){
-                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[0][1]+" holiday upto March.");
+                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[0][1]+" Optional holiday should be availed till March.");
                 return false;
             }
 
@@ -186,7 +199,7 @@
             }
 
             if(optionalHolidaysSum<minOhInMonth[1][1]){
-                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[1][1]+" holidays upto June.");
+                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[1][1]+" Optional holidays should be availed till June.");
                 return false;
             }
 
@@ -209,7 +222,7 @@
             }
 
             if(optionalHolidaysSum<minOhInMonth[2][1]){
-                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[2][1]+" holidays upto September.");
+                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[2][1]+" Optional holidays should be availed till September.");
                 return false;
             }
 
@@ -249,7 +262,7 @@
                 var week= getWeekNumber(sortedTotalHolidays[i]);
                 differnceInDates[week]=differnceInDates[week]?differnceInDates[week]+1:1;
                 if(differnceInDates[week] > 2){
-                    alert("You cannot apply more than 2 holidays in same week including fixed holidays.");
+                    alert("You cannot apply more than 2 holidays in same week, including fixed holidays.");
                     return false;
                 }
             }   
@@ -286,7 +299,7 @@
             }
 
             if (duplicateDates.length > 0) {
-                alert("Duplicate date.")
+                alert("Duplicate dates found.")
                 return false;
             }
             return true;
@@ -294,6 +307,7 @@
 
         //on click of save
         $(document).ready(function () {
+            loadwarnings();
             $("#year").change(function () {
                 year = $(this).val();
                 loadOhDropdown();
@@ -329,8 +343,11 @@
                 async: true,
                 cache: false,
                 success: function (result) {
-                    if (result.d == true)
+                    if (result.d == true){
+                        $( ".inputStyle" ).prop( "disabled", true );
                         alert("Saved successfully.");
+
+                    }
                     else {
                         alert("Already Submitted.")
                     }
@@ -380,7 +397,7 @@
                     </td>
                 </tr>
             </table>
-            <table>
+            <table id="warnings">
                 <tr>
                     <td></td>
                     <td></td>
@@ -395,11 +412,11 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td  colspan="2" style="color: #611818; font-size: 13px;">Notes :</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="color: #611818; font-size: 13px;">Note : You cannot update optional holidays once it is submitted.
+                    <td colspan="2" style="color: #611818; font-size: 13px;">- You cannot update optional holidays once it is submitted.
                     </td>
                 </tr>
             </table>
