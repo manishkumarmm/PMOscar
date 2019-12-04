@@ -344,7 +344,7 @@
                 cache: false,
                 success: function (result) {
                     if (result.d == true){
-                        $( ".inputStyle" ).prop( "disabled", true );
+                        $( ".inputStyle" ).attr( "disabled", true );
                         alert("Saved successfully.");
 
                     }
