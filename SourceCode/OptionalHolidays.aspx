@@ -373,7 +373,7 @@
         <form action="/">
             <table id="holidayTable">
                 <tr>
-                    <th class="table-heading" colspan="2">Optional Holiday</th>
+                    <th class="table-heading" colspan="2">Optional Holidays</th>
                 </tr>
                 <tr>
                     <td></td>
