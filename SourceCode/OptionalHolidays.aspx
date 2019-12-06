@@ -431,7 +431,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="showEmployeeOhList">
-                        <input type="button" value="Emplyees Oh List" id="employeesOhList" />
+                        <input type="button" value="Employee OH List" id="employeesOhList" />
                     </td>
                 </tr>
                 <tr>
