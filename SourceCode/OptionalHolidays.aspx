@@ -42,6 +42,10 @@
             padding: 4px 15px;
         }
 
+        .showEmployeeOhList{
+            display:none;
+        }
+
     </style>
 
     <%--Script section--%>
@@ -52,6 +56,13 @@
         var natDays = <%=ConfigurationManager.AppSettings["fixedHolidays"] %>;
         var minOhInMonth = <%=ConfigurationManager.AppSettings["minOhInMonth"] %>;
         var year;
+
+        function loadEmployeeOhlist(){
+            var x=<% =showEmployeeOhList %>;
+            if(x){
+                $(".showEmployeeOhList").css("display", "block");
+            }
+        }
 
         function loadwarnings(){
                  
@@ -248,7 +259,7 @@
 
         //sort dates
         function sortDates(a, b) {
-            return new Date(b) - new Date(a);
+            return new Date(a) - new Date(b);
         }
 
         //find is there more than 2 holidays in same week
@@ -308,6 +319,7 @@
         //on click of save
         $(document).ready(function () {
             loadwarnings();
+            loadEmployeeOhlist();
             $("#year").change(function () {
                 year = $(this).val();
                 loadOhDropdown();
@@ -324,6 +336,11 @@
                 var optionalHolidyListName = 'OptionalHolidayList/HOLIDAYLIST.pdf';
                 window.open(optionalHolidyListName, '_blank');
             });
+
+            $("#employeesOhList").click(function () {
+                downloadEmployeeOhList()
+            });
+            
             
         });
 
@@ -368,6 +385,34 @@
             return true;
         }
 
+        //download employee oh list
+        function downloadEmployeeOhList(){
+            $.ajax({
+                type: "POST",
+                url: "OptionalHolidays.aspx/downloadEmployeeHolidays",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                cache: false,
+                success: function (result) {
+                    if (result.d){
+                        var hiddenElement = document.createElement('a');
+                        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(result.d);
+                        hiddenElement.target = '_blank';
+                        hiddenElement.download = 'Optional holiday List.csv';
+                        hiddenElement.click();
+
+                    }
+                    else {
+                        alert("Unable to download.")
+                    }
+                },
+                error: function (result) {
+                    alert("Unable to download.")
+                }
+            });
+        }
+
     </script>
     <div>
         <form action="/">
@@ -385,9 +430,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td colspan="2" class="showEmployeeOhList">
+                        <input type="button" value="Emplyees Oh List" id="employeesOhList" />
+                    </td>
                 </tr>
+                <tr>
+                    <td class="showEmployeeOhList"></td>
+                    <td class="showEmployeeOhList"></td>
+                </tr>
+
                 <tr>
                     <td>Year</td>
                     <td>

@@ -8,7 +8,10 @@ namespace PMOscar
 {
     using Core;
     using System;
+    using System.Collections.Generic;
+    using System.Configuration;
     using System.Data;
+    using System.Text;
     using System.Web;
     using System.Web.Services;
     using System.Web.UI.HtmlControls;
@@ -16,8 +19,10 @@ namespace PMOscar
     public partial class OptionalHolidays : System.Web.UI.Page
     {
         public int userid;
+        protected string showEmployeeOhList { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            showEmployeeOhList = "false";
             if (Session["UserName"] == null)
             {
                 Response.Redirect("Default.aspx");
@@ -119,6 +124,7 @@ namespace PMOscar
 
             else if (Convert.ToInt16(Session["UserRoleID"]) == 1) // Checking role of user by UserRoleID ( 1 = ProjectOwner , 2 = ProjectManager )
             {
+                showEmployeeOhList = "true";
                 HtmlControl hcliuser = Page.Master.FindControl("liuser") as HtmlControl;
                 if (hcliuser != null)
                     (Page.Master.FindControl("liuser") as HtmlControl).Visible = true;
@@ -168,6 +174,58 @@ namespace PMOscar
                     return false;
                 }
             }
+        }
+
+        [WebMethod]
+        public static string downloadEmployeeHolidays()
+        {
+            string ohList="";
+            try
+            {
+
+                int noOfOptionalHolidays = Int32.Parse((ConfigurationManager.AppSettings["noOfOptionalHolidays"]));
+                var query = "select row_number() over (order by len(o.Holidays) - len(replace(o.Holidays, ',', '')) + 1 desc, u.UserName) as SerialNo,UPPER(u.FirstName) as FirstName,UPPER(u.LastName) as LastName, u.UserName as Email,u.EmployeeCode, len(o.Holidays) - len(replace(o.Holidays, ',', '')) + 1 as HolidayCount";
+
+                for (var i = 1; i <= noOfOptionalHolidays; i++)
+                {
+                    query = query + "," + "dbo.CSVParser(o.Holidays," + i + ") as OH" + i;
+                }
+
+                query = query + " from[User] u left join OhLog o on u.EmployeeCode = o.emp_Code where u.IsActive = 1 order by HolidayCount desc, u.UserName";
+
+                DataTable dt1 = BaseDAL.ExecuteDataTable(query);
+
+                ohList = DataTableToCSV(dt1, ',');
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message, ex);
+            }
+            return ohList;
+        }
+
+        private static string DataTableToCSV(DataTable datatable, char seperator)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < datatable.Columns.Count; i++)
+            {
+                sb.Append(datatable.Columns[i]);
+                if (i < datatable.Columns.Count - 1)
+                    sb.Append(seperator);
+            }
+            sb.AppendLine();
+            foreach (DataRow dr in datatable.Rows)
+            {
+                for (int i = 0; i < datatable.Columns.Count; i++)
+                {
+                    sb.Append(dr[i].ToString());
+
+                    if (i < datatable.Columns.Count - 1)
+                        sb.Append(seperator);
+                }
+                sb.AppendLine();
+            }
+            return sb.ToString();
         }
     }
 }
