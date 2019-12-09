@@ -340,7 +340,9 @@
             $("#employeesOhList").click(function () {
                 downloadEmployeeOhList()
             });
-            
+            $("#employeesOhDetailedList").click(function () {
+                downloadEmployeeOhDetailedList();
+            });
             
         });
 
@@ -412,7 +414,32 @@
                 }
             });
         }
+        function downloadEmployeeOhDetailedList() {
+            $.ajax({
+                type: "POST",
+                url: "OptionalHolidays.aspx/downloadEmployeeHolidaysDetail",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                cache: false,
+                success: function (result) {
+                    if (result.d) {
+                        var hiddenElement = document.createElement('a');
+                        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(result.d);
+                        hiddenElement.target = '_blank';
+                        hiddenElement.download = 'Optional Holiday Detail List.csv';
+                        hiddenElement.click();
 
+                    }
+                    else {
+                        alert("Unable to download.")
+                    }
+                },
+                error: function (result) {
+                    alert("Unable to download.")
+                }
+            });
+        }        
     </script>
     <div>
         <form action="/">
@@ -433,12 +460,16 @@
                     <td colspan="2" class="showEmployeeOhList">
                         <input type="button" value="Employee OH List" id="employeesOhList" />
                     </td>
-                </tr>
+                </tr>                
                 <tr>
                     <td class="showEmployeeOhList"></td>
                     <td class="showEmployeeOhList"></td>
                 </tr>
-
+                <tr>
+                    <td colspan="2" class="showEmployeeOhList">
+                        <input type="button" value="Employee OH Detailed List" id="employeesOhDetailedList" />
+                    </td>
+                </tr>
                 <tr>
                     <td>Year</td>
                     <td>

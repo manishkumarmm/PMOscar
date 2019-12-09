@@ -203,6 +203,30 @@ namespace PMOscar
             }
             return ohList;
         }
+        public static string downloadEmployeeHolidaysDetail()
+        {
+            string ohList = "";
+            try
+            {                
+                DateTime StartDate = new DateTime();
+                DateTime EndDate = new DateTime();
+                StartDate = Convert.ToDateTime("01-01-2020");
+                EndDate = Convert.ToDateTime("12-31-2020");
+
+                StartDate.AddDays(1);
+
+                //DataTable dt1 = BaseDAL.ExecuteDataTable(query);
+
+                //ohList = DataTableToCSV(dt1, ',');
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message, ex);
+            }
+            return ohList;
+        }
+
+        //downloadEmployeeHolidaysDetail
 
         private static string DataTableToCSV(DataTable datatable, char seperator)
         {
