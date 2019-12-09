@@ -23,7 +23,7 @@
         }
 
             #holidayTable tr {
-                padding-bottom: 10px;
+                padding-bottom: 20px;
                 width: 250px;
                 display: flex;
                 justify-content: space-around;
@@ -35,17 +35,80 @@
 
         .save-btn {
             font-size: 14px;
-            padding: 4px 15px;
+            padding: 8px 45px;
+            background-color: #368ac8;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
         }
 
         #holidayTable tr td #viewOh {
             padding: 4px 15px;
         }
 
-        .showEmployeeOhList{
-            display:none;
+        .showEmployeeOhList {
+            display: none;
         }
 
+        .holidayHeading {
+            text-align: left;
+            width: 50%;
+            font-weight: bold;
+            font-size: 15px;
+            border-bottom: 1px solid #ccc;
+            padding: 2px 0px;
+        }
+
+        .tableContainer {
+            width: 50%;
+            display: flex;
+        }
+
+        .tableDiv {
+            width: 60%;
+        }
+
+            .tableDiv a {
+                text-decoration: underline;
+            }
+
+
+        .linkDiv {
+            width: 40%;
+            display: flex;
+            flex-flow: column;
+            margin-top: 60px;
+        }
+
+            .linkDiv a {
+                float: left;
+                margin-bottom: 20px;
+                text-decoration: underline;
+                font-size: 15px;
+            }
+
+        .yearDiv {
+            width: 158px;
+        }
+
+            .yearDiv #year {
+                width: 100%;
+                height: 38px;
+                border-radius: 5px;
+                padding: 0px 8px;
+            }
+
+        .pad-10 {
+            padding: 10px 0px;
+        }
+
+        #holidayTable .inputStyle {
+            height: 36px;
+            border-radius: 5px;
+            border: 1px solid #a9a9a9;
+            width: 140px;
+            padding: 0px 8px;
+        }
     </style>
 
     <%--Script section--%>
@@ -79,7 +142,7 @@
             removeExistingOptions();
             for (var i = 1; i <= noOfOptionalHolidays; i++) {
                 var Id = "#oh" + i;
-                var input = '<tr id="ohtr' + i + '"><td> OH ' + i + ' </td><td> <input type="text" class="inputStyle" id="oh' + i + '" value="Choose a Date" readonly="readonly" /> </td></tr>';
+                var input = '<tr id="ohtr' + i + '"><td class="pad-10"> OH ' + i + ' </td><td> <input type="text" class="inputStyle" id="oh' + i + '" value="Choose a Date" readonly="readonly" /> </td></tr>';
                 $('#holidayTable').append(input);
 
                 //add date picker 
@@ -399,7 +462,7 @@
                         var hiddenElement = document.createElement('a');
                         hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(result.d);
                         hiddenElement.target = '_blank';
-                        hiddenElement.download = 'Optional holiday List.csv';
+                        hiddenElement.download = 'Employees Optional Holiday List.csv';
                         hiddenElement.click();
 
                     }
@@ -416,61 +479,75 @@
     </script>
     <div>
         <form action="/">
-            <table id="holidayTable">
-                <tr>
-                    <th class="table-heading" colspan="2">Optional Holidays</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="button" value="View Optional Holiday List" id="viewOh" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="showEmployeeOhList">
-                        <input type="button" value="Employee OH List" id="employeesOhList" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="showEmployeeOhList"></td>
-                    <td class="showEmployeeOhList"></td>
-                </tr>
+            <div class="holidayHeading">Optional Holidays</div>
+            <div class="tableContainer">
+                <div class="tableDiv">
+                    <table id="holidayTable">
+                        <%-- <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" value="View Optional Holiday List" id="viewOh" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="showEmployeeOhList">
+                                <input type="button" value="Employees OH List" id="employeesOhList" />
+                            </td>
+                            <td class="showEmployeeOhList">
+                                <input type="button" value="OH List" id="OhList" disabled />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="showEmployeeOhList"></td>
+                            <td class="showEmployeeOhList"></td>
+                        </tr>--%>
 
-                <tr>
-                    <td>Year</td>
-                    <td>
-                        <select id="year">
-                            <option value="None" disabled selected>-- Select Year--</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <table id="warnings">
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th colspan="2">
-                        <input type="button" class="save-btn" value="Save" id="save" />
-                    </th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td  colspan="2" style="color: #611818; font-size: 13px;">Notes :</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="color: #611818; font-size: 13px;">- You cannot update optional holidays once it is submitted.
-                    </td>
-                </tr>
-            </table>
+                        <tr>
+                            <td class="pad-10">Year</td>
+                            <td class="yearDiv">
+                                <select id="year">
+                                    <option value="None" disabled selected>Select Year</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="" id="viewOh">View Optional Holiday List</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="warnings">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <input type="button" class="save-btn" value="Save" id="save" />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="color: #611818; font-size: 13px;">Notes :</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="color: #611818; font-size: 13px;">- You cannot update optional holidays once it is submitted.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="linkDiv">
+                    <div class="showEmployeeOhList"><a href="" id="employeesOhList">Employees OH List</a></div>
+                    <div class="showEmployeeOhList"><a href="" id="OhList">OH List</a></div>
+                </div>
+            </div>
         </form>
     </div>
 </asp:Content>
