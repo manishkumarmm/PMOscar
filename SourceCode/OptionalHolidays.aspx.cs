@@ -184,14 +184,14 @@ namespace PMOscar
             {
 
                 int noOfOptionalHolidays = Int32.Parse((ConfigurationManager.AppSettings["noOfOptionalHolidays"]));
-                var query = "select row_number() over (order by len(o.Holidays) - len(replace(o.Holidays, ',', '')) + 1 desc, u.UserName) as SerialNo,UPPER(u.FirstName) as FirstName,UPPER(u.LastName) as LastName, u.UserName as Email,u.EmployeeCode, len(o.Holidays) - len(replace(o.Holidays, ',', '')) + 1 as HolidayCount";
+                var query = "select row_number() over (order by len(o.Holidays) - len(replace(o.Holidays, ',', '')) + 1 desc, u.UserName) as SerialNo,UPPER(u.FirstName) as FirstName,UPPER(u.LastName) as LastName, u.UserName as Email,u.EmployeeCode, len(o.Holidays) - len(replace(o.Holidays, ',', '')) + 1 as AppliedHolidayCount";
 
                 for (var i = 1; i <= noOfOptionalHolidays; i++)
                 {
                     query = query + "," + "dbo.CSVParser(o.Holidays," + i + ") as OH" + i;
                 }
 
-                query = query + " from[User] u left join OhLog o on u.EmployeeCode = o.emp_Code where u.IsActive = 1 order by HolidayCount desc, u.UserName";
+                query = query + " from[User] u left join OhLog o on u.EmployeeCode = o.emp_Code where u.IsActive = 1 order by AppliedHolidayCount desc, u.UserName";
 
                 DataTable dt1 = BaseDAL.ExecuteDataTable(query);
 

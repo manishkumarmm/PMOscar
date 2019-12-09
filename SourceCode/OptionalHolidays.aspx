@@ -23,7 +23,7 @@
         }
 
             #holidayTable tr {
-                padding-bottom: 10px;
+                padding-bottom: 20px;
                 width: 250px;
                 display: flex;
                 justify-content: space-around;
@@ -35,58 +35,121 @@
 
         .save-btn {
             font-size: 14px;
-            padding: 4px 15px;
+            padding: 8px 45px;
+            background-color: #368ac8;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
         }
 
         #holidayTable tr td #viewOh {
             padding: 4px 15px;
         }
 
-        .showEmployeeOhList{
-            display:none;
+        .showEmployeeOhList {
+            display: none;
         }
 
+        .holidayHeading {
+            text-align: left;
+            width: 50%;
+            font-weight: bold;
+            font-size: 15px;
+            border-bottom: 1px solid #ccc;
+            padding: 2px 0px;
+        }
+
+        .tableContainer {
+            width: 50%;
+            display: flex;
+        }
+
+        .tableDiv {
+            width: 60%;
+        }
+
+            .tableDiv a {
+                text-decoration: underline;
+            }
+
+
+        .linkDiv {
+            width: 40%;
+            display: flex;
+            flex-flow: column;
+            margin-top: 60px;
+        }
+
+            .linkDiv a {
+                float: left;
+                margin-bottom: 20px;
+                text-decoration: underline;
+                font-size: 15px;
+            }
+
+        .yearDiv {
+            width: 158px;
+        }
+
+            .yearDiv #year {
+                width: 100%;
+                height: 38px;
+                border-radius: 5px;
+                padding: 0px 8px;
+            }
+
+        .pad-10 {
+            padding: 10px 0px;
+        }
+
+        #holidayTable .inputStyle {
+            height: 36px;
+            border-radius: 5px;
+            border: 1px solid #a9a9a9;
+            width: 140px;
+            padding: 0px 8px;
+        }
     </style>
 
     <%--Script section--%>
     <script type="text/javascript" language="javascript">
 
         //read from config
-        var noOfOptionalHolidays =  parseInt(<%=ConfigurationManager.AppSettings["noOfOptionalHolidays"] %>);
+        var noOfOptionalHolidays = parseInt(<%=ConfigurationManager.AppSettings["noOfOptionalHolidays"] %>);
         var natDays = <%=ConfigurationManager.AppSettings["fixedHolidays"] %>;
         var minOhInMonth = <%=ConfigurationManager.AppSettings["minOhInMonth"] %>;
         var year;
 
-        function loadEmployeeOhlist(){
-            var x=<% =showEmployeeOhList %>;
-            if(x){
+        function loadEmployeeOhlist() {
+            var x =<% =showEmployeeOhList %>;
+            if (x) {
                 $(".showEmployeeOhList").css("display", "block");
             }
         }
 
-        function loadwarnings(){
-                 
-            var input = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum '+minOhInMonth[0][1] +' Optional holiday should be availed till March. </td></tr>';
+        function loadwarnings() {
+
+            var input = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum ' + minOhInMonth[0][1] + ' Optional holiday should be availed till March. </td></tr>';
             $('#warnings').append(input);
-            var input2 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum '+minOhInMonth[1][1] +' Optional holidays should be availed till June. </td></tr>';
+            var input2 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum ' + minOhInMonth[1][1] + ' Optional holidays should be availed till June. </td></tr>';
             $('#warnings').append(input2);
-            var input3 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum '+minOhInMonth[2][1] +' Optional holidays should be availed till September. </td></tr>';
+            var input3 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum ' + minOhInMonth[2][1] + ' Optional holidays should be availed till September. </td></tr>';
             $('#warnings').append(input3);
-                    
+
         }
 
         function loadOhDropdown() {
             removeExistingOptions();
             for (var i = 1; i <= noOfOptionalHolidays; i++) {
                 var Id = "#oh" + i;
-                var input = '<tr id="ohtr' + i + '"><td> OH ' + i + ' </td><td> <input type="text" class="inputStyle" id="oh' + i + '" value="Choose a Date" readonly="readonly" /> </td></tr>';
+                var input = '<tr id="ohtr' + i + '"><td class="pad-10"> OH ' + i + ' </td><td> <input type="text" class="inputStyle" id="oh' + i + '" value="Choose a Date" readonly="readonly" /> </td></tr>';
                 $('#holidayTable').append(input);
 
                 //add date picker 
                 $(Id).datepicker({
                     beforeShowDay: nationalDays,
                     dateFormat: 'dd-M-yy',
-                    defaultDate: new Date(year,0,01)
+                    defaultDate: new Date(year, 0, 01)
                 });
             }
         }
@@ -141,7 +204,7 @@
             return validateDates(selectedOh);
         }
 
-        var sortedOh,sortedTotalHolidays;
+        var sortedOh, sortedTotalHolidays;
         //validate dates.
         function validateDates(selectedOh) {
             sortedOh = [];
@@ -152,7 +215,7 @@
                 return false;
             }
 
-            var diffDays=consecutiveDays(sortedOh);
+            var diffDays = consecutiveDays(sortedOh);
             if (!diffDays) {
                 return false;
             }
@@ -170,76 +233,76 @@
 
             optionalHolidaysSum = datesInThisMonth[0];
             if (optionalHolidaysSum > monthAllowedOh[0]) {
-                alert("You cannot select more than "+monthAllowedOh[0]+" Optional holidays in January.");
+                alert("You cannot select more than " + monthAllowedOh[0] + " Optional holidays in January.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[1];
             if (optionalHolidaysSum > monthAllowedOh[1]) {
-                alert("You cannot select more than "+monthAllowedOh[1]+" Optional holidays upto February.");
+                alert("You cannot select more than " + monthAllowedOh[1] + " Optional holidays upto February.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[2];
             if (optionalHolidaysSum > monthAllowedOh[2]) {
-                alert("You cannot select more than "+monthAllowedOh[2]+" Optional holidays upto March.");
+                alert("You cannot select more than " + monthAllowedOh[2] + " Optional holidays upto March.");
                 return false;
             }
 
-            if(optionalHolidaysSum<minOhInMonth[0][1]){
-                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[0][1]+" Optional holiday should be availed till March.");
+            if (optionalHolidaysSum < minOhInMonth[0][1]) {
+                alert("Optional holidays must be spread over the year. Minimum " + minOhInMonth[0][1] + " Optional holiday should be availed till March.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[3];
             if (optionalHolidaysSum > monthAllowedOh[3]) {
-                alert("You cannot select more than "+monthAllowedOh[3]+" Optional holidays upto April.");
+                alert("You cannot select more than " + monthAllowedOh[3] + " Optional holidays upto April.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[4];
             if (optionalHolidaysSum > monthAllowedOh[4]) {
-                alert("You cannot select more than "+monthAllowedOh[4]+" Optional holidays upto May.");
+                alert("You cannot select more than " + monthAllowedOh[4] + " Optional holidays upto May.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[5];
             if (optionalHolidaysSum > monthAllowedOh[5]) {
-                alert("You cannot select more than "+monthAllowedOh[5]+" Optional holidays upto June.");
+                alert("You cannot select more than " + monthAllowedOh[5] + " Optional holidays upto June.");
                 return false;
             }
 
-            if(optionalHolidaysSum<minOhInMonth[1][1]){
-                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[1][1]+" Optional holidays should be availed till June.");
+            if (optionalHolidaysSum < minOhInMonth[1][1]) {
+                alert("Optional holidays must be spread over the year. Minimum " + minOhInMonth[1][1] + " Optional holidays should be availed till June.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[6];
             if (optionalHolidaysSum > monthAllowedOh[6]) {
-                alert("You cannot select more than "+monthAllowedOh[6]+" Optional holidays upto July.");
+                alert("You cannot select more than " + monthAllowedOh[6] + " Optional holidays upto July.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[7];
             if (optionalHolidaysSum > monthAllowedOh[7]) {
-                alert("You cannot select more than "+monthAllowedOh[7]+" Optional holidays upto August.");
+                alert("You cannot select more than " + monthAllowedOh[7] + " Optional holidays upto August.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[8];
             if (optionalHolidaysSum > monthAllowedOh[8]) {
-                alert("You cannot select more than "+monthAllowedOh[8]+" Optional holidays upto September.");
+                alert("You cannot select more than " + monthAllowedOh[8] + " Optional holidays upto September.");
                 return false;
             }
 
-            if(optionalHolidaysSum<minOhInMonth[2][1]){
-                alert("Optional holidays must be spread over the year. Minimum "+minOhInMonth[2][1]+" Optional holidays should be availed till September.");
+            if (optionalHolidaysSum < minOhInMonth[2][1]) {
+                alert("Optional holidays must be spread over the year. Minimum " + minOhInMonth[2][1] + " Optional holidays should be availed till September.");
                 return false;
             }
 
             optionalHolidaysSum = optionalHolidaysSum + datesInThisMonth[9];
             if (optionalHolidaysSum > monthAllowedOh[9]) {
-                alert("You can not select more than "+monthAllowedOh[9]+" Optional holidays upto October.");
+                alert("You can not select more than " + monthAllowedOh[9] + " Optional holidays upto October.");
                 return false;
             }
 
@@ -263,36 +326,36 @@
         }
 
         //find is there more than 2 holidays in same week
-        function consecutiveDays(sortedOh){
-            var totalHolidays =[],differnceInDates={};
+        function consecutiveDays(sortedOh) {
+            var totalHolidays = [], differnceInDates = {};
             var fixedHolidays = getFixedHolidays();
-            totalHolidays=sortedOh.concat(fixedHolidays);
-            sortedTotalHolidays=totalHolidays.sort(sortDates);
-            var len=sortedTotalHolidays.length;
-            for(var i=0;i<len;i++){
-                var week= getWeekNumber(sortedTotalHolidays[i]);
-                differnceInDates[week]=differnceInDates[week]?differnceInDates[week]+1:1;
-                if(differnceInDates[week] > 2){
+            totalHolidays = sortedOh.concat(fixedHolidays);
+            sortedTotalHolidays = totalHolidays.sort(sortDates);
+            var len = sortedTotalHolidays.length;
+            for (var i = 0; i < len; i++) {
+                var week = getWeekNumber(sortedTotalHolidays[i]);
+                differnceInDates[week] = differnceInDates[week] ? differnceInDates[week] + 1 : 1;
+                if (differnceInDates[week] > 2) {
                     alert("You cannot apply more than 2 holidays in same week, including fixed holidays.");
                     return false;
                 }
-            }   
+            }
             return true;
         }
 
         //get week number
         function getWeekNumber(date) {
-            var onejan = new Date(year,0,1);
+            var onejan = new Date(year, 0, 1);
             var today = new Date(date);
-            var dayOfYear = ((today - onejan +1)/86400000);
-            return Math.ceil(dayOfYear/7)
+            var dayOfYear = ((today - onejan + 1) / 86400000);
+            return Math.ceil(dayOfYear / 7)
         }
 
-        function getFixedHolidays(){
-            var fixedHolidays=[];
+        function getFixedHolidays() {
+            var fixedHolidays = [];
             for (i = 0; i < natDays.length; i++) {
-                var date=new Date(year, natDays[i][0] - 1, natDays[i][1]);
-                if(date.getDay() != 0 && date.getDay() != 6){
+                var date = new Date(year, natDays[i][0] - 1, natDays[i][1]);
+                if (date.getDay() != 0 && date.getDay() != 6) {
                     fixedHolidays.push((new Date(year, natDays[i][0] - 1, natDays[i][1])).toString('dd-M-yy'));
                 }
             }
@@ -343,7 +406,7 @@
             $("#employeesOhDetailedList").click(function () {
                 downloadEmployeeOhDetailedList();
             });
-            
+
         });
 
         //save optional holidays
@@ -362,8 +425,8 @@
                 async: true,
                 cache: false,
                 success: function (result) {
-                    if (result.d == true){
-                        $( ".inputStyle" ).attr( "disabled", true );
+                    if (result.d == true) {
+                        $(".inputStyle").attr("disabled", true);
                         alert("Saved successfully.");
 
                     }
@@ -388,7 +451,7 @@
         }
 
         //download employee oh list
-        function downloadEmployeeOhList(){
+        function downloadEmployeeOhList() {
             $.ajax({
                 type: "POST",
                 url: "OptionalHolidays.aspx/downloadEmployeeHolidays",
@@ -397,11 +460,11 @@
                 async: true,
                 cache: false,
                 success: function (result) {
-                    if (result.d){
+                    if (result.d) {
                         var hiddenElement = document.createElement('a');
                         hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(result.d);
                         hiddenElement.target = '_blank';
-                        hiddenElement.download = 'Optional holiday List.csv';
+                        hiddenElement.download = 'Employees Optional Holiday List.csv';
                         hiddenElement.click();
 
                     }
@@ -439,69 +502,57 @@
                     alert("Unable to download.")
                 }
             });
-        }        
+        }
     </script>
     <div>
         <form action="/">
-            <table id="holidayTable">
-                <tr>
-                    <th class="table-heading" colspan="2">Optional Holidays</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="button" value="View Optional Holiday List" id="viewOh" />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="showEmployeeOhList">
-                        <input type="button" value="Employee OH List" id="employeesOhList" />
-                    </td>
-                </tr>                
-                <tr>
-                    <td class="showEmployeeOhList"></td>
-                    <td class="showEmployeeOhList"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="showEmployeeOhList">
-                        <input type="button" value="Employee OH Detailed List" id="employeesOhDetailedList" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Year</td>
-                    <td>
-                        <select id="year">
-                            <option value="None" disabled selected>-- Select Year--</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <table id="warnings">
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th colspan="2">
-                        <input type="button" class="save-btn" value="Save" id="save" />
-                    </th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td  colspan="2" style="color: #611818; font-size: 13px;">Notes :</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="color: #611818; font-size: 13px;">- You cannot update optional holidays once it is submitted.
-                    </td>
-                </tr>
-            </table>
+            <div class="holidayHeading">Optional Holidays</div>
+            <div class="tableContainer">
+                <div class="tableDiv">
+                    <table id="holidayTable">
+                        <tr>
+                            <td class="pad-10">Year</td>
+                            <td class="yearDiv">
+                                <select id="year">
+                                    <option value="None" disabled selected>Select Year</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)" id="viewOh">View Optional Holiday List</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="warnings">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <input type="button" class="save-btn" value="Save" id="save" />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="color: #611818; font-size: 13px;">Notes :</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="color: #611818; font-size: 13px;">- You cannot update optional holidays once it is submitted.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="linkDiv">
+                    <div class="showEmployeeOhList"><a href="javascript:void(0)" id="employeesOhList">Employees OH List</a></div>
+                    <div class="showEmployeeOhList"><a href="javascript:void(0)" id="employeesOhDetailedList">Employee OH Detailed List</a></div>
+                </div>
+            </div>
         </form>
     </div>
 </asp:Content>
