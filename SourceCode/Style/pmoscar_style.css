@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 html {
@@ -223,8 +223,6 @@ a.butStyle_normal:hover span {
 }
 .outerDIV {
 	display:block;
-	padding:2px 15px 10px 15px;
-	margin:auto;
 	font-size:12px;
 	color:666;
 

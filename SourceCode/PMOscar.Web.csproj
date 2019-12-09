@@ -107,6 +107,7 @@
     <Content Include="Images\Refrsh.png" />
     <Content Include="Images\Sync.png" />
     <Content Include="InvoiceSummary.aspx" />
+    <Content Include="OptionalHolidays.aspx" />
     <Content Include="ProjectEstimation.ascx" />
     <Content Include="Images\calendar.jpg" />
     <Content Include="Reports.aspx" />
@@ -194,6 +195,13 @@
     </Compile>
     <Compile Include="InvoiceSummary.aspx.designer.cs">
       <DependentUpon>InvoiceSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OptionalHolidays.aspx.cs">
+      <DependentUpon>OptionalHolidays.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OptionalHolidays.aspx.designer.cs">
+      <DependentUpon>OptionalHolidays.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProjectEstimation.ascx.cs">
       <DependentUpon>ProjectEstimation.ascx</DependentUpon>
@@ -449,6 +457,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="OptionalHolidayList\HOLIDAYLIST.pdf" />
     <None Include="Properties\PublishProfiles\PMOscar.pubxml" />
     <None Include="Web.prod.config" />
     <None Include="Web.stage.config" />
