@@ -483,28 +483,6 @@
             <div class="tableContainer">
                 <div class="tableDiv">
                     <table id="holidayTable">
-                        <%-- <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <input type="button" value="View Optional Holiday List" id="viewOh" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="showEmployeeOhList">
-                                <input type="button" value="Employees OH List" id="employeesOhList" />
-                            </td>
-                            <td class="showEmployeeOhList">
-                                <input type="button" value="OH List" id="OhList" disabled />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="showEmployeeOhList"></td>
-                            <td class="showEmployeeOhList"></td>
-                        </tr>--%>
-
                         <tr>
                             <td class="pad-10">Year</td>
                             <td class="yearDiv">
@@ -515,7 +493,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="" id="viewOh">View Optional Holiday List</a>
+                                <a href="javascript:void(0)" id="viewOh">View Optional Holiday List</a>
                             </td>
                         </tr>
                     </table>
@@ -544,8 +522,8 @@
                     </table>
                 </div>
                 <div class="linkDiv">
-                    <div class="showEmployeeOhList"><a href="" id="employeesOhList">Employees OH List</a></div>
-                    <div class="showEmployeeOhList"><a href="" id="OhList">OH List</a></div>
+                    <div class="showEmployeeOhList"><a href="javascript:void(0)" id="employeesOhList">Employees OH List</a></div>
+                    <div class="showEmployeeOhList"><a href="javascript:void(0)" id="OhList">OH List</a></div>
                 </div>
             </div>
         </form>
