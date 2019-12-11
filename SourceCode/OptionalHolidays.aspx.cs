@@ -204,6 +204,32 @@ namespace PMOscar
             return ohList;
         }
 
+        [WebMethod]
+        public static string downloadEmployeeHolidaysDetail()
+        {
+            string ohList = "";
+            try
+            {
+                var employeesQuery = "SELECT U.FirstName+' '+ISNULL(U.MiddleName,'')+' '+ISNULL(U.LastName,'') AS NAME, OH.Holidays, len(OH.Holidays) -len(replace(OH.Holidays,',',''))+ case when Holidays like '%NULL%' then 0 else 1 end as LeaveTotal"
+                                        + " FROM [dbo].[User] U"
+                                        + " LEFT JOIN [dbo].[OhLog] OH ON U.EmployeeCode = OH.emp_Code ORDER BY U.FirstName";
+                DataTable dtEmployees = BaseDAL.ExecuteDataTable(employeesQuery);
+
+                var leavesPerDayQuery = "SELECT [Holiday], COUNT(*) AS [Count] FROM(SELECT Split.a.value('.', 'NVARCHAR(MAX)')[Holiday]"
+                                        + " FROM(SELECT CAST('<X>' + REPLACE([Holidays], ',', '</X><X>') + '</X>' AS XML) AS String FROM Ohlog) AS A"
+                                        + " CROSS APPLY String.nodes('/X') AS Split(a)) AS O"
+                                        + " GROUP BY[Holiday]";
+                DataTable dtLeavesPerDay = BaseDAL.ExecuteDataTable(leavesPerDayQuery);
+
+                ohList = DetailedDataTableToCSV(dtEmployees, dtLeavesPerDay);                  
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message, ex);
+            }
+            return ohList;
+        }               
+
         private static string DataTableToCSV(DataTable datatable, char seperator)
         {
             StringBuilder sb = new StringBuilder();
@@ -227,5 +253,70 @@ namespace PMOscar
             }
             return sb.ToString();
         }
+
+        private static string DetailedDataTableToCSV(DataTable dtEmployees, DataTable dtLeavesPerDay)
+        {
+            string data = "";
+            Int32 Slno = 1;
+            StringBuilder sb = new StringBuilder();
+            DateTime StartDate = new DateTime();
+            DateTime EndDate = new DateTime();
+            StartDate = Convert.ToDateTime("01-01-2020");
+            EndDate = Convert.ToDateTime("12-31-2020");
+
+            data += "Sl No." + "," + "Date" + "," + "Day" + "," + "Month" + "," + "Holiday" + "," + "Leaves Applied";
+            foreach (DataRow employee in dtEmployees.Rows)
+            {
+                data += "," + employee["NAME"].ToString();
+            }
+            sb.Append(data);
+            sb.AppendLine();
+            data = "";
+            data += "" + "," + "" + "," + "Total" + "," + "" + "," + "" + "," + "";
+            foreach (DataRow employee in dtEmployees.Rows)
+            {
+                data += "," + employee["LeaveTotal"];
+            }
+            sb.Append(data);
+            sb.AppendLine();
+
+            for (var day = StartDate.Date; day.Date <= EndDate.Date; day = day.AddDays(1))
+            {
+                data = "";
+                Int32 leavePerDay = 0;
+                foreach (DataRow leavesPerDay in dtLeavesPerDay.Rows)
+                {
+                    if (leavesPerDay["Holiday"].ToString() == day.ToString("dd-MMM-yyyy"))
+                    {
+                        data += Slno + "," + day.ToString("dd-MMM-yyyy") + "," + day.DayOfWeek.ToString() + "," + day.Month + "," + "" + "," + leavesPerDay["Count"];
+                        leavePerDay = 1;
+                    }
+                }
+                if (leavePerDay == 0)
+                    data += Slno + "," + day.ToString("dd-MMM-yyyy") + "," + day.DayOfWeek.ToString() + "," + day.Month + "," + "" + "," + 0;
+
+                foreach (DataRow employee in dtEmployees.Rows)
+                {
+                    int empLeave = 0;
+                    string[] values = employee["Holidays"].ToString().Split(',');
+                    for (int i = 0; i < values.Length; i++)
+                    {
+                        values[i] = values[i].Trim();
+                        if (values[i] == day.ToString("dd-MMM-yyyy"))
+                        {
+                            data += "," + 1;
+                            empLeave = 1;
+                        }
+                    }
+                    if (empLeave == 0)
+                        data += "," + "";
+                }
+                Slno++;
+                sb.Append(data);
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+
     }
 }
