@@ -490,7 +490,7 @@
                         var hiddenElement = document.createElement('a');
                         hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(result.d);
                         hiddenElement.target = '_blank';
-                        hiddenElement.download = 'Optional Holiday Detail List.csv';
+                        hiddenElement.download = 'OH List For Manager Review.csv';
                         hiddenElement.click();
 
                     }
