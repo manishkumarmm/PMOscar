@@ -236,8 +236,8 @@ namespace PMOscar
             string ohList = "";
             try
             {
-                var employeesOHQuery = "SELECT CONVERT(VARCHAR(10), cast(Split.a.value('.', 'NVARCHAR(MAX)')AS DATETIME), 101) [Date], 'Optional Holiday' Holiday"
-                    + " , MONTH(Split.a.value('.', 'NVARCHAR(MAX)')) Month, YEAR(Split.a.value('.', 'NVARCHAR(MAX)')) Year, A.emp_Code EmpCode, a.NAME AS EmployeeName"
+                var employeesOHQuery = "SELECT CONVERT(VARCHAR(10), cast(Split.a.value('.', 'NVARCHAR(MAX)')AS DATETIME), 121) [Date], 'Optional Holiday' Holiday"
+                    + " , MONTH(Split.a.value('.', 'NVARCHAR(MAX)')) Month, YEAR(Split.a.value('.', 'NVARCHAR(MAX)')) Year, RTRIM(LTRIM(A.emp_Code)) EmpCode, a.NAME AS EmployeeName"
                     + " FROM(SELECT OL.emp_Code, CAST('<X>' + REPLACE([Holidays], ',', '</X><X>') + '</X>' AS XML) AS String, U.FirstName + ' ' + ISNULL(U.MiddleName, '') + ' ' + ISNULL(U.LastName, '') AS NAME"
                     + "     FROM[dbo].[Ohlog] OL"
                     + "     join [dbo].[User] U on U.EmployeeCode = OL.emp_Code"
