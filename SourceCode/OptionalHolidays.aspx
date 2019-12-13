@@ -406,7 +406,9 @@
             $("#employeesOhDetailedList").click(function () {
                 downloadEmployeeOhDetailedList();
             });
-
+            $("#OhListForHRMSUpload").click(function () {
+                downloadOhListForHRMSUpload();
+            });
         });
 
         //save optional holidays
@@ -503,6 +505,33 @@
                 }
             });
         }
+
+        function downloadOhListForHRMSUpload() {
+            $.ajax({
+                type: "POST",
+                url: "OptionalHolidays.aspx/downloadOhListForHRMSUpload",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                cache: false,
+                success: function (result) {
+                    if (result.d) {
+                        var hiddenElement = document.createElement('a');
+                        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(result.d);
+                        hiddenElement.target = '_blank';
+                        hiddenElement.download = 'OH List For HRMS Upload.csv';
+                        hiddenElement.click();
+
+                    }
+                    else {
+                        alert("Unable to download.")
+                    }
+                },
+                error: function (result) {
+                    alert("Unable to download.")
+                }
+            });
+        }
     </script>
     <div>
         <form action="/">
@@ -551,6 +580,7 @@
                 <div class="linkDiv">
                     <div class="showEmployeeOhList"><a href="javascript:void(0)" id="employeesOhList">Employees OH List</a></div>
                     <div class="showEmployeeOhList"><a href="javascript:void(0)" id="employeesOhDetailedList">OH List For Manager Review</a></div>
+                    <div class="showEmployeeOhList"><a href="javascript:void(0)" id="OhListForHRMSUpload">OH List For HRMS Upload</a></div>
                 </div>
             </div>
         </form>
