@@ -408,7 +408,7 @@
                                     </td>
                                     <td colspan="2" width="150px">
                                         <asp:LinkButton ID="lnkChng" Text="Change History" runat="server" TabIndex="-1" OnClientClick="javascript:return ChangeHistoryPopUp();"
-                                            onfocus="SetFocus(this)";></asp:LinkButton>
+                                            onfocus="SetFocus(this)"></asp:LinkButton>
                                     </td>
                                 </tr>
                             </table>
