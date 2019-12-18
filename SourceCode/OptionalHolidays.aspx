@@ -579,12 +579,9 @@
                 </div>
                 <div class="linkDiv">
                     <div class="showEmployeeOhList"><a href="javascript:void(0)" id="employeesOhList">Employees OH List</a></div>
-<<<<<<< HEAD
                   <%--  <div class="showEmployeeOhList"><a href="javascript:void(0)" id="OhList">OH List</a></div>--%>
-=======
                     <div class="showEmployeeOhList"><a href="javascript:void(0)" id="employeesOhDetailedList">OH List For Manager Review</a></div>
                     <div class="showEmployeeOhList"><a href="javascript:void(0)" id="OhListForHRMSUpload">OH List For HRMS Upload</a></div>
->>>>>>> ce7fe8aba7ed0dba3f10beecabebf00b8ae906f6
                 </div>
             </div>
         </form>
