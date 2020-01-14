@@ -196,6 +196,26 @@
                 buttonImage: "Images/calendar.jpg",
                 buttonImageOnly: true,
              });
+
+            if ($('#ctl00_cntBody_txtAvailableHours').prop("disabled")) {
+                $("#<%=txtAvailableHours.ClientID %>").datepicker({
+                    disabled: true,
+                    dateFormat: 'dd/mm/yy',
+                    showOn: "button",
+                    buttonImage: "Images/calendar.jpg",
+                    buttonImageOnly: true,
+                });
+            }
+            else {
+                $("#<%=txtAvailableHours.ClientID %>").datepicker({
+                    disabled: false,
+                    dateFormat: 'dd/mm/yy',
+                    showOn: "button",
+                    buttonImage: "Images/calendar.jpg",
+                    buttonImageOnly: true,
+                });
+            }
+            
             var text = $("#ctl00_cntBody_txtExitDate").val()
             var role = $('#ctl00_cntBody_ddlRole :selected').text()
             var checkBoxStatus = $("#ctl00_cntBody_checkBox1").is(':checked');
@@ -485,7 +505,7 @@
             margin-left: 160px;
             margin-top: -17px;
             margin-bottom: 0px;
-            margin-right: -17px;
+            margin-right: -3px;
 
         }
              .auto-style6 {
@@ -602,6 +622,17 @@
                     <span style="width: 100%; color: red;" id="errorSpan" runat="server" name="errorSpan"></span>
                     <asp:RequiredFieldValidator ID="rfvMonth" ControlToValidate="ddlMonth" InitialValue="0"
                         runat="server" ErrorMessage="Select Month."></asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="style2" align="left" style="height: 21px">Available Hours Start Date:</td>
+                <td valign="middle" align="left" nowrap="nowrap" class="auto-style4">
+                    <asp:TextBox ID="txtAvailableHours" runat="server" Width="143px" TabIndex="1"></asp:TextBox>
+                </td>
+                <td align="left" style="height: 21px">
+                     &nbsp; &nbsp; &nbsp;
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Select Available Hours." ControlToValidate="txtAvailableHours"></asp:RequiredFieldValidator>  
+                     &nbsp;
                 </td>
             </tr>
             <tr>

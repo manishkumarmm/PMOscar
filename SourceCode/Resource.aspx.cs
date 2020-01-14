@@ -132,11 +132,13 @@ namespace PMOscar
                 BindDropDownCostCentre();//Method to bind Cost Centre in the DropDownList
                 BindYearDropDown(); // Fill year drop down
                 txtemployeecode.Text = employeeCode;
+                txtAvailableHours.Text = DateTime.Now.AddDays(5).ToString("dd/MM/yyyy");
 
                 if (resourceEditId != 0)
                 {
                     lblResourceStatus.Text = "Edit Resource";
                     SetResourceDetails(); // Method to set the resource details...
+                    txtAvailableHours.Enabled = false;                    
                 }
             }
 
@@ -175,6 +177,7 @@ namespace PMOscar
                 txtWeeklyHours.Text = dsResourceDetails.Tables[0].Rows[0].ItemArray[8].ToString();
                 txtJoinDate.Text = dsResourceDetails.Tables[0].Rows[0].ItemArray[9].ToString();
                 txtExitDate.Text = dsResourceDetails.Tables[0].Rows[0].ItemArray[10].ToString();
+                txtAvailableHours.Text = dsResourceDetails.Tables[0].Rows[0].ItemArray[11].ToString();
             }
             if (rid == Convert.ToInt16(trainee) || rid == Convert.ToInt16(qatrainee))
             {
@@ -343,6 +346,7 @@ namespace PMOscar
                 DateTime endDate;
                 System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                 DateTime joinDate = DateTime.ParseExact(txtJoinDate.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime availableHours = DateTime.ParseExact(txtAvailableHours.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 endDate = (txtExitDate.Text.ToString() != string.Empty) ?
                      DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture) : DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
                 lblEmployeecode.Visible = false;
@@ -363,6 +367,7 @@ namespace PMOscar
                 parameter.Add(new SqlParameter("@emp_Code", txtemployeecode.Text.Trim()));
                 parameter.Add(new SqlParameter("@WeeklyHour", txtWeeklyHours.Text.Trim()));
                 parameter.Add(new SqlParameter("@JoinDate", joinDate));
+                parameter.Add(new SqlParameter("@AvailableHours", availableHours));
                 parameter.Add(new SqlParameter("@ExitDate", endDate));
                 try
                 {
@@ -402,6 +407,7 @@ namespace PMOscar
                 DateTime endDate;
                 System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                 DateTime joinDate = DateTime.ParseExact(txtJoinDate.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime availableHours = DateTime.ParseExact(txtAvailableHours.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 endDate = (txtExitDate.Text.ToString() != string.Empty) ?
                    DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture) : DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
                 lblEmployeecode.Visible = false;
@@ -422,6 +428,7 @@ namespace PMOscar
                 parameter.Add(new SqlParameter("@emp_Code", txtemployeecode.Text.Trim()));
                 parameter.Add(new SqlParameter("@WeeklyHour", txtWeeklyHours.Text.Trim()));
                 parameter.Add(new SqlParameter("@JoinDate", joinDate));
+                parameter.Add(new SqlParameter("@AvailableHours", availableHours));
                 parameter.Add(new SqlParameter("@ExitDate", endDate));
                 try
                 {
