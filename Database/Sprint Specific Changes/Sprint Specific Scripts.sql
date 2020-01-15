@@ -3,6 +3,7 @@
  alter table [Resource] add JoinDate DATETIME
  alter table [Resource] add ExitDate DATETIME
 
+ALTER TABLE [dbo].[Resource] ADD [AvailableHoursStartDate] [datetime] NOT NULL DEFAULT GetDate()
 
 
 ---------------------------------------------------------------------------------
