@@ -46,5 +46,23 @@ namespace PMOscar.DAL
 
             return dsResourceDetails;
         }
+        //Method to get Resource Utilization Percentage  
+        public static DataSet GetResourceUtilizationPercentageById(int resourceId)
+        {
+            DataSet dsResourceUtilizationDetails = new DataSet();
+
+            try
+            {
+                var parameter = new List<SqlParameter>();
+                parameter.Add(new SqlParameter("@ResourceID", resourceId));
+                dsResourceUtilizationDetails = ExecuteSPDataSet("GetResourceUtilizationPercentage", parameter);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message, ex);
+            }
+
+            return dsResourceUtilizationDetails;
+        }
     }
 }

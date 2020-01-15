@@ -72,7 +72,7 @@ namespace PMOscar
                 {
                     throw ex;
                 }
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Key", "window.opener.location.reload();window.history.back();self.close();", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Key", ";self.close();", true);
             }
 
         }

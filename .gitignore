@@ -1,0 +1,5 @@
+config/applicationhost.config
+.vs/PMOscar
+obj/
+bin/
+PMOSCAR.Application.Web/src/PMOSCAR.Application.Web/Properties/launchSettings.json

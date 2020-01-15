@@ -92,11 +92,12 @@
                         </td>
                         <td height="30" colspan="2" align="right" valign="bottom">
                             <span class="smallText">Welcome</span>&nbsp;<strong><%=Session["UserName"]%></strong>
-                       <%--  <strong>
+
+                            <%-- | <strong>
                              <asp:LinkButton ID="lnkResetpwd" runat="server" Text="Reset Password" CausesValidation="false"
                                     OnClick="lnkResetpwd_Click" TabIndex="-1"></asp:LinkButton></strong> | <strong>
-                                       <asp:LinkButton ID="lnkLogout" runat="server" Text="Logout" CausesValidation="false"
-                                            OnClick="lnkLogout_Click" TabIndex="-1"></asp:LinkButton></strong>--%>
+                             <asp:LinkButton ID="lnkLogout" runat="server" Text="Logout" CausesValidation="false"
+                             OnClick="lnkLogout_Click" TabIndex="-1"></asp:LinkButton></strong>--%>
                         </td>
                     </tr>
                 </table>

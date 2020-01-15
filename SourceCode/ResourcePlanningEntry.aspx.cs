@@ -1024,8 +1024,7 @@ namespace PMOscar
                 if (PID != null)
                 {
                     ddlPhase.SelectedValue = PID.ToString();
-                    ddlRole.Enabled = true;
-                }
+                 }
                
             }
         }
