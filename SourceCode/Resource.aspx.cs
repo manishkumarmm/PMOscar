@@ -158,7 +158,7 @@ namespace PMOscar
                 resourceActiveStatus = Convert.ToInt32(dsResourceDetails.Tables[0].Rows[0].ItemArray[4]);
                 ddlCostCentre.Text = dsResourceDetails.Tables[0].Rows[0].ItemArray[7].ToString();
                 txtWeeklyHours.Text = dsResourceDetails.Tables[0].Rows[0].ItemArray[8].ToString();
-                txtAvailableHours.Text = dsResourceDetails.Tables[0].Rows[0].ItemArray[11].ToString();
+                txtAvailableHours.Text = dsResourceDetails.Tables[0].Rows[0].ItemArray[9].ToString();
             }
 
             DateTime billingStartDate = Convert.ToDateTime(dsResourceDetails.Tables[0].Rows[0].ItemArray[5]);
