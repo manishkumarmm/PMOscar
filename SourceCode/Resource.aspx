@@ -2,6 +2,10 @@
     CodeBehind="Resource.aspx.cs" Inherits="PMOscar.Resource" %>
 
 <asp:Content ContentPlaceHolderID="cntBody" runat="server">
+          <%--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">--%>
+  <link rel="stylesheet" href="Style/jquery-ui-1.8.12.custom.css" type="text/css">
+  <%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
         function clearError() {
             $('span[name="errorSpan"]').text('');
@@ -50,11 +54,66 @@
             }
 
         }
+
+        $(function () {
+            if ($('#ctl00_cntBody_txtAvailableHours').prop("disabled")) {
+                $("#<%=txtAvailableHours.ClientID %>").datepicker({
+                                disabled: true,
+                                dateFormat: 'dd/mm/yy',
+                                showOn: "button",
+                                buttonImage: "Images/calendar.jpg",
+                                buttonImageOnly: true,
+                            });
+                        }
+                        else {
+                            $("#<%=txtAvailableHours.ClientID %>").datepicker({
+                                disabled: false,
+                                dateFormat: 'dd/mm/yy',
+                                showOn: "button",
+                                buttonImage: "Images/calendar.jpg",
+                                buttonImageOnly: true,
+                            });
+            }
+        });
     </script>
     <div style="width: 100%;">
          <style type="text/css" media="screen">
    
                 BODY {  width:100%}
+            .auto-style1 {
+                 height: 18px;
+             }
+             .auto-style2 {
+                 height: 21px;
+             }
+             .auto-style3 {
+                 height: 18px;
+                 width: 162px;
+             }
+             .auto-style4 {
+                 width: 162px;
+             }
+             .auto-style5 {
+                 height: 21px;
+                 width: 162px;
+             }
+            .ui-datepicker-trigger {
+                margin-left: 160px;
+                margin-top: -17px;
+                margin-bottom: 0px;
+                margin-right: -3px; 
+            }
+            .auto-style6 {
+                width: 162px;
+                height: 22px;
+            }
+            .ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all {                 
+                left: 892px !important;                  
+            }
+            .image-style {
+                width:15px;
+                height:12px;
+            }
      </style>
         <table width="60%">
             <tr>
@@ -156,6 +215,17 @@
                 </td>
             </tr>
             <tr>
+                <td class="style2" align="left" style="height: 21px">Available Hours Start Date:</td>
+                <td valign="middle" align="left" nowrap="nowrap" class="auto-style4">
+                    <asp:TextBox ID="txtAvailableHours" runat="server" Width="143px" TabIndex="1"></asp:TextBox>                    
+                </td>
+                <td align="left" style="height: 21px">
+                     &nbsp; &nbsp; &nbsp;
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Select Available Hours." ControlToValidate="txtAvailableHours"></asp:RequiredFieldValidator>  
+                     &nbsp;
+                </td>                
+            </tr>
+            <tr>
                 <td class="style2" align="left">Weekly Hours :
                 </td>
                 <td valign="middle" align="left" nowrap="nowrap" style="width: 162px;">
@@ -203,6 +273,7 @@
             <tr>
                 <td height="15px" colspan="3">
                     <asp:Label ID="lblEmployeecode" runat="server" Visible="false" ForeColor="Red"></asp:Label>
+                    <asp:Label ID="lblDateError" runat="server" Visible="false" ForeColor="Red"></asp:Label>
                 </td>
             </tr>
             <tr>

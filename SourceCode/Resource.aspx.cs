@@ -20,6 +20,7 @@ using System.Web.UI.WebControls;
 using PMOscar.Core;
 using PMOscar.DAL;
 using System.Web.UI;
+using System.Globalization;
 
 namespace PMOscar
 {
@@ -120,11 +121,13 @@ namespace PMOscar
                 BindDropDownCostCentre();//Method to bind Cost Centre in the DropDownList
                 BindYearDropDown(); // Fill year drop down
                 txtemployeecode.Text = employeeCode;
+                txtAvailableHours.Text = DateTime.Now.AddDays(5).ToString("dd/MM/yyyy");
 
                 if ( resourceEditId != 0 )
                 {
                     lblResourceStatus.Text = "Edit Resource";                    
                     SetResourceDetails(); // Method to set the resource details...
+                    txtAvailableHours.Enabled = false;
                 }            
             }
 
@@ -155,6 +158,7 @@ namespace PMOscar
                 resourceActiveStatus = Convert.ToInt32(dsResourceDetails.Tables[0].Rows[0].ItemArray[4]);
                 ddlCostCentre.Text = dsResourceDetails.Tables[0].Rows[0].ItemArray[7].ToString();
                 txtWeeklyHours.Text = dsResourceDetails.Tables[0].Rows[0].ItemArray[8].ToString();
+                txtAvailableHours.Text = dsResourceDetails.Tables[0].Rows[0].ItemArray[11].ToString();
             }
 
             DateTime billingStartDate = Convert.ToDateTime(dsResourceDetails.Tables[0].Rows[0].ItemArray[5]);
@@ -259,6 +263,8 @@ namespace PMOscar
         private void AddInfo()
         {
             int ResourceId = 0;
+            IFormatProvider culture = new CultureInfo("fr-Fr", true);
+            DateTime dtAvailableHours = DateTime.MinValue;
 
             if ( RdActive.Checked == true )
                status = 1;            
@@ -275,9 +281,15 @@ namespace PMOscar
                 lblEmployeecode.Text = PMOscar.Core.Constants.AddRole.DUPLICATEEMPLOYEECODE;
                 return;
             }
-
+            if (!string.IsNullOrEmpty(txtAvailableHours.Text) && !DateTime.TryParseExact(txtAvailableHours.Text, "dd/MM/yyyy", culture, DateTimeStyles.None, out dtAvailableHours))
+            {                
+                lblDateError.Visible = true;
+                lblDateError.Text = "Available Hours Start Date format is incorrect.";
+                return;
+            }
             else
             {
+                DateTime availableHours = DateTime.ParseExact(txtAvailableHours.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 lblEmployeecode.Visible = false;
                 parameter = new List<SqlParameter>();
                 parameter.Add(new SqlParameter("@ResourceId", 1));
@@ -295,6 +307,7 @@ namespace PMOscar
                 parameter.Add(new SqlParameter("@CostCentreID", Convert.ToInt32(ddlCostCentre.SelectedValue.ToString())));
                 parameter.Add(new SqlParameter("@emp_Code", txtemployeecode.Text.Trim()));
                 parameter.Add(new SqlParameter("@WeeklyHour", txtWeeklyHours.Text.Trim()));
+                parameter.Add(new SqlParameter("@AvailableHours", availableHours));
                 try
                 {
                     ResourceId = PMOscar.BaseDAL.ExecuteSPScalar("ResourceOperations", parameter);
@@ -439,7 +452,8 @@ namespace PMOscar
 
                 AddInfo();  // Method to add the resource details...         
             }
-            if(!lblEmployeecode.Visible)
+            bool a = txtAvailableHours.Enabled;
+            if (!lblEmployeecode.Visible && !lblDateError.Visible)
             {
                 if(resourceEditId!=0)
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
