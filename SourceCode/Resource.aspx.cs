@@ -291,6 +291,7 @@ namespace PMOscar
             {
                 DateTime availableHours = DateTime.ParseExact(txtAvailableHours.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 lblEmployeecode.Visible = false;
+                lblDateError.Visible = false;
                 parameter = new List<SqlParameter>();
                 parameter.Add(new SqlParameter("@ResourceId", 1));
                 parameter.Add(new SqlParameter("@ResourceStatus", ""));
@@ -452,7 +453,7 @@ namespace PMOscar
 
                 AddInfo();  // Method to add the resource details...         
             }
-            bool a = txtAvailableHours.Enabled;
+            
             if (!lblEmployeecode.Visible && !lblDateError.Visible)
             {
                 if(resourceEditId!=0)

@@ -97,12 +97,6 @@
                  height: 21px;
                  width: 162px;
              }
-            .ui-datepicker-trigger {
-                margin-left: 160px;
-                margin-top: -17px;
-                margin-bottom: 0px;
-                margin-right: -3px; 
-            }
             .auto-style6 {
                 width: 162px;
                 height: 22px;
@@ -113,6 +107,10 @@
             .image-style {
                 width:15px;
                 height:12px;
+            }
+
+            .ui-datepicker-trigger {
+                margin: 0;
             }
      </style>
         <table width="60%">
@@ -216,7 +214,7 @@
             </tr>
             <tr>
                 <td class="style2" align="left" style="height: 21px">Available Hours Start Date:</td>
-                <td valign="middle" align="left" nowrap="nowrap" class="auto-style4">
+                <td valign="middle" style="display: flex;" nowrap="nowrap" class="auto-style4" >
                     <asp:TextBox ID="txtAvailableHours" runat="server" Width="143px" TabIndex="1"></asp:TextBox>                    
                 </td>
                 <td align="left" style="height: 21px">
