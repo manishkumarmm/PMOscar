@@ -121,7 +121,18 @@ namespace PMOscar
                 BindDropDownCostCentre();//Method to bind Cost Centre in the DropDownList
                 BindYearDropDown(); // Fill year drop down
                 txtemployeecode.Text = employeeCode;
-                txtAvailableHours.Text = DateTime.Now.AddDays(5).ToString("dd/MM/yyyy");
+                //txtAvailableHours.Text = DateTime.Now.AddDays(5).ToString("dd/MM/yyyy");                
+                string CurrentDate = DateTime.Now.ToString("dd/MM/yyyy");                
+                DateTime tmpDate = DateTime.ParseExact(CurrentDate, "dd/MM/yyyy", null);
+                for (int i = 0; i < 5; i++)
+                {
+                    tmpDate = tmpDate.AddDays(1);
+                    if (tmpDate.DayOfWeek == DayOfWeek.Saturday || tmpDate.DayOfWeek == DayOfWeek.Sunday || !IsHoliday(tmpDate))
+                    {
+                        i--;
+                    }
+                }
+                txtAvailableHours.Text = tmpDate.ToString("dd/MM/yyyy");
 
                 if ( resourceEditId != 0 )
                 {
@@ -143,6 +154,11 @@ namespace PMOscar
         #region"Methods"
 
         // Method to set the resource details...
+
+        public bool IsHoliday(DateTime date)
+        {            
+            return date.Date.ToString("dd/MM") != "26/01" && date.Date.ToString("dd/MM") != "15/08" && date.Date.ToString("dd/MM") != "01/05" && date.Date.ToString("dd/MM") != "02/10";
+        }
         private void SetResourceDetails()
         {
             int resourceActiveStatus = 0;
