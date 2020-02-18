@@ -2,9 +2,9 @@
     CodeBehind="Resource.aspx.cs" Inherits="PMOscar.Resource" %>
 
 <asp:Content ContentPlaceHolderID="cntBody" runat="server">
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="Style/jquery-ui-1.8.12.custom.css" type="text/css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">	
+  <link rel="stylesheet" href="Style/jquery-ui-1.8.12.custom.css" type="text/css">	
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>	
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript">
         function clearError() {
@@ -494,19 +494,23 @@
                  width: 162px;
              }
              .auto-style4 {
-                 width: 162px;
+                width: 179px;
+                height: 21px;
+}
              }
              .auto-style5 {
                  height: 21px;
                  width: 162px;
              }
+             
+             .auto-style5 {
+                width: 181px;
+                height: 21px;
+}
+             }
         .ui-datepicker-trigger
         {
-            margin-left: 160px;
-            margin-top: -17px;
-            margin-bottom: 0px;
-            margin-right: -3px;
-
+            margin-top: 0px;
         }
              .auto-style6 {
                  width: 162px;
@@ -522,6 +526,11 @@
              {
                  width:15px;
                  height:12px;
+             }
+             
+             IMG {
+                margin: 3px;
+                height: 18px;
              }
      </style>
         <table width="60%">
@@ -624,16 +633,16 @@
                         runat="server" ErrorMessage="Select Month."></asp:RequiredFieldValidator>
                 </td>
             </tr>
-            <tr>
+                <tr>
                 <td class="style2" align="left" style="height: 21px">Available Hours Start Date:</td>
-                <td valign="middle" align="left" nowrap="nowrap" class="auto-style4">
-                    <asp:TextBox ID="txtAvailableHours" runat="server" Width="143px" TabIndex="1"></asp:TextBox>
+                <td valign="middle" style="display: flex;" nowrap="nowrap" class="auto-style5" >
+                    <asp:TextBox ID="txtAvailableHours" runat="server" Width="143px" TabIndex="1"></asp:TextBox>                    
                 </td>
                 <td align="left" style="height: 21px">
                      &nbsp; &nbsp; &nbsp;
                      <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Select Available Hours." ControlToValidate="txtAvailableHours"></asp:RequiredFieldValidator>  
                      &nbsp;
-                </td>
+                </td>                
             </tr>
             <tr>
                 <td class="style2" align="left">Weekly Hours :
@@ -661,9 +670,9 @@
                 </td>
             </tr>
             <tr>
-                <td class="style2" align="left" style="height: 21px">Joining Date :
+                <td class="style2" align="left" style="height: 21px;">Joining Date :
                 </td>
-                <td valign="middle" align="left" nowrap="nowrap" class="auto-style4">
+                <td valign="middle" align="left" style="display: flex;" nowrap="nowrap" class="auto-style5">
                     <asp:TextBox ID="txtJoinDate" runat="server" Width="143px" TabIndex="1"></asp:TextBox>
                 </td>
                 <td align="left" style="height: 21px">
@@ -675,7 +684,7 @@
                <tr>
                 <td class="style2" align="left" style="height: 21px">Releaving Date :
                 </td>
-                <td valign="middle" align="left" nowrap="nowrap" class="auto-style4">
+                <td valign="middle" align="left" style="display: flex;" nowrap="nowrap" class="auto-style5">
                     <asp:TextBox ID="txtExitDate" runat="server" Width="143px" TabIndex="1"></asp:TextBox>
                 </td>
                    <td align="left" style="height: 21px">
@@ -729,6 +738,7 @@
             <tr>
                 <td height="15px" colspan="3">
                     <asp:Label ID="lblEmployeecode" runat="server" Visible="false" ForeColor="Red"></asp:Label>
+                     <asp:Label ID="lblDateError" runat="server" Visible="false" ForeColor="Red"></asp:Label>
                 </td>
             </tr>
             <tr>

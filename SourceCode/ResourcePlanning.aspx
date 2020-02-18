@@ -84,7 +84,7 @@
                     </td>
                     <td>
                         <asp:LinkButton ID="lnkChng" Text="Change History" runat="server" TabIndex="-1" 
-                                            onfocus="SetFocus(this)";></asp:LinkButton>
+                                            onfocus="SetFocus(this)"></asp:LinkButton>
                     </td>
                 </tr>
             </table>

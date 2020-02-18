@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PMOscar
-{
-
-
-    public partial class Resource
-    {
-
+namespace PMOscar {
+    
+    
+    public partial class Resource {
+        
         /// <summary>
         /// lblResourceStatus control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblResourceStatus;
-
+        
         /// <summary>
         /// txtemployeecode control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtemployeecode;
-
+        
         /// <summary>
         /// EmployeeCodeValidator control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator EmployeeCodeValidator;
-
+        
         /// <summary>
         /// txtResourceName control.
         /// </summary>
@@ -49,7 +47,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtResourceName;
-
+        
         /// <summary>
         /// ResourceNameFieldValidator control.
         /// </summary>
@@ -58,7 +56,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ResourceNameFieldValidator;
-
+        
         /// <summary>
         /// ddlRole control.
         /// </summary>
@@ -67,7 +65,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlRole;
-
+        
         /// <summary>
         /// lnkAddRole control.
         /// </summary>
@@ -76,7 +74,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkAddRole;
-
+        
         /// <summary>
         /// rfvRole control.
         /// </summary>
@@ -85,7 +83,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRole;
-
+        
         /// <summary>
         /// ddlTeam control.
         /// </summary>
@@ -94,7 +92,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTeam;
-
+        
         /// <summary>
         /// rfvTeam control.
         /// </summary>
@@ -103,7 +101,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTeam;
-
+        
         /// <summary>
         /// ddlMonth control.
         /// </summary>
@@ -112,7 +110,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMonth;
-
+        
         /// <summary>
         /// ddlYear control.
         /// </summary>
@@ -121,7 +119,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlYear;
-
+        
         /// <summary>
         /// errorSpan control.
         /// </summary>
@@ -130,7 +128,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorSpan;
-
+        
         /// <summary>
         /// rfvMonth control.
         /// </summary>
@@ -139,7 +137,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMonth;
-
+        
         /// <summary>
         /// txtAvailableHours control.
         /// </summary>
@@ -148,7 +146,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAvailableHours;
-
+        
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -157,7 +155,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
+        
         /// <summary>
         /// txtWeeklyHours control.
         /// </summary>
@@ -166,7 +164,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtWeeklyHours;
-
+        
         /// <summary>
         /// errorSpanweekly control.
         /// </summary>
@@ -175,7 +173,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorSpanweekly;
-
+        
         /// <summary>
         /// WeeklyHoursValidator control.
         /// </summary>
@@ -184,7 +182,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator WeeklyHoursValidator;
-
+        
         /// <summary>
         /// ddlCostCentre control.
         /// </summary>
@@ -193,7 +191,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCostCentre;
-
+        
         /// <summary>
         /// CostCentreValidator control.
         /// </summary>
@@ -202,7 +200,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator CostCentreValidator;
-
+        
         /// <summary>
         /// txtJoinDate control.
         /// </summary>
@@ -211,7 +209,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtJoinDate;
-
+        
         /// <summary>
         /// RequiredFieldValidator4 control.
         /// </summary>
@@ -220,7 +218,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-
+        
         /// <summary>
         /// txtExitDate control.
         /// </summary>
@@ -229,7 +227,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtExitDate;
-
+        
         /// <summary>
         /// RdActive control.
         /// </summary>
@@ -238,7 +236,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton RdActive;
-
+        
         /// <summary>
         /// RdInActive control.
         /// </summary>
@@ -247,7 +245,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton RdInActive;
-
+        
         /// <summary>
         /// lblEmployeecode control.
         /// </summary>
@@ -256,7 +254,16 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEmployeecode;
-
+        
+        /// <summary>
+        /// lblDateError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDateError;
+        
         /// <summary>
         /// checkBox1 control.
         /// </summary>
@@ -265,7 +272,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox checkBox1;
-
+        
         /// <summary>
         /// checkBoxText control.
         /// </summary>
@@ -274,7 +281,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label checkBoxText;
-
+        
         /// <summary>
         /// PnlEdit control.
         /// </summary>
@@ -283,7 +290,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel PnlEdit;
-
+        
         /// <summary>
         /// txtStartdate control.
         /// </summary>
@@ -292,7 +299,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStartdate;
-
+        
         /// <summary>
         /// txtEnddate control.
         /// </summary>
@@ -301,7 +308,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEnddate;
-
+        
         /// <summary>
         /// txtUtilization control.
         /// </summary>
@@ -310,7 +317,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUtilization;
-
+        
         /// <summary>
         /// txtStartDate1 control.
         /// </summary>
@@ -319,7 +326,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStartDate1;
-
+        
         /// <summary>
         /// txtEnddate1 control.
         /// </summary>
@@ -328,7 +335,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEnddate1;
-
+        
         /// <summary>
         /// txtUtilization1 control.
         /// </summary>
@@ -337,7 +344,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUtilization1;
-
+        
         /// <summary>
         /// txtStartDate2 control.
         /// </summary>
@@ -346,7 +353,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStartDate2;
-
+        
         /// <summary>
         /// txtEndDate2 control.
         /// </summary>
@@ -355,7 +362,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEndDate2;
-
+        
         /// <summary>
         /// txtUtilization2 control.
         /// </summary>
@@ -364,7 +371,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUtilization2;
-
+        
         /// <summary>
         /// txtStartDate3 control.
         /// </summary>
@@ -373,7 +380,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStartDate3;
-
+        
         /// <summary>
         /// txtEndDate3 control.
         /// </summary>
@@ -382,7 +389,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEndDate3;
-
+        
         /// <summary>
         /// txtUtilization3 control.
         /// </summary>
@@ -391,7 +398,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUtilization3;
-
+        
         /// <summary>
         /// txtStartDate4 control.
         /// </summary>
@@ -400,7 +407,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStartDate4;
-
+        
         /// <summary>
         /// txtEndDate4 control.
         /// </summary>
@@ -409,7 +416,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEndDate4;
-
+        
         /// <summary>
         /// txtUtilization4 control.
         /// </summary>
@@ -418,7 +425,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUtilization4;
-
+        
         /// <summary>
         /// btnSave control.
         /// </summary>
@@ -427,7 +434,7 @@ namespace PMOscar
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
-
+        
         /// <summary>
         /// btnCancel control.
         /// </summary>

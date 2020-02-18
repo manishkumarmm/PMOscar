@@ -132,13 +132,23 @@ namespace PMOscar
                 BindDropDownCostCentre();//Method to bind Cost Centre in the DropDownList
                 BindYearDropDown(); // Fill year drop down
                 txtemployeecode.Text = employeeCode;
-                txtAvailableHours.Text = DateTime.Now.AddDays(5).ToString("dd/MM/yyyy");
+                string CurrentDate = DateTime.Now.ToString("dd/MM/yyyy");
+                DateTime tmpDate = DateTime.ParseExact(CurrentDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                for (int i = 0; i < 5; i++)
+                {
+                    tmpDate = tmpDate.AddDays(1);
+                    if (tmpDate.DayOfWeek == DayOfWeek.Saturday || tmpDate.DayOfWeek == DayOfWeek.Sunday || !IsHoliday(tmpDate))
+                    {
+                        i--;
+                    }
+                }
+                txtAvailableHours.Text = tmpDate.ToString("dd/MM/yyyy");
 
                 if (resourceEditId != 0)
                 {
                     lblResourceStatus.Text = "Edit Resource";
                     SetResourceDetails(); // Method to set the resource details...
-                    txtAvailableHours.Enabled = false;                    
+                    txtAvailableHours.Enabled = false;
                 }
             }
 
@@ -151,6 +161,12 @@ namespace PMOscar
         #endregion
 
         #region"Methods"
+
+        // Method to set the resource details...
+        public bool IsHoliday(DateTime date)
+        {
+            return date.Date.ToString("dd/MM") != "26/01" && date.Date.ToString("dd/MM") != "15/08" && date.Date.ToString("dd/MM") != "01/05" && date.Date.ToString("dd/MM") != "02/10";
+        }
 
         // Method to set the resource details...
         private void SetResourceDetails()
@@ -323,6 +339,8 @@ namespace PMOscar
         // Method to add the resource details...
         private void AddInfo()
         {
+            IFormatProvider culture = new CultureInfo("fr-Fr", true);
+            DateTime dtAvailableHours = DateTime.MinValue;
             int ResourceId = 0;
 
             if (RdActive.Checked == true)
@@ -340,7 +358,12 @@ namespace PMOscar
                 lblEmployeecode.Text = PMOscar.Core.Constants.AddRole.DUPLICATEEMPLOYEECODE;
                 return;
             }
-
+            if (!string.IsNullOrEmpty(txtAvailableHours.Text) && !DateTime.TryParseExact(txtAvailableHours.Text, "dd/MM/yyyy", culture, DateTimeStyles.None, out dtAvailableHours))
+            {
+                lblDateError.Visible = true;
+                lblDateError.Text = "Available Hours Start Date format is incorrect.";
+                return;
+            }
             else
             {
                 DateTime endDate;
@@ -350,6 +373,7 @@ namespace PMOscar
                 endDate = (txtExitDate.Text.ToString() != string.Empty) ?
                      DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture) : DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
                 lblEmployeecode.Visible = false;
+                lblDateError.Visible = false;
                 parameter = new List<SqlParameter>();
                 parameter.Add(new SqlParameter("@ResourceId", 1));
                 parameter.Add(new SqlParameter("@ResourceStatus", ""));
@@ -555,7 +579,7 @@ namespace PMOscar
                 {
                     PnlEdit.Visible = false;
                 }
-               
+
                 //Response.Redirect("ResourceListing.aspx");
             }
 
@@ -570,7 +594,6 @@ namespace PMOscar
         public void SaveUtilizationPercentage()
         {
             if ((ddlRole.SelectedItem.Text != "Select" && ddlRole.SelectedItem.Text == PMOscar.Core.Constants.AddRole.TRAINEE) || (ddlRole.SelectedItem.Text != "Select" && ddlRole.SelectedItem.Text == PMOscar.Core.Constants.AddRole.QATRAINEE))
-
             {
 
                 var adjustParam = 0;
@@ -665,8 +688,8 @@ namespace PMOscar
                 var isTrainee = 0;
                 System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                 DateTime joinDate = DateTime.ParseExact(txtJoinDate.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                endDate=(txtExitDate.Text.ToString() != string.Empty)?
-                    DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture):DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
+                endDate = (txtExitDate.Text.ToString() != string.Empty) ?
+                    DateTime.ParseExact(txtExitDate.Text.Trim(), "dd/M/yyyy", CultureInfo.InvariantCulture) : DateTime.ParseExact("31/12/2099", "dd/M/yyyy", CultureInfo.InvariantCulture);
                 int userid = Convert.ToInt16(Session["UserID"]);
                 DateTime currentDate = DateTime.UtcNow.Date;
                 parameter = new List<SqlParameter>();
