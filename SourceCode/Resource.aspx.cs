@@ -126,6 +126,7 @@ namespace PMOscar
 
             if (!Page.IsPostBack)
             {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                 resourceEditId = Request.QueryString["ResEditId"] != null ? Convert.ToInt32(Request.QueryString["ResEditId"]) : 0;
                 BindDropDownRole();  // Method to bind the roles in the DropDownList
                 BindDropDownTeam(); //Method to bind the Team in the DropDownList
