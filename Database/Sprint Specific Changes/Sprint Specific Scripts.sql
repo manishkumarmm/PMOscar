@@ -1,9 +1,11 @@
 
+
+
+ALTER TABLE [dbo].[Resource] ADD [AvailableHoursStartDate] [datetime] NOT NULL DEFAULT GetDate()
+
 --Adjustment factor--
  alter table [Resource] add JoinDate DATETIME
  alter table [Resource] add ExitDate DATETIME
-
-ALTER TABLE [dbo].[Resource] ADD [AvailableHoursStartDate] [datetime] NOT NULL DEFAULT GetDate()
 
 
 ---------------------------------------------------------------------------------
@@ -68,6 +70,26 @@ Update Resource set JoinDate='2019-05-13' where ResourceName='Anjaly Jose'
 Update Resource set JoinDate='2019-08-26' where ResourceName='Jinu Jose'
 Update Resource set JoinDate='2019-09-02' where ResourceName='Sarath K J'
 Update Resource set JoinDate='2019-09-02' where ResourceName='Dona K Johny'
+Update Resource set JoinDate='2019-11-18' where ResourceName='Abilash Babu K V'
+Update Resource set JoinDate='2019-08-19' where ResourceName='Anu James'
+Update Resource set JoinDate='2019-12-02' where ResourceName='Varun K V'
+Update Resource set JoinDate='2019-11-25' where ResourceName='Francis Arokiya Raj'
+Update Resource set JoinDate='2020-01-02' where ResourceName='Sijoy C O'
+Update Resource set JoinDate='2020-01-02' where ResourceName='Nithin Jacob Joseph'
+Update Resource set JoinDate='2020-01-06' where ResourceName='Nithin Varghese'
+Update Resource set JoinDate='2020-01-13' where ResourceName='Anup Zach Cherian'
+Update Resource set JoinDate='2019-10-14' where ResourceName='Akshara James'
+Update Resource set JoinDate='2019-10-14' where ResourceName='Bibin P S'
+Update Resource set JoinDate='2019-10-14' where ResourceName='Rachana Das'
+Update Resource set JoinDate='2019-10-14' where ResourceName='Reshma K Sunil'
+Update Resource set JoinDate='2019-10-14' where ResourceName='Veena Ponnappan'
+Update Resource set JoinDate='2018-10-25' where ResourceName='Alex Babu'
+Update Resource set JoinDate='2019-09-03' where ResourceName='Sooraj T'
+Update Resource set JoinDate='2019-09-18' where ResourceName='Nidesh K K'
+Update Resource set JoinDate='2019-10-23' where ResourceName='Gibin Jacob Job'
+Update Resource set JoinDate='2019-11-27' where ResourceName like '%limna%'
+Update Resource set JoinDate='2019-11-27' where ResourceName='Kiran P'
+
 
 insert into ResourceUtilizationPercentage(ResourceId,StartDate,EndDate,UtilizationPercentage,AdjustmentFactor,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate)
 select Table_A.ResourceId,isnull(table_a.JoinDate,'1900-01-01') as StartDate,'2099-12-31' as EndDate,100 as UtilizationPercentage,
