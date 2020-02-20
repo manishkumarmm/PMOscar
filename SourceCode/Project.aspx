@@ -415,9 +415,9 @@
                         runat="server" CausesValidation="false" TabIndex="-1" OnClick="LinkButton2_Click"></asp:LinkButton>&nbsp&nbsp&nbsp&nbsp&nbsp
                         <a  href="<%=ConfigurationManager.AppSettings["PMOscarV2_Url"] %>Account/LoginSession?Email=<%=Session["UserName"]%>&Password=<%=Session["EncryptedPassword"]%>&returnUrl=/WorkOrder/WorkOrderCustomView/<%=Session["WorkOrderID"]%>"
                        class="" tabindex="-1">View Work Order</a>&nbsp&nbsp&nbsp&nbsp&nbsp
-                         <a  href="<%=ConfigurationManager.AppSettings["PMOscarV2_Url"] %>Account/LoginSession?Email=<%=Session["UserName"]%>&Password=<%=Session["EncryptedPassword"]%>&returnUrl=/listbudgetrevision/<%=Session["ProjectEditId"]%>"
-                       class="" tabindex="-1">Budget Revisions</a>&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <asp:LinkButton ID="lnkResourceHistory" Text="Resource Change History"
+                        <%-- <a  href="<%=ConfigurationManager.AppSettings["PMOscarV2_Url"] %>Account/LoginSession?Email=<%=Session["UserName"]%>&Password=<%=Session["EncryptedPassword"]%>&returnUrl=/listbudgetrevision/<%=Session["ProjectEditId"]%>"
+                       class="" tabindex="-1">Budget Revisions</a>&nbsp&nbsp&nbsp&nbsp&nbsp--%>
+                    <asp:LinkButton ID="lnkResourceHistory" Text="Allocation Change History"
                         runat="server" CausesValidation="false" TabIndex="-1" OnClick="ResourceHistory"></asp:LinkButton>
                     <asp:Button ID="resourceAudit" runat="server" Style="display: none" />
 
