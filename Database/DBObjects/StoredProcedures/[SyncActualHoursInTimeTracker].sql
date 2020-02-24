@@ -17,6 +17,21 @@ GO
 -- ==============================================================================
 
 
+--SyncActualHoursInTimeTracker '2018-06-04','2018-06-08',null,126
+
+
+-- ==============================================================================
+-- Description: Sync Actual Hours In TimeTracker
+-- ==============================================================================
+-- Author:  Aswathy
+-- Create date: 2018-04-13
+-- Modified By : Joshwa George
+-- Modified On : 2018-06-13
+-- Modified On : 2018/06/20
+-- Modified On : 2018/06/22
+-- ==============================================================================
+
+
 CREATE proc [dbo].[SyncActualHoursInTimeTracker]
 @FromDate varchar(25)=NULL
 ,@ToDate varchar(25)=NULL
@@ -93,7 +108,7 @@ and LG.phaseid= T.PhaseID
 WHEN MATCHED
 THEN UPDATE 
    SET   
-      [ActualHours] = case when T.ActHrsUpdated = 0 THEN LG.ActualHours ELSE T.[ActualHours] END 
+      [ActualHours] = case when T.ActHrsUpdated = 0 THEN LG.ActualHours ELSE T.[ActualHours] END
       ,[UpdatedBy] = @SystemUSerID
       ,[UpdatedDate] = getdate()
 	   ,[WeeklyComments]=LG.Comment
@@ -181,6 +196,7 @@ GROUP BY  R.ResourceID, P.ProjectID,Ph.PhaseID
 end
 
 else
+begin
 EXEC ImportMySQLTimeTracker;
 	begin
 		MERGE [dbo].[TimeTracker] T
@@ -309,6 +325,7 @@ GROUP BY  R.ResourceID, P.ProjectID,Ph.PhaseID
 		  ,MySQLT .EmployeeCode 
 		  ,B.EstimationRoleID
 
+	end
 	end
 
 If(@ResourceID!=0)
