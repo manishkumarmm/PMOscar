@@ -345,11 +345,12 @@
 
         //get week number
         function getWeekNumber(date) {
-            var onejan = new Date(year, 0, 1);
-            var today = new Date(date);
-            var dayOfYear = ((today - onejan + 1) / 86400000);
-            return Math.ceil(dayOfYear / 7)
-        }
+            var d = new Date(date);
+            d.setUTCDate(d.getUTCDate() - d.getUTCDay());
+            var yearStart = new Date(Date.UTC(year, 0, 1));
+            return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+        };
+
 
         function getFixedHolidays() {
             var fixedHolidays = [];
