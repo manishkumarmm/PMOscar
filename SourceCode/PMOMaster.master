@@ -135,10 +135,10 @@
                         <li runat="server" id="liadminRL"><a href="ResourceListing.aspx"  runat="server" id="adminRL"
                     
                             tabindex="-1">Resources</a></li>
-                        <li runat="server" id="liuser" class="liadmin"><a href="UserListing.aspx" tabindex="-1" runat="server" id="auser">
+                        <li runat="server" id="liuser" class="liadmin" style="width:150px"><a href="UserListing.aspx" tabindex="-1" runat="server" id="auser">
                             Users</a></li>
-                        <li runat="server" id="lioh" display="none";><a href="OptionalHolidays.aspx" runat="server" id="oHoliday"
-                            tabindex="-1">Optional Holidays</a></li>
+                        <!--<li runat="server" id="lioh"><a href="OptionalHolidays.aspx" runat="server" id="oHoliday"
+                            tabindex="-1">Optional Holidays</a></li>-->
                     </ul>
                 </div>
             </td>
