@@ -42,6 +42,9 @@
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
+  <script src=" https://apps-angularjs.naicotech.com:4458/HTML/intranet/angular8-common-app.js"></script>
+  <link rel="stylesheet" href=" https://apps-angularjs.naicotech.com:4458/HTML/intranet/angular8-common-app.css">
     <script>
         $(document).ready(function () {
 
@@ -185,10 +188,10 @@
         // continue if the object is idle
         if (ajaxObj.readyState == 4 || ajaxObj.readyState == 0)
         {
-        // build the “GET” request URL
+        // build the ï¿½GETï¿½ request URL
         var URL = "Project.aspx" + "?name=" + objProjectName.value + "&sname=" + objProjectShortName.value;
 
-        // open connection and send “GET” request to server
+        // open connection and send ï¿½GETï¿½ request to server
         ajaxObj.open("GET", URL, true);
 
         // set the function to be called on a change in ajaxObj state
@@ -201,7 +204,7 @@
         if (ajaxObj.readyState == 4) {
         // continue if the response is healthy
         if (ajaxObj.status == 200) {
-        // store the server’s text response
+        // store the serverï¿½s text response
         var textResponse = ajaxObj.responseText;
 
         if (textResponse == "1") {
@@ -273,7 +276,7 @@
 
         if (window.XMLHttpRequest)
         {
-        // check for Safari, Mozilla, Opera…
+        // check for Safari, Mozilla, Operaï¿½
         XMLHttpRequestObject = new XMLHttpRequest();
         }
         else if (window.ActiveXObject)
@@ -303,7 +306,7 @@
         if (ajaxObj.readyState == 4) {
         // continue if the response is healthy
         if (ajaxObj.status == 200) {
-        // store the server’s text response
+        // store the serverï¿½s text response
         var textResponse = ajaxObj.responseText;
 
         if (textResponse == "1") {
@@ -619,7 +622,8 @@
                     <td style="height: 20px">Add Resources</td>
                     <td style="height: 20px">
                     <asp:ListBox ID="lstResource" runat="server" Height="120px" SelectionMode="Multiple" Width="200px" TabIndex="11" ></asp:ListBox>  
-                    </td>
+                    <app-check-list></app-check-list>   
+                </td>
                  
                     <td align="left" style="height: 20px; width: 37px;" colspan="2"></td>
                 </tr>
