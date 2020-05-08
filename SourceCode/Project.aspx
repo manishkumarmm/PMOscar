@@ -43,8 +43,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    
-  <script src=" https://apps-angularjs.naicotech.com:4458/HTML/intranet/angular8-common-app.js"></script>
-  <link rel="stylesheet" href=" https://apps-angularjs.naicotech.com:4458/HTML/intranet/angular8-common-app.css">
+  <script src=" https://apps-angularjs.naicotech.com:4453/HTML/intranet/angular8-common-app.js"></script>
+  <link rel="stylesheet" href=" https://apps-angularjs.naicotech.com:4453/HTML/intranet/angular8-common-app.css">
     <script>
         $(document).ready(function () {
 
