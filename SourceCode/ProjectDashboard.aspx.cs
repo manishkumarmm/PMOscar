@@ -342,6 +342,16 @@ namespace PMOscar
                 sbSummary.Append(Constants.HTML.TH_CLASS_PROJECTCOL + "Project Name" + Constants.HTML.TH_END);
                 sbSummary.Append(Constants.HTML.TH_CLASS_PHASECOL + "Category" + Constants.HTML.TH_END);
                 sbSummary.Append(Constants.HTML.TH_CLASS_PHASECOL + "Current Phase" + Constants.HTML.TH_END);
+
+                sbSummary.Append(Constants.HTML.TH_INNERTABLE_TBODY_TR_TD_STATUSCOLSPAN4 + "Status" + Constants.HTML.TH_END + Constants.HTML.TR_END);
+                sbSummary.Append(Constants.HTML.TR_START_STATUS);
+                sbSummary.Append(Constants.HTML.TH_CLASS_CLIENTCOL + "Client" + Constants.HTML.TH_END);
+                sbSummary.Append(Constants.HTML.TH_CLASS_TIMELINECOL + "Timeline" + Constants.HTML.TH_END);
+                sbSummary.Append(Constants.HTML.TH_CLASS_BUDGETCOL + "Budget" + Constants.HTML.TH_END);
+                sbSummary.Append(Constants.HTML.TH_CLASS_ESCALATECOL + "Escalate" + Constants.HTML.TH_END);
+                sbSummary.Append(Constants.HTML.TR_END);
+                sbSummary.Append(Constants.HTML.INNERTABLE_TABLE_TH_END);
+
                 sbSummary.Append(Constants.HTML.TH_CLASS_DATECOL + "Delivery Date" + Constants.HTML.TH_END);
                 sbSummary.Append(Constants.HTML.TH_CLASS_DATECOL + "Revised Delivery Date" + Constants.HTML.TH_END);
                 sbSummary.Append(Constants.HTML.TH_CLASS_DATECOL + "Maitenance Closing Date" + Constants.HTML.TH_END);
@@ -372,6 +382,35 @@ namespace PMOscar
                         sbSummary.Append(Constants.HTML.TD_START + "<a href='Project.aspx?ProjectEditId=" + drRow[Constants.FieldName.ProjectDashboard.PROJECTID] + "'>" + drRow[Constants.FieldName.ProjectDashboard.PROJECTNAME] + "</a>" + Constants.HTML.TD_END);
                         sbSummary.Append(Constants.HTML.TD_START + drRow[Constants.FieldName.ProjectDashboard.CATEGORY] + Constants.HTML.TD_END);
                         sbSummary.Append(Constants.HTML.TD_START + drRow[Constants.FieldName.ProjectDashboard.CURRENTPHASE] + Constants.HTML.TD_END);
+
+                        if(Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.CLIENTSTATUS]) == 3)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_CLIENTGREEN + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.CLIENTSTATUS]) == 1)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_CLIENTRED + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.CLIENTSTATUS]) == 2)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_CLIENTYELLOW + Constants.HTML.TD_END);
+
+                        if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.TIMELINESTATUS]) == 3)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_TIMELINEGREEN + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.TIMELINESTATUS]) == 1)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_TIMELINERED + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.TIMELINESTATUS]) == 2)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_TIMELINEYELLOW + Constants.HTML.TD_END);
+
+                        if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.BUDGETSTATUS]) == 3)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_BUDGETGREEN + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.BUDGETSTATUS]) == 1)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_BUDGETRED + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.BUDGETSTATUS]) == 2)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_BUDGETYELLOW + Constants.HTML.TD_END);
+
+                        if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.ESCALATESTATUS]) == 3)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_ESCALATEGREEN + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.ESCALATESTATUS]) == 1)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_ESCALATERED + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.ESCALATESTATUS]) == 2)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_ESCALATEYELLOW + Constants.HTML.TD_END);
+
                         sbSummary.Append(Constants.HTML.TD_START + drRow[Constants.FieldName.ProjectDashboard.DELIVERYDATE] + Constants.HTML.TD_END);
                         sbSummary.Append(Constants.HTML.TD_START + drRow[Constants.FieldName.ProjectDashboard.REVISEDDELIVERYDATE] + Constants.HTML.TD_END);
                         sbSummary.Append(Constants.HTML.TD_START + drRow[Constants.FieldName.ProjectDashboard.MAINTENANCECLOSINGDATE] + Constants.HTML.TD_END);
