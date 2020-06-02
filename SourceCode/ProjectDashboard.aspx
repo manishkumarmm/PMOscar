@@ -785,7 +785,7 @@
                 </ul>
                 
                 <!-- Perid Tabs Start -->
-                <div id="PT_Summary" class="dashboardBorder">
+                <div id="PT_Summary" class="dashboardBorder" style="overflow:hidden">
                     <center><span style="text-align:center">No Records Found!</span></center>
                 </div>
                 <div id="PT_PeriodEffortPhase" class="dashboardBorder">

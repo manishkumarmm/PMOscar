@@ -84,6 +84,10 @@ namespace PMOscar.Core
                 public const string DELIVERYCOMMENTS = "DeliveryComments";
                 public const string WEEKLYCOMMENTS = "WeeklyComments";
 
+                public const string CLIENTSTATUS = "ClientStatus";
+                public const string TIMELINESTATUS = "TimelineStatus";
+                public const string BUDGETSTATUS = "BudgetStatus";
+                public const string ESCALATESTATUS = "EscalateStatus";
             }
 
             #endregion
@@ -240,6 +244,27 @@ namespace PMOscar.Core
             public const string TH_INNERTABLE_TBODY_TR_TD_COLSPAN2 = "<th scope='col' colspan='2'><table class='innerTable' cellspacing='0'><tbody><tr><td class='upper' colspan='2'>";
             public const string INNERTABLE_TBODY_TABLE_TH_END = "</tbody></table></th>";
 
+            //Status column for Period Grid in the ProjectDashboard page.
+            public const string TH_INNERTABLE_TBODY_TR_TD_STATUSCOLSPAN4 = "<th style='width:13%' scope='col' colspan='4'><table class='innerTable' width=100% cellspacing=0><tr class='headerRow'><th colspan = 4 align=center>";
+            public const string INNERTABLE_TABLE_TH_END = "</table></th>";
+            public const string TH_CLASS_CLIENTCOL = "<th style='font-size:smaller; width:23%;'>";
+            public const string TH_CLASS_TIMELINECOL = "<th style=font-size:smaller;>";
+            public const string TH_CLASS_BUDGETCOL = "<th style=font-size:smaller;>";
+            public const string TH_CLASS_ESCALATECOL = "<th style='font-size:smaller; width:23%;'>";
+            public const string TR_START_STATUS = "<tr class='headerRow'>";
+            public const string TD_START_STATUS = "<td align='Center'>";
+            public const string IMG_CLIENTGREEN = "<img src='../images/clientgreen.png' style='border-width:0px;'>";
+            public const string IMG_CLIENTRED = "<img src='../images/clientred.png' style='border-width:0px;'>";
+            public const string IMG_CLIENTYELLOW = "<img src='../images/clientyellow.png' style='border-width:0px;'>";
+            public const string IMG_TIMELINEGREEN = "<img src='../images/timelinegreen.png' style='border-width:0px;'>";
+            public const string IMG_TIMELINERED = "<img src='../images/timelinered.png' style='border-width:0px;'>";
+            public const string IMG_TIMELINEYELLOW = "<img src='../images/timelineyellow.png' style='border-width:0px;'>";
+            public const string IMG_BUDGETGREEN = "<img src='../images/budgetgreen.png' style='border-width:0px;'>";
+            public const string IMG_BUDGETRED = "<img src='../images/budgetred.png' style='border-width:0px;'>";
+            public const string IMG_BUDGETYELLOW = "<img src='../images/budgetyellow.png' style='border-width:0px;'>";
+            public const string IMG_ESCALATEGREEN = "<img src='../images/escalategreen.png' style='border-width:0px;'>";
+            public const string IMG_ESCALATERED = "<img src='../images/escalatered.png' style='border-width:0px;'>";
+            public const string IMG_ESCALATEYELLOW = "<img src='../images/escalateyellow.png' style='border-width:0px;'>";
         }
 
         #endregion
