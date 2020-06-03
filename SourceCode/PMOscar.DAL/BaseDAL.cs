@@ -8,6 +8,7 @@
 // Description : Base class for all DAL classes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+using PMOscar.Core;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -725,6 +726,40 @@ namespace PMOscar
                 return null;
             }
 
+        }
+
+        /// <summary>
+        /// insert in to ProjectActivityStatus table
+        /// </summary>
+        /// <param name="projectDashboardID"></param>
+        /// <param name="clientStatus"></param>
+        /// <param name="timelineStatus"></param>
+        /// <param name="budgetStatus"></param>
+        /// <param name="escalateStatus"></param>
+        /// <param name="CreatedBy"></param>
+        public static void insertProjectActivityStatus(int projectDashboardID, int clientStatus, int timelineStatus, int budgetStatus, int escalateStatus, object createdBy, object updatedBy, int projectID, int dashboardID)
+        {
+            try
+            {
+                string query1 = string.Format("insert into [dbo].[ProjectActivityStatus] (ClientStatus, TimelineStatus, BudgetStatus, EscalateStatus, CreatedBy, CreatedDate, UpdatedBy, UpdatedDate, Comments, ProjectDashboardID,ProjectID,DashboardID ) values({0},{1},{2},{3},{4},'{5}',{6},'{7}','{8}',{9},{10},{11})", clientStatus, timelineStatus, budgetStatus, escalateStatus, createdBy, DateTime.Now, updatedBy, DateTime.Now, "", projectDashboardID, projectID, dashboardID);
+                int result1 = PMOscar.BaseDAL.ExecuteNonQuery(query1);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message, ex);
+            }
+        }
+        /// <summary>
+        /// get Project Dashboard
+        /// </summary>
+        /// <param name="whereParam"></param>
+        /// <param name="whereCondition"></param>
+        /// <returns></returns>
+        public static string getProjectDashboard(string whereParam, int whereCondition)
+        {
+
+            var query = "Select pd.[ProjectDashboardID] ,pd.[ProjectID] ,[PhaseId] ,pa.[ClientStatus] ,pa.[TimelineStatus] ,pa.[BudgetStatus] ,pa.[EscalateStatus] ,pd.[CreatedBy] ,pd.[CreatedDate] ,pd.[UpdatedBy] ,pd.[UpdatedDate],pa.[Comments] ,[ProjectName] ,[ShortName] ,[ProjectType] ,[ProjectOwner] ,[ProjectManager] ,[DeliveryDate] ,[RevisedDeliveryDate] ,[ApprvChangeRequest] ,[PMComments] ,[DeliveryComments] ,[IsActive] ,pd.[DashboardID] ,[POComments] ,[Utilization] FROM [dbo].[ProjectDashboard] pd Join [ProjectActivityStatus] pa on pa.ProjectDashboardID=pd.ProjectDashboardID where pd." + whereParam + "= " + whereCondition;
+            return query;
         }
 
     }

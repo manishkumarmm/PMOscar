@@ -25,6 +25,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using PMOscar.Core;
 
 namespace PMOscar
 {
@@ -251,19 +252,21 @@ namespace PMOscar
             parameter.Add(returnValue);
             try
             {
-                int DashboardID = PMOscar.BaseDAL.ExecuteSPScalar("ProjectDashboardOperations", parameter);
+                string query1 = string.Format("update [dbo].[ProjectActivityStatus] set ClientStatus={0}, TimelineStatus={1}, BudgetStatus={2}, EscalateStatus={3},Comments='{4}' where ProjectDashboardID={5}", clientStatus, timeLineStatus, budgetStatus, escalateStatus, Server.HtmlEncode(txtWeeklyComments.Text.Trim()), ProjectDashBoardEditId);
+                int result1 = PMOscar.BaseDAL.ExecuteNonQuery(query1);
                 ProjectDashBoardEditId = Convert.ToInt16(returnValue.Value);
             }
-            catch
+            catch(Exception ex)
             {
-
+                Logger.Error(ex.Message, ex);
             }
         }
 
         // Method to get dashboard entries...
         private void GetDashBoardDetails()
         {
-            DataSet dsDashBoard = BaseDAL.ExecuteDataSet("Select * FROM ProjectDashboard Where ProjectDashboardID = " + ProjectDashBoardEditId);
+            var queryDashboard = BaseDAL.getProjectDashboard("ProjectDashboardID", ProjectDashBoardEditId);
+            DataSet dsDashBoard = BaseDAL.ExecuteDataSet(queryDashboard);
             DataSet dsBudget = BaseDAL.ExecuteDataSet("SELECT ProjectID,sum(ISNULL(BudgetHours,0)) BudgetHours,sum(ISNULL(RevisedBudgetHours,0)) RevisedBudgetHours,sum(ISNULL(ActualHrs,0)) ActualHrs FROM	(SELECT dt1.ProjectID,dt1.PhaseID,sum(dt1.BudgetHours) BudgetHours,sum(dt1.RevisedBudgetHours) RevisedBudgetHours,sum(dt1.ActualHrs) ActualHrs FROM(SELECT  projest.EstimationRoleID,projest.PhaseID,pro.ProjectID ,avg(ISNULL(projest.BudgetHours,0)) BudgetHours,avg(ISNULL(projest.RevisedBudgetHours,0)) RevisedBudgetHours,sum(ISNULL(projest.ActualHrs,0)) ActualHrs FROM ProjectDashBoardEstimation projest right join project  pro  on  projest.ProjectID=pro.ProjectID GROUP BY projest.EstimationRoleID,projest.PhaseID,pro.ProjectID) AS dt1 GROUP BY dt1.PhaseID,dt1.ProjectID ) AS d1 GROUP BY d1.projectID");
             if (dsDashBoard.Tables[0].Rows.Count > 0)
             {
