@@ -2319,7 +2319,7 @@ namespace PMOscar
                 
                 int projectDashboardID=PMOscar.BaseDAL.ExecuteSPScalar("ProjectDashboardOperations", parameter);
                 //insert into ProjectActivityStatus table
-                BaseDAL.insertProjectActivityStatus(projectDashboardID, clientStatus, timeLineStatus, budgetStatus, escalateStatus, Session["UserID"], Session["UserID"],1, dashboardId);
+                BaseDAL.insertProjectActivityStatus(projectDashboardID, clientStatus, timeLineStatus, budgetStatus, escalateStatus, Session["UserID"], Session["UserID"],1, dashboardId, weeklyComment.Trim());
             }
             catch(Exception ex)
             {

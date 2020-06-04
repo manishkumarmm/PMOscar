@@ -737,11 +737,11 @@ namespace PMOscar
         /// <param name="budgetStatus"></param>
         /// <param name="escalateStatus"></param>
         /// <param name="CreatedBy"></param>
-        public static void insertProjectActivityStatus(int projectDashboardID, int clientStatus, int timelineStatus, int budgetStatus, int escalateStatus, object createdBy, object updatedBy, int projectID, int dashboardID)
+        public static void insertProjectActivityStatus(int projectDashboardID, int clientStatus, int timelineStatus, int budgetStatus, int escalateStatus, object createdBy, object updatedBy, int projectID, int dashboardID, string comments="")
         {
             try
             {
-                string query1 = string.Format("insert into [dbo].[ProjectActivityStatus] (ClientStatus, TimelineStatus, BudgetStatus, EscalateStatus, CreatedBy, CreatedDate, UpdatedBy, UpdatedDate, Comments, ProjectDashboardID,ProjectID,DashboardID ) values({0},{1},{2},{3},{4},'{5}',{6},'{7}','{8}',{9},{10},{11})", clientStatus, timelineStatus, budgetStatus, escalateStatus, createdBy, DateTime.Now, updatedBy, DateTime.Now, "", projectDashboardID, projectID, dashboardID);
+                string query1 = string.Format("insert into [dbo].[ProjectActivityStatus] (ClientStatus, TimelineStatus, BudgetStatus, EscalateStatus, CreatedBy, CreatedDate, UpdatedBy, UpdatedDate, Comments, ProjectDashboardID,ProjectID,DashboardID ) values({0},{1},{2},{3},{4},'{5}',{6},'{7}','{8}',{9},{10},{11})", clientStatus, timelineStatus, budgetStatus, escalateStatus, createdBy, DateTime.Now, updatedBy, DateTime.Now, comments, projectDashboardID, projectID, dashboardID);
                 int result1 = PMOscar.BaseDAL.ExecuteNonQuery(query1);
             }
             catch (Exception ex)
