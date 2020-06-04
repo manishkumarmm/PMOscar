@@ -2,9 +2,14 @@
     CodeBehind="Reports.aspx.cs" Inherits="PMOscar.Reports" EnableEventValidation="false" %>
 
 <asp:Content ContentPlaceHolderID="cntBody" runat="server">
+    <%-- Used to fix problem with ASP.NET Ajax breaking in Chrome/Safari/WebKit --%>
+    <script src="Scripts/WebKit.js" type="text/javascript"></script>
     <link href="Style/jquery-ui-1.8.12.custom.css" rel="stylesheet" type="text/css" />
+
     <script src="Scripts/jquery-1.5.1.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery-ui-1.8.12.custom.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="<%=ConfigurationManager.AppSettings["openHoursReportStyle"] %>"/>
+    <script src="<%=ConfigurationManager.AppSettings["openHoursReportScript"] %>" language="javascript" type="text/javascript"></script>
     <style>
         /* This is the style for the trigger icon. The margin-bottom value causes the icon to shift down to center it. */
         .ui-datepicker-trigger
@@ -21,7 +26,7 @@
 
 
         $(function () {
-        
+            document.getElementById("openHoursReports").style.display = "none";
            // var browserName = navigator.appName;
            // document.getElementById("divBrowser").innerHTML = browserName;
            // if (browserName = "Netscape")
@@ -127,6 +132,13 @@
                 $("#tableMonthandYear").hide();
                 var radioReportType = $("input[name$='reportTypeCmpny']");
                 radioReportType[0].checked = true;
+            }
+            else if (ddlSelectedReportValue == 6 || ddlSelectedReportValue == 7) {
+                var radioReportType = $("input[name$='reportType']");
+                radioReportType[1].checked = true;
+                $('[id$="_hiddenRadio"]').val(radioReportType[1].value);
+                $("#tablePeriod").show();
+                $("#tableMonthandYear").hide();
             }
             else {
                 var radioReportType = $("input[name$='reportType']");
@@ -305,7 +317,7 @@
 
         //validation for GO button (Report)
         function ValidateGo() {
-
+            document.getElementById("openHoursReports").style.display = "none";
             var reportSelected = document.getElementById("<%= DropDownListReports.ClientID %>").value;
             if (reportSelected != "0")  //report has selected
             {
@@ -325,6 +337,13 @@
                     }
                     else if (endDate == "Select End Date" || endDate == "") {
                         alert("Please select end date!");
+                        return false;
+                    }
+                    if (reportSelected == "6" || reportSelected == "7") {
+                        document.getElementById("openHoursReports").innerHTML = '<app-open-hours fromdate todate></app-open-hours>';
+                        document.getElementById("openHoursReports").style.display = "block";
+                        document.querySelector('app-open-hours').setAttribute('fromdate', document.getElementById('datepickerStartWeek').value);
+                        document.querySelector('app-open-hours').setAttribute('todate', document.getElementById('datepickerEndWeek').value);
                         return false;
                     }
                 }
@@ -455,7 +474,7 @@
                                             <%--Go Button  --%>
                                             <td width="4%;" align="right">
                                                 <asp:Button ID="goButton" runat="server" Text="Go" OnClientClick="return ValidateGo();"
-                                                    OnClick="goButton_Click" />
+                                                    OnClick="goButton_Click"/>
                                             </td>
                                             <td>
                                                 <%--Export Button--%>
@@ -563,7 +582,7 @@
                         <ContentTemplate>
                             <div align="center" class="reportTiltle">
                                 <asp:Label ID="lblReportTitle" runat="server"></asp:Label></div>
-                         
+                                <div id="openHoursReports" style="width:100%"></div>
                               <asp:GridView ID="gdReport" runat="server" OnRowDataBound="gdReport_RowDataBound"
                                 OnRowCreated="gdReport_RowCreated" Width="100%" CellPadding="5" AllowSorting="true" cellspacing="0" 
                                 OnSorting="gdReport_Sorting" style="border-collapse:initial;border-bottom: black 1px solid; border-left: black 1px solid;border-top: black 1px solid;">
