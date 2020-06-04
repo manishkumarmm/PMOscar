@@ -1959,14 +1959,14 @@ namespace PMOscar
                     string endDate = hiddenendWeek.Value;
                     lblReportTitle.Text = "Open Hours Report - " + fromDate + " - " + endDate;
                 }
-                else if (SelectedReport.Equals(Utility.EnumTypes.Reports.Open_Hours_Report_With_Break_Up))
-                {
-                    gdReport.Visible = false;
-                    btnExport.Enabled = false;
-                    string fromDate = hiddenstartWeek.Value;
-                    string endDate = hiddenendWeek.Value;
-                    lblReportTitle.Text = "Open Hours Report With Break Up - " + fromDate + " - " + endDate;
-                }
+                //else if (SelectedReport.Equals(Utility.EnumTypes.Reports.Open_Hours_Report_With_Break_Up))
+                //{
+                //    gdReport.Visible = false;
+                //    btnExport.Enabled = false;
+                //    string fromDate = hiddenstartWeek.Value;
+                //    string endDate = hiddenendWeek.Value;
+                //    lblReportTitle.Text = "Open Hours Report With Break Up - " + fromDate + " - " + endDate;
+                //}
                 else //select 
                 {
                     gdCmpnySummReport.Visible = false;
@@ -2861,8 +2861,9 @@ namespace PMOscar
                 tdOtherReports.Visible = false;
                 tdCompanyUtilizationReport.Visible = true;
             }
-            else if (ddlReportsSelectedValue == Convert.ToInt32(Utility.EnumTypes.Reports.Open_Hours_Report) || ddlReportsSelectedValue == Convert.ToInt32(Utility.EnumTypes.Reports.Open_Hours_Report_With_Break_Up))
+            else if (ddlReportsSelectedValue == Convert.ToInt32(Utility.EnumTypes.Reports.Open_Hours_Report))
             {
+                //|| ddlReportsSelectedValue == Convert.ToInt32(Utility.EnumTypes.Reports.Open_Hours_Report_With_Break_Up)
                 rdbMonthly.Disabled = true;
                 btnExport.Enabled = false;
                 btnExport.Visible = false;
