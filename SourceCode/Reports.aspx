@@ -2,6 +2,8 @@
     CodeBehind="Reports.aspx.cs" Inherits="PMOscar.Reports" EnableEventValidation="false" %>
 
 <asp:Content ContentPlaceHolderID="cntBody" runat="server">
+    <%-- Used to fix problem with ASP.NET Ajax breaking in Chrome/Safari/WebKit --%>
+    <script src="Scripts/WebKit.js" type="text/javascript"></script>
     <link href="Style/jquery-ui-1.8.12.custom.css" rel="stylesheet" type="text/css" />
 
     <script src="Scripts/jquery-1.5.1.min.js" type="text/javascript"></script>
@@ -24,7 +26,7 @@
 
 
         $(function () {
-        
+            document.getElementById("openHoursReports").style.display = "none";
            // var browserName = navigator.appName;
            // document.getElementById("divBrowser").innerHTML = browserName;
            // if (browserName = "Netscape")
@@ -315,7 +317,7 @@
 
         //validation for GO button (Report)
         function ValidateGo() {
-
+            document.getElementById("openHoursReports").style.display = "none";
             var reportSelected = document.getElementById("<%= DropDownListReports.ClientID %>").value;
             if (reportSelected != "0")  //report has selected
             {
@@ -338,10 +340,11 @@
                         return false;
                     }
                     if (reportSelected == "6" || reportSelected == "7") {
-                        document.getElementById("openHoursReports").innerHTML = "<app-open-hours fromdate todate></app-open-hours>";
-                        document.querySelector('app-open-hours').setAttribute('fromdate', document.getElementById('datepickerStartWeek').value)
-                        document.querySelector('app-open-hours').setAttribute('todate', document.getElementById('datepickerEndWeek').value)
-                        return true;
+                        document.getElementById("openHoursReports").innerHTML = '<app-open-hours fromdate todate></app-open-hours>';
+                        document.getElementById("openHoursReports").style.display = "block";
+                        document.querySelector('app-open-hours').setAttribute('fromdate', document.getElementById('datepickerStartWeek').value);
+                        document.querySelector('app-open-hours').setAttribute('todate', document.getElementById('datepickerEndWeek').value);
+                        return false;
                     }
                 }
                 else {
@@ -579,7 +582,7 @@
                         <ContentTemplate>
                             <div align="center" class="reportTiltle">
                                 <asp:Label ID="lblReportTitle" runat="server"></asp:Label></div>
-                                <div id="openHoursReports"></div>
+                                <div id="openHoursReports" style="width:100%"></div>
                               <asp:GridView ID="gdReport" runat="server" OnRowDataBound="gdReport_RowDataBound"
                                 OnRowCreated="gdReport_RowCreated" Width="100%" CellPadding="5" AllowSorting="true" cellspacing="0" 
                                 OnSorting="gdReport_Sorting" style="border-collapse:initial;border-bottom: black 1px solid; border-left: black 1px solid;border-top: black 1px solid;">

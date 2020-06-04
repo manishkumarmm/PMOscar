@@ -1953,6 +1953,7 @@ namespace PMOscar
                 }
                 else if (SelectedReport.Equals(Utility.EnumTypes.Reports.Open_Hours_Report))
                 {
+                    gdReport.Visible = false;
                     btnExport.Enabled = false;
                     string fromDate = hiddenstartWeek.Value;
                     string endDate = hiddenendWeek.Value;
@@ -1960,6 +1961,7 @@ namespace PMOscar
                 }
                 else if (SelectedReport.Equals(Utility.EnumTypes.Reports.Open_Hours_Report_With_Break_Up))
                 {
+                    gdReport.Visible = false;
                     btnExport.Enabled = false;
                     string fromDate = hiddenstartWeek.Value;
                     string endDate = hiddenendWeek.Value;
