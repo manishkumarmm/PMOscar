@@ -8,8 +8,8 @@
 
     <script src="Scripts/jquery-1.5.1.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery-ui-1.8.12.custom.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="https://dev-apps-angularjs.naicotech.com:4460/HTML/intranet/angular8-common-app.css"/>
-    <script src="https://dev-apps-angularjs.naicotech.com:4460/HTML/intranet/angular8-common-app.js" language="javascript" type="text/javascript"></script>
+    <link rel="stylesheet" href="<%=ConfigurationManager.AppSettings["openHoursReportStyle"] %>"/>
+    <script src="<%=ConfigurationManager.AppSettings["openHoursReportScript"] %>" language="javascript" type="text/javascript"></script>
     <style>
         /* This is the style for the trigger icon. The margin-bottom value causes the icon to shift down to center it. */
         .ui-datepicker-trigger
