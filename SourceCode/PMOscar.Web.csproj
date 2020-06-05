@@ -116,6 +116,7 @@
     <Content Include="Scripts\jquery-1.3.2.min.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.12.custom.min.js" />
+    <Content Include="Scripts\WebKit.js" />
     <Content Include="Shared Binaries\AjaxControlToolkit.dll" />
     <Content Include="Shared Binaries\log4net.dll" />
     <Content Include="Style\images\ui-bg_flat_0_aaaaaa_40x100.png" />

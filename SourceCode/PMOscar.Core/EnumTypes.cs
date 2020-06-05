@@ -47,6 +47,15 @@ namespace PMOscar.Utility
             /// The Budget revision report
             /// </summary>
             //Budget_Revision_Report = 5
+
+            /// <summary>
+            /// The Open Hours report
+            /// </summary>
+            Open_Hours_Report = 6,
+            /// <summary>
+            /// The Open Hours report with break up
+            /// </summary>
+            //Open_Hours_Report_With_Break_Up = 7
         }
 
         /// <summary>
