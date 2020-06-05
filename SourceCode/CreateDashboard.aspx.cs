@@ -13,17 +13,9 @@
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 
@@ -766,8 +758,8 @@ namespace PMOscar
                             parameter.Add(new SqlParameter("@Comments", ""));
                             parameter.Add(new SqlParameter("@isActive", 1));
                             parameter.Add(new SqlParameter("@Utilization", dtDashboard.Rows[insertPjctDtsCount]["Utilization"]));
-                            PMOscar.BaseDAL.ExecuteSPNonQuery("[ProjectDashboardOperations]", parameter);
-
+                            int projectDashboardID = PMOscar.BaseDAL.ExecuteSPScalar("[ProjectDashboardOperations]", parameter);
+                            BaseDAL.insertProjectActivityStatus(projectDashboardID, 3, 3, 3, 3, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[insertPjctDtsCount]["ProjectID"]), dashboardID);
                         }
 
                         for (int insertPjctEstimationDtsCount = 0; insertPjctEstimationDtsCount < dtEstimation.Rows.Count; insertPjctEstimationDtsCount++)
@@ -803,11 +795,11 @@ namespace PMOscar
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "close", "<script language=javascript>window.opener.location.reload(true);self.close();</script>");
             }
       }
-    #endregion
+        #endregion
 
         #region"Control Events"
 
-            protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
         {
             if ( Convert.ToInt32(ddlYear.SelectedItem.Value) != DateTime.Now.Year )
                 ddlMonth.SelectedIndex = 0;           

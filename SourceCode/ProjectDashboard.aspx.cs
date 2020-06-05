@@ -2082,7 +2082,8 @@ namespace PMOscar
                 } 
                 else
                 {
-                    DataTable dtDashBoardstatus = PMOscar.BaseDAL.ExecuteDataTable("Select * from ProjectDashboard where DashboardID=" + dashBoardId);
+                    var query = BaseDAL.getProjectDashboard("DashboardID", dashBoardId);
+                    DataTable dtDashBoardstatus = BaseDAL.ExecuteDataTable(query);
                     List<DataRow> list = new List<DataRow>();
                     foreach (DataRow dr in dtDashBoardstatus.Rows)
                     {
@@ -2142,10 +2143,14 @@ namespace PMOscar
                            parameter.Add(new SqlParameter("@Comments", ""));
                            parameter.Add(new SqlParameter("@isActive", 1));
                            parameter.Add(new SqlParameter("@Utilization", dtDashboard.Rows[dashBoardCount]["Utilization"]));
-                           PMOscar.BaseDAL.ExecuteSPNonQuery("[ProjectDashboardOperations]", parameter);
-                           
-                           DataTable dtDashBoardstatusnew = PMOscar.BaseDAL.ExecuteDataTable("Select * from ProjectDashboard where DashboardID=" + dashBoardId);
-                           foreach (var j in list)
+                            int newProjectDashboardID = PMOscar.BaseDAL.ExecuteSPScalar("[ProjectDashboardOperations]", parameter);
+                            //update ProjectActivityStatus table
+                            string query1 = string.Format("update [dbo].[ProjectActivityStatus] set ProjectDashboardID={0} where DashboardID={1} and ProjectID={2}", newProjectDashboardID, dashBoardId, dtDashboard.Rows[dashBoardCount]["ProjectID"]);
+                            PMOscar.BaseDAL.ExecuteNonQuery(query1);
+
+                            var queryprojectDashboard = BaseDAL.getProjectDashboard("DashboardID", dashBoardId);
+                            DataTable dtDashBoardstatusnew = BaseDAL.ExecuteDataTable(queryprojectDashboard);
+                            foreach (var j in list)
                            {
                                if (j.ItemArray[1].ToString() == dtDashBoardstatusnew.Rows[dtDashBoardstatusnew.Rows.Count-1]["ProjectID"].ToString())
                                {
@@ -2193,8 +2198,10 @@ namespace PMOscar
                             parameter.Add(new SqlParameter("@Comments", ""));
                             parameter.Add(new SqlParameter("@isActive", 1));
                             parameter.Add(new SqlParameter("@Utilization", dtDashboard.Rows[dashBoardCount]["Utilization"]));
-                            PMOscar.BaseDAL.ExecuteSPNonQuery("[ProjectDashboardOperations]", parameter);
-                         }
+                            int projectDashboardID = PMOscar.BaseDAL.ExecuteSPScalar("[ProjectDashboardOperations]", parameter);
+                            //insert into ProjectActivityStatus table
+                            BaseDAL.insertProjectActivityStatus(projectDashboardID, 3, 3, 3, 3, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[dashBoardCount]["ProjectID"]), dashBoardId);
+                        }
                     }
 
                     for (int estimationCount = 0; estimationCount < dtEstimation.Rows.Count; estimationCount++)
@@ -2310,7 +2317,9 @@ namespace PMOscar
                 returnValue.Direction = ParameterDirection.ReturnValue;
                 parameter.Add(returnValue);
                 
-                PMOscar.BaseDAL.ExecuteSPScalar("ProjectDashboardOperations", parameter);
+                int projectDashboardID=PMOscar.BaseDAL.ExecuteSPScalar("ProjectDashboardOperations", parameter);
+                //insert into ProjectActivityStatus table
+                BaseDAL.insertProjectActivityStatus(projectDashboardID, clientStatus, timeLineStatus, budgetStatus, escalateStatus, Session["UserID"], Session["UserID"], 1, dashboardId, weeklyComment.Trim());
             }
             catch(Exception ex)
             {
@@ -3294,15 +3303,17 @@ namespace PMOscar
 
             //if (dtDashBoard.Rows.Count > 0)
             //{
-                //if (dtDashBoard.Rows[0]["Status"].ToString() == "F")
-                //{
-                //    lblMsg.ForeColor = System.Drawing.Color.Red;
-                //    lblMsg.Text = "Dashboard for the selected period has already been finalized!";
-                //}
-                //else
-                //{
-                    DataTable dtDashBoardstatus = PMOscar.BaseDAL.ExecuteDataTable("Select * from ProjectDashboard where DashboardID=" + dashBoardId);
-                    List<DataRow> list = new List<DataRow>();
+            //if (dtDashBoard.Rows[0]["Status"].ToString() == "F")
+            //{
+            //    lblMsg.ForeColor = System.Drawing.Color.Red;
+            //    lblMsg.Text = "Dashboard for the selected period has already been finalized!";
+            //}
+            //else
+            //{
+            //DataTable dtDashBoardstatus = PMOscar.BaseDAL.ExecuteDataTable("Select * from ProjectDashboard where DashboardID=" + dashBoardId);
+            var queryprojectDashboard = PMOscar.BaseDAL.getProjectDashboard("DashboardID", dashBoardId);
+            DataTable dtDashBoardstatus = PMOscar.BaseDAL.ExecuteDataTable(queryprojectDashboard);
+            List<DataRow> list = new List<DataRow>();
                     foreach (DataRow dr in dtDashBoardstatus.Rows)
                     {
                         list.Add(dr);
@@ -3359,10 +3370,13 @@ namespace PMOscar
                             parameter.Add(new SqlParameter("@DeliveryComments", dtDashboard.Rows[dashBoardCount]["DeliveryComments"]));
                             parameter.Add(new SqlParameter("@Comments", ""));
                             parameter.Add(new SqlParameter("@isActive", 1));
-                            PMOscar.BaseDAL.ExecuteSPNonQuery("[ProjectDashboardOperations]", parameter);
+                            int projectDashboardID=PMOscar.BaseDAL.ExecuteSPScalar("[ProjectDashboardOperations]", parameter);
+                            //insert into ProjectActivityStatus table
+                            BaseDAL.insertProjectActivityStatus(projectDashboardID, 3, 3, 3, 3, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[dashBoardCount]["ProjectID"]), dashBoardId);
 
-                            DataTable dtDashBoardstatusnew = PMOscar.BaseDAL.ExecuteDataTable("Select * from ProjectDashboard where DashboardID=" + dashBoardId);
-                            foreach (var j in list)
+                    var queryDashboard = BaseDAL.getProjectDashboard("DashboardID", dashBoardId);
+                    DataTable dtDashBoardstatusnew = BaseDAL.ExecuteDataTable(queryDashboard);
+                    foreach (var j in list)
                             {
                                 if (j.ItemArray[1].ToString() == dtDashBoardstatusnew.Rows[dtDashBoardstatusnew.Rows.Count - 1]["ProjectID"].ToString())
                                 {
@@ -3409,8 +3423,11 @@ namespace PMOscar
                             parameter.Add(new SqlParameter("@DeliveryComments", dtDashboard.Rows[dashBoardCount]["DeliveryComments"]));
                             parameter.Add(new SqlParameter("@Comments", ""));
                             parameter.Add(new SqlParameter("@isActive", 1));
-                            PMOscar.BaseDAL.ExecuteSPNonQuery("[ProjectDashboardOperations]", parameter);
-                        }
+                            int projectDashboardID=PMOscar.BaseDAL.ExecuteSPScalar("[ProjectDashboardOperations]", parameter);
+                    //insert into ProjectActivityStatus table
+                    BaseDAL.insertProjectActivityStatus(projectDashboardID, 3, 3, 3, 3, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[dashBoardCount]["ProjectID"]), dashBoardId);
+
+                }
                     }
 
                     for (int estimationCount = 0; estimationCount < dtEstimation.Rows.Count; estimationCount++)
