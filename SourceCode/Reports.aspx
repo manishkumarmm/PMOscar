@@ -347,9 +347,10 @@
                         return false;
                     }
                     else if (reportSelected == "7") {
+                        document.getElementById("openHoursReports").innerHTML = '<app-open-hours-breakup fromdate todate></app-open-hours-breakup>';
                         document.getElementById("openHoursReports").style.display = "block";
-                        document.querySelector('app-open-hours').setAttribute('fromdate', document.getElementById('datepickerStartWeek').value);
-                        document.querySelector('app-open-hours').setAttribute('todate', document.getElementById('datepickerEndWeek').value);
+                        document.querySelector('app-open-hours-breakup').setAttribute('fromdate', document.getElementById('datepickerStartWeek').value);
+                        document.querySelector('app-open-hours-breakup').setAttribute('todate', document.getElementById('datepickerEndWeek').value);
                         return false;
                     }
                 }
