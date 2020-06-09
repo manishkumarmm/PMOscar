@@ -134,10 +134,14 @@
                 radioReportType[0].checked = true;
             }
             else if (ddlSelectedReportValue == 6 || ddlSelectedReportValue == 7) {
-                var radioReportType = $("input[name$='reportType']");
-                radioReportType[1].checked = true;
-                $('[id$="_hiddenRadio"]').val(radioReportType[1].value);
-                $("#tablePeriod").show();
+                document.getElementById("goButtonTd").style.paddingBottom = "24px";
+                $("#tdOtherReports").hide();
+                $("#tablePeriod").hide();
+                $("#tableMonthandYear").hide();
+            }
+            else if (ddlSelectedReportValue == 8) {
+                document.getElementById("goButtonTd").style.paddingBottom = "14px";
+                $("#tablePeriod").hide();
                 $("#tableMonthandYear").hide();
             }
             else {
@@ -328,7 +332,7 @@
                 //get which report tyupe is selected
                 var reportTypeSelected = $('[id$="_hiddenRadio"]').val();
 
-                if (reportTypeSelected == "2") //period wise report
+                if (reportTypeSelected == "2" || reportSelected == "6" || reportSelected == "7") //period wise report
                 {
 
                     if (startDate == "Select Start Date") {
@@ -353,6 +357,10 @@
                         document.querySelector('app-open-hours-breakup').setAttribute('todate', document.getElementById('datepickerEndWeek').value);
                         return false;
                     }
+                } else if (reportSelected == "8") {
+                    document.getElementById("openHoursReports").innerHTML = '<app-pmo-consolidated></app-pmo-consolidated>';
+                    document.getElementById("openHoursReports").style.display = "block";
+                    return false;
                 }
                 else {
 
@@ -471,11 +479,30 @@
                                                 <input id="rdbDetailedReport" type="radio" name="reportTypeCmpny" value="4" runat="server" />Detailed
                                                 Report
                                             </td>
+                                            <td id="tdopenHoursReport" runat="server" visible="false" style="padding-bottom: 6px;">
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td class="label" width="0%;" align="right" style="padding-top: 4px;">Starting Week:
+                                                        </td>
+                                                        <td class="dropdown" width="0%;" style="padding-bottom: 4px;">
+                                                            <input type="text" id="datepickerStartWeek" value="Select Start Date" readonly="readonly" style="width: 125px;" />
+                                                            <input type="hidden" id="hidden1" name="hiddenstartWeek" value="select" runat="server" />
+                                                        </td>
+                                                        <td class="label" width="0%;" align="right" style="padding-top: 4px;">Ending Week:
+                                                        </td>
+                                                        <td class="dropdown" width="0%;" style="padding-bottom: 4px;">
+                                                            <input type="text" id="datepickerEndWeek" value="Select End Date" readonly="readonly" style="width: 125px;" />
+                                                            <input type="hidden" id="hidden2" name="hiddenendWeek" value="select" runat="server" />
+                                                        </td>
+                                                        <%-- hidden variable--%>
+                                                    </tr>
+                                                </table>
+                                            </td>
                                         </tr>
                                     </table>
                                 </td>
                                 <%-- go button--%>
-                                <td rowspan="4" valign="bottom">
+                                <td rowspan="4" valign="bottom" id="goButtonTd">
                                     <table>
                                         <tr>
                                             <%--Go Button  --%>

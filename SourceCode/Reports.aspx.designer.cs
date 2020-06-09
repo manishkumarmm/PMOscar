@@ -94,6 +94,33 @@ namespace PMOscar {
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdbDetailedReport;
         
         /// <summary>
+        /// tdopenHoursReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell tdopenHoursReport;
+        
+        /// <summary>
+        /// hidden1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hidden1;
+        
+        /// <summary>
+        /// hidden2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hidden2;
+        
+        /// <summary>
         /// goButton control.
         /// </summary>
         /// <remarks>

@@ -1882,8 +1882,6 @@ namespace PMOscar
 
                     BindGridViewForTeamReport("Team", "ASC");
                     btnExport.Enabled = true;
-
-
                 }
                 else if (SelectedReport.Equals(PMOscar.Utility.EnumTypes.Reports.Resource_Wise_Utilization_Report)) //new report resource wise
                 {
@@ -1966,6 +1964,12 @@ namespace PMOscar
                     string fromDate = hiddenstartWeek.Value;
                     string endDate = hiddenendWeek.Value;
                     lblReportTitle.Text = "Open Hours Report With Break Up - " + fromDate + " - " + endDate;
+                }
+                else if (SelectedReport.Equals(Utility.EnumTypes.Reports.Project_Wise_Consolidated_Report))
+                {
+                    gdReport.Visible = false;
+                    btnExport.Enabled = false;
+                    lblReportTitle.Text = "Project Wise Consolidated Report";
                 }
                 else //select 
                 {
@@ -2855,18 +2859,26 @@ namespace PMOscar
             lblReportTitle.Text = string.Empty;
             btnExport.Visible = true;
             rdbMonthly.Disabled = false;
+            tdopenHoursReport.Visible = false;
             int ddlReportsSelectedValue = Convert.ToInt32(DropDownListReports.SelectedValue);
             if (ddlReportsSelectedValue == Convert.ToInt32(PMOscar.Utility.EnumTypes.Reports.Company_Utilization_Report))
             {
                 tdOtherReports.Visible = false;
                 tdCompanyUtilizationReport.Visible = true;
             }
-            else if (ddlReportsSelectedValue == Convert.ToInt32(Utility.EnumTypes.Reports.Open_Hours_Report) || ddlReportsSelectedValue == Convert.ToInt32(Utility.EnumTypes.Reports.Open_Hours_Report_With_Break_Up))
+            else if (ddlReportsSelectedValue == Convert.ToInt32(Utility.EnumTypes.Reports.Open_Hours_Report)
+                || ddlReportsSelectedValue == Convert.ToInt32(Utility.EnumTypes.Reports.Open_Hours_Report_With_Break_Up))
+            {
+                btnExport.Visible = false;
+                tdOtherReports.Visible = false;
+                tdCompanyUtilizationReport.Visible = false;
+                tdopenHoursReport.Visible = true;
+            }
+            else if (ddlReportsSelectedValue == Convert.ToInt32(Utility.EnumTypes.Reports.Project_Wise_Consolidated_Report))
             {
                 rdbMonthly.Disabled = true;
-                btnExport.Enabled = false;
                 btnExport.Visible = false;
-                tdOtherReports.Visible = true;
+                tdOtherReports.Visible = false;
                 tdCompanyUtilizationReport.Visible = false;
             }
             else

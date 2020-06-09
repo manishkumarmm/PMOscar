@@ -1,0 +1,45 @@
+
+--Budget revision--
+
+ALTER TABLE [BudgetRevisionLog]
+ADD ApprovedDate datetime ,RequestedDate datetime,BudgetRevisionName varchar(500);
+
+------------------------- alter table to add fields-------------------
+ALTER TABLE BudgetRevisionLog
+ADD RequestedBy int not null default 0;
+
+ALTER TABLE BudgetRevisionLog
+ADD ApprovedBy int not null default 0;
+
+ALTER TABLE budgetrevisionLog add Status varchar(max) null
+
+
+insert into UserRole (UserRoleID,UserRole) values (6,'COO')
+--------------set permission to the role-------------------
+insert into Permission ([Namespace],Controller,Action,DateCreated,Name) values ('PMOSCAR.Application.Web.Controllers.API','AddEditBudgetRevision','BudgetApproval',getdate(),'BudgetApproval')
+insert into Permission ([Namespace],Controller,Action,DateCreated,Name) values ('PMOSCAR.Application.Web.Controllers.API','AddEditBudgetRevision','SendForApproval',getdate(),'SendForApproval')
+
+insert into RolePermission (RoleID,PermissionID) values ((select UserRoleId from [UserRole] where UserRole='Project Manager'),(select PermissionID FROM Permission WHERE Action='SendForApproval') )
+
+insert into RolePermission (RoleID,PermissionID) values ((select UserRoleId from [UserRole] where UserRole='Project Owner'),(select PermissionID FROM Permission WHERE Action='SendForApproval') )
+
+insert into RolePermission (RoleID,PermissionID) values ((select UserRoleId from [UserRole] where UserRole='COO'),(select PermissionID FROM Permission WHERE Action='BudgetApproval') )
+
+
+
+-------------created by:Haritha E.S
+-------------Bug fixes------------------
+insert into Permission ([Namespace],Controller,Action,DateCreated,Name) values ('PMOSCAR.Application.Web.Controllers.API','ListBudgetRevisionController','AddBudgetRevision',getdate(),'AddBudgetRevision')
+
+insert into RolePermission (RoleID,PermissionID) values ((select UserRoleId from [UserRole] where UserRole='Project Manager'),(select PermissionID FROM Permission WHERE Action='AddBudgetRevision') )
+
+insert into RolePermission (RoleID,PermissionID) values ((select UserRoleId from [UserRole] where UserRole='Project Owner'),(select PermissionID FROM Permission WHERE Action='AddBudgetRevision') )
+
+
+
+
+
+
+
+
+
