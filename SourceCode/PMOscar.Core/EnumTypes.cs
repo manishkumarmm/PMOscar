@@ -55,7 +55,11 @@ namespace PMOscar.Utility
             /// <summary>
             /// The Open Hours report with break up
             /// </summary>
-            //Open_Hours_Report_With_Break_Up = 7
+            Open_Hours_Report_With_Break_Up = 7,
+            /// <summary>
+            /// Project Wise Consolidated Report
+            /// </summary>
+            Project_Wise_Consolidated_Report = 8
         }
 
         /// <summary>
