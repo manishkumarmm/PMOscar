@@ -5,3 +5,4 @@ bin/
 PMOSCAR.Application.Web/src/PMOSCAR.Application.Web/Properties/launchSettings.json
 SourceCode/Log/PMOscar.log
 SourceCode/.vs/PMOscar/v14/.suo
+PMOSCAR.Application.Web/src/PMOSCAR.Application.Web/Logs/PMOSCAR_V2-20200615.txt
