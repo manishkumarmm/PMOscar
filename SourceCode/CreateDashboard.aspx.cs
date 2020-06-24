@@ -735,10 +735,14 @@ namespace PMOscar
                             parameter = new List<SqlParameter>();
                             parameter.Add(new SqlParameter("@ProjectID", dtDashboard.Rows[insertPjctDtsCount]["ProjectID"]));
                             parameter.Add(new SqlParameter("@PhaseID", dtDashboard.Rows[insertPjctDtsCount]["PhaseID"]));
-                            parameter.Add(new SqlParameter("@ClientStatus", 3));
-                            parameter.Add(new SqlParameter("@TimelineStatus", 3));
-                            parameter.Add(new SqlParameter("@BudgetStatus", 3));
-                            parameter.Add(new SqlParameter("@EscalateStatus", 3));
+
+                            //not using now.................................
+                            parameter.Add(new SqlParameter("@ClientStatus", 4));
+                            parameter.Add(new SqlParameter("@TimelineStatus", 4));
+                            parameter.Add(new SqlParameter("@BudgetStatus", 4));
+                            parameter.Add(new SqlParameter("@EscalateStatus", 4));
+                            //end of not using.................................
+
                             parameter.Add(new SqlParameter("@CreatedBy", Session["UserID"]));
                             parameter.Add(new SqlParameter("@CreatedDate", DateTime.Now));
                             parameter.Add(new SqlParameter("@UpdatedBy", Session["UserID"]));
@@ -759,7 +763,7 @@ namespace PMOscar
                             parameter.Add(new SqlParameter("@isActive", 1));
                             parameter.Add(new SqlParameter("@Utilization", dtDashboard.Rows[insertPjctDtsCount]["Utilization"]));
                             int projectDashboardID = PMOscar.BaseDAL.ExecuteSPScalar("[ProjectDashboardOperations]", parameter);
-                            BaseDAL.insertProjectActivityStatus(projectDashboardID, 3, 3, 3, 3, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[insertPjctDtsCount]["ProjectID"]), dashboardID);
+                            BaseDAL.insertProjectActivityStatus(projectDashboardID, 4, 4, 4, 4, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[insertPjctDtsCount]["ProjectID"]), dashboardID);
                         }
 
                         for (int insertPjctEstimationDtsCount = 0; insertPjctEstimationDtsCount < dtEstimation.Rows.Count; insertPjctEstimationDtsCount++)
