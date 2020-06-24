@@ -144,27 +144,30 @@ namespace PMOscar
              if ( ProjectDashBoardEditId != 0 )
                  GetDashBoardDetails();  // Method to get dashboard entries...
 
-             lblMsg.Text = string.Empty;            
+                lblMsg.Text = string.Empty;
             }
 
             GetFinaliseddashBoard(); // Method to find the Finalised DashBoard ...
         }
 
-    #endregion
+        #endregion
 
-    #region "Control Events" 
+        #region "Control Events" 
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if ( ProjectDashBoardEditId != 0 )
+            if (ProjectDashBoardEditId != 0)
             {
-                UpdateDashBoardEntries();  // Method to update dashboard entries...
-                ScriptManager.RegisterStartupScript(this, this.GetType(),"alert",
-                "alert('Data saved successfully!!');window.location ='ProjectDashboard.aspx';",
-                true);
+                var response = UpdateDashBoardEntries();  // Method to update dashboard entries...
+                if (response != 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    "alert('Data saved successfully!!');window.location ='ProjectDashboard.aspx';",
+                    true);
+                }
             }
             else
-            Response.Redirect("ProjectDashboard.aspx");
+                Response.Redirect("ProjectDashboard.aspx");
         }
 
         protected void lbBack_Click(object sender, EventArgs e)
@@ -209,57 +212,71 @@ namespace PMOscar
                 btnSave.Enabled = false;
             }
         }
-        
+
         // Method to update dashboard entries...
-        private void UpdateDashBoardEntries()
+        private int UpdateDashBoardEntries()
         {
-            int clientStatus = RBCR.Checked == true ? 1 : (RBCY.Checked == true ? 2 : 3);
-            int timeLineStatus = RBTR.Checked == true ? 1 : (RBTY.Checked == true ? 2 : 3);
-            int budgetStatus = RBBR.Checked == true ? 1 : (RBBY.Checked == true ? 2 : 3);
-            int escalateStatus = RBER.Checked == true ? 1 : (RBEY.Checked == true ? 2 : 3);
+            int clientStatus = RBCR.Checked == true ? 1 : (RBCY.Checked == true ? 2 : (RBCG.Checked == true ? 3 : 4));
+            int timeLineStatus = RBTR.Checked == true ? 1 : (RBTY.Checked == true ? 2 : (RBTG.Checked == true ? 3 : 4));
+            int budgetStatus = RBBR.Checked == true ? 1 : (RBBY.Checked == true ? 2 : (RBBG.Checked == true ? 3 : 4));
+            int escalateStatus = RBER.Checked == true ? 1 : (RBEY.Checked == true ? 2 : (RBEG.Checked == true ? 3 : 4));
 
-            Session["value"] = Request.Url.AbsoluteUri +"&budgetStatus=" + budgetStatus ; 
+            if (clientStatus == 4 || timeLineStatus == 4 || budgetStatus == 4 || escalateStatus == 4)
+            {
+                //error
+                lblMsg.Attributes.CssStyle.Add("color", "#FF0000");
+                lblMsg.Text = "Please mark the desired status.";
+                return 0;
+            }
+            else
+            {
+                Session["value"] = Request.Url.AbsoluteUri + "&budgetStatus=" + budgetStatus;
 
-            parameter = new List<SqlParameter>();
-            parameter.Add(new SqlParameter("@ProjectID", projectId));
-            parameter.Add(new SqlParameter("@PhaseID", 1));
-            parameter.Add(new SqlParameter("@ClientStatus", clientStatus));
-            parameter.Add(new SqlParameter("@TimelineStatus", timeLineStatus));
-            parameter.Add(new SqlParameter("@BudgetStatus", budgetStatus));
-            parameter.Add(new SqlParameter("@EscalateStatus", escalateStatus));            
-            parameter.Add(new SqlParameter("@CreatedBy", Session["UserID"]));
-            parameter.Add(new SqlParameter("@CreatedDate", DateTime.Now));
-            parameter.Add(new SqlParameter("@UpdatedBy", Session["UserID"]));
-            parameter.Add(new SqlParameter("@UpdatedDate", DateTime.Now));
-            parameter.Add(new SqlParameter("@Status", "U"));
-            parameter.Add(new SqlParameter("@DashboardID", ProjectDashBoardEditId));
-            parameter.Add(new SqlParameter("@ProjectName", ""));
-            parameter.Add(new SqlParameter("@ShortName", ""));
-            parameter.Add(new SqlParameter("@ProjectType", ""));
-            parameter.Add(new SqlParameter("@ProjectOwner", 1));
-            parameter.Add(new SqlParameter("@ProjectManager",1));
-            parameter.Add(new SqlParameter("@DeliveryDate", DateTime.Now.Date));
-            parameter.Add(new SqlParameter("@RevisedDeliveryDate", DateTime.Now.Date));
-            parameter.Add(new SqlParameter("@PMComments", ""));
-            parameter.Add(new SqlParameter("@DeliveryComments", ""));
-            parameter.Add(new SqlParameter("@POComments", ""));         
-            parameter.Add(new SqlParameter("@isActive", 1));
-            parameter.Add(new SqlParameter("@Comments", Server.HtmlEncode(txtWeeklyComments.Text.Trim())));          
-           
-            // Return value as parameter
-            SqlParameter returnValue = new SqlParameter("returnVal", SqlDbType.Int);
-            returnValue.Direction = ParameterDirection.ReturnValue;
-            parameter.Add(returnValue);
-            try
-            {
-                string query1 = string.Format("update [dbo].[ProjectActivityStatus] set ClientStatus={0}, TimelineStatus={1}, BudgetStatus={2}, EscalateStatus={3},Comments='{4}' where ProjectDashboardID={5}", clientStatus, timeLineStatus, budgetStatus, escalateStatus, Server.HtmlEncode(txtWeeklyComments.Text.Trim()), ProjectDashBoardEditId);
-                int result1 = PMOscar.BaseDAL.ExecuteNonQuery(query1);
-                ProjectDashBoardEditId = Convert.ToInt16(returnValue.Value);
+                parameter = new List<SqlParameter>();
+                parameter.Add(new SqlParameter("@ProjectID", projectId));
+                parameter.Add(new SqlParameter("@PhaseID", 1));
+                parameter.Add(new SqlParameter("@ClientStatus", clientStatus));
+                parameter.Add(new SqlParameter("@TimelineStatus", timeLineStatus));
+                parameter.Add(new SqlParameter("@BudgetStatus", budgetStatus));
+                parameter.Add(new SqlParameter("@EscalateStatus", escalateStatus));
+                parameter.Add(new SqlParameter("@CreatedBy", Session["UserID"]));
+                parameter.Add(new SqlParameter("@CreatedDate", DateTime.Now));
+                parameter.Add(new SqlParameter("@UpdatedBy", Session["UserID"]));
+                parameter.Add(new SqlParameter("@UpdatedDate", DateTime.Now));
+                parameter.Add(new SqlParameter("@Status", "U"));
+                parameter.Add(new SqlParameter("@DashboardID", ProjectDashBoardEditId));
+                parameter.Add(new SqlParameter("@ProjectName", ""));
+                parameter.Add(new SqlParameter("@ShortName", ""));
+                parameter.Add(new SqlParameter("@ProjectType", ""));
+                parameter.Add(new SqlParameter("@ProjectOwner", 1));
+                parameter.Add(new SqlParameter("@ProjectManager", 1));
+                parameter.Add(new SqlParameter("@DeliveryDate", DateTime.Now.Date));
+                parameter.Add(new SqlParameter("@RevisedDeliveryDate", DateTime.Now.Date));
+                parameter.Add(new SqlParameter("@PMComments", ""));
+                parameter.Add(new SqlParameter("@DeliveryComments", ""));
+                parameter.Add(new SqlParameter("@POComments", ""));
+                parameter.Add(new SqlParameter("@isActive", 1));
+                parameter.Add(new SqlParameter("@Comments", Server.HtmlEncode(txtWeeklyComments.Text.Trim())));
+
+                // Return value as parameter
+                SqlParameter returnValue = new SqlParameter("returnVal", SqlDbType.Int);
+                returnValue.Direction = ParameterDirection.ReturnValue;
+                parameter.Add(returnValue);
+                try
+                {
+                    string query1 = string.Format("update [dbo].[ProjectActivityStatus] set ClientStatus={0}, TimelineStatus={1}, BudgetStatus={2}, EscalateStatus={3},Comments='{4}' where ProjectDashboardID={5}", clientStatus, timeLineStatus, budgetStatus, escalateStatus, Server.HtmlEncode(txtWeeklyComments.Text.Trim()), ProjectDashBoardEditId);
+                    int result1 = PMOscar.BaseDAL.ExecuteNonQuery(query1);
+                    ProjectDashBoardEditId = Convert.ToInt16(returnValue.Value);
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex.Message, ex);
+                    return 0;
+                }
+
             }
-            catch(Exception ex)
-            {
-                Logger.Error(ex.Message, ex);
-            }
+
         }
 
         // Method to get dashboard entries...
@@ -273,7 +290,13 @@ namespace PMOscar
                 DataSet dsDash = BaseDAL.ExecuteDataSet("SELECT  DashboardID,Name,FromDate,ToDate,PeriodType,Status From Dashboard where DashboardID=" + dsDashBoard.Tables[0].Rows[dsDashBoard.Tables[0].Rows.Count - 1].ItemArray[23] + "");
                 if (dsDashBoard.Tables[0].Rows.Count > 0)
                 {
-                    if (dsDashBoard.Tables[0].Rows[0].ItemArray[3].ToString() == "3")
+                    if (dsDashBoard.Tables[0].Rows[0].ItemArray[3].ToString() == "4")
+                    {
+                        RBCG.Checked = false;
+                        RBCY.Checked = false;
+                        RBCR.Checked = false;
+                    }
+                    else if (dsDashBoard.Tables[0].Rows[0].ItemArray[3].ToString() == "3")
                     {
                         RBCG.Checked = true;
                         RBCY.Checked = false;
@@ -292,7 +315,13 @@ namespace PMOscar
                         RBCR.Checked = false;
                     }
 
-                    if (dsDashBoard.Tables[0].Rows[0].ItemArray[4].ToString() == "3")
+                    if (dsDashBoard.Tables[0].Rows[0].ItemArray[4].ToString() == "4")
+                    {
+                        RBTG.Checked = false;
+                        RBTR.Checked = false;
+                        RBTY.Checked = false;
+                    }
+                    else if (dsDashBoard.Tables[0].Rows[0].ItemArray[4].ToString() == "3")
                     {
                         RBTG.Checked = true;
                         RBTR.Checked = false;
@@ -348,7 +377,13 @@ namespace PMOscar
                     //}
                     //else
                     //{
-                    if (dsDashBoard.Tables[0].Rows[0].ItemArray[5].ToString() == "3")
+                    if (dsDashBoard.Tables[0].Rows[0].ItemArray[5].ToString() == "4")
+                    {
+                        RBBG.Checked = false;
+                        RBBR.Checked = false;
+                        RBBY.Checked = false;
+                    }
+                    else if (dsDashBoard.Tables[0].Rows[0].ItemArray[5].ToString() == "3")
                     {
                         RBBG.Checked = true;
                         RBBR.Checked = false;
@@ -369,7 +404,13 @@ namespace PMOscar
                     // }
 
                     //} 
-                    if (dsDashBoard.Tables[0].Rows[0].ItemArray[6].ToString() == "3")
+                    if (dsDashBoard.Tables[0].Rows[0].ItemArray[6].ToString() == "4")
+                    {
+                        RBEG.Checked = false;
+                        RBER.Checked = false;
+                        RBEY.Checked = false;
+                    }
+                    else if (dsDashBoard.Tables[0].Rows[0].ItemArray[6].ToString() == "3")
                     {
                         RBEG.Checked = true;
                         RBER.Checked = false;
