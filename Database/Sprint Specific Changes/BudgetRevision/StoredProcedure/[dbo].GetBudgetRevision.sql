@@ -1,13 +1,15 @@
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'GetBudgetRevision') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[GetBudgetRevision]
+USE [PMOscar_Dev]
 GO
 
-/****** Object:  StoredProcedure [dbo].[GetBudgetRevision]    Script Date: 1/25/2019 12:09:09 PM ******/
+/****** Object:  StoredProcedure [dbo].[GetBudgetRevision]    Script Date: 25-06-2020 11:04:03 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
+
+
 
 -- =============================================
 -- Author:		Joshwa
@@ -34,7 +36,7 @@ select
 	SUM(BudgetHours) AS BudgetHours,
 	SUM(RevisedBudgetHours) AS RevisedBudgetHours,
 	IsChangeRequest,
-	(SELECT STUFF ((SELECT ',' + bd1.Comments 
+	(SELECT STUFF ((SELECT  case when Ltrim(RTrim(isnull(bd1.Comments,'')))='' then '' else ',' end  + bd1.Comments
               FROM BudgetRevisionDetails bd1
 			  inner join BudgetRevisionLog bl on bl.BudgetRevisionID=bd1.BudgetRevisionID 
 			  where projectid= @ProjectID 
@@ -83,6 +85,5 @@ order by
 END
 End 
 GO
-
 
 
