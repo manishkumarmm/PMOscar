@@ -6,8 +6,8 @@ GO
 SET ANSI_NULLS ON
 GO
 
-SET QUOTED_IDENTIFIER ON
-GO
+
+
 
 -- =============================================
 -- Author:		Joshwa
@@ -34,7 +34,7 @@ select
 	SUM(BudgetHours) AS BudgetHours,
 	SUM(RevisedBudgetHours) AS RevisedBudgetHours,
 	IsChangeRequest,
-	(SELECT STUFF ((SELECT ',' + bd1.Comments 
+	(SELECT STUFF ((SELECT  case when Ltrim(RTrim(isnull(bd1.Comments,'')))='' then '' else ',' end  + bd1.Comments
               FROM BudgetRevisionDetails bd1
 			  inner join BudgetRevisionLog bl on bl.BudgetRevisionID=bd1.BudgetRevisionID 
 			  where projectid= @ProjectID 
@@ -83,6 +83,5 @@ order by
 END
 End 
 GO
-
 
 

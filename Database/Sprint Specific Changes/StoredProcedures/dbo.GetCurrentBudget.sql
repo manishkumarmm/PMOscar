@@ -4,6 +4,10 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+
+
+
 -- =============================================  
 -- Author:  Haritha E.S
 -- modified by : Deepa
@@ -80,7 +84,8 @@ Insert into #ApprovedBudgetSum
 		--(sum(bd.BudgetHours)+ @additionalBudget) as RevisedBudgetHours,
 		sum(bd.AdditionalBudgetHours) as RevisedBudgetHours,
 		--sum(bd.RevisedBudgetHours) as RevisedBudgetHours,
-		(SELECT STUFF ((SELECT ',' + bd1.Comments 
+		(SELECT STUFF ((
+SELECT  case when Ltrim(RTrim(isnull(bd1.Comments,'')))='' then '' else ',' end  + bd1.Comments
 				  FROM BudgetRevisionDetails bd1
 				  inner join BudgetRevisionLog bl on bl.BudgetRevisionID=bd1.BudgetRevisionID 
 				  where projectid= @ProjectID 
@@ -117,7 +122,7 @@ Insert into #ApprovedBudgetSum
 		and ac.RoleId = bd.EstimationRoleID
 		and ac.PhaseID = bd.PhaseID 
 		and ac.projectid = bl.ProjectID 
-	 where  bl.Status = 'Approved' 
+	 where  bl.Status in('Approved') 
 	 and bl.ProjectID = @ProjectID
 	 and ( bd.BudgetRevisionID <=@BudgetRevisionID or @BudgetRevisionID=0)
 	 group by 

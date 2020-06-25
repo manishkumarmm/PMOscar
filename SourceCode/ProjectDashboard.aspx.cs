@@ -383,28 +383,36 @@ namespace PMOscar
                         sbSummary.Append(Constants.HTML.TD_START + drRow[Constants.FieldName.ProjectDashboard.CATEGORY] + Constants.HTML.TD_END);
                         sbSummary.Append(Constants.HTML.TD_START + drRow[Constants.FieldName.ProjectDashboard.CURRENTPHASE] + Constants.HTML.TD_END);
 
-                        if(Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.CLIENTSTATUS]) == 3)
+                        if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.CLIENTSTATUS]) == 4)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_CLIENTGRAY + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.CLIENTSTATUS]) == 3)
                             sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_CLIENTGREEN + Constants.HTML.TD_END);
                         else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.CLIENTSTATUS]) == 1)
                             sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_CLIENTRED + Constants.HTML.TD_END);
                         else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.CLIENTSTATUS]) == 2)
                             sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_CLIENTYELLOW + Constants.HTML.TD_END);
 
-                        if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.TIMELINESTATUS]) == 3)
+                        if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.TIMELINESTATUS]) == 4)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_TIMELINEGRAY + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.TIMELINESTATUS]) == 3)
                             sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_TIMELINEGREEN + Constants.HTML.TD_END);
                         else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.TIMELINESTATUS]) == 1)
                             sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_TIMELINERED + Constants.HTML.TD_END);
                         else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.TIMELINESTATUS]) == 2)
                             sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_TIMELINEYELLOW + Constants.HTML.TD_END);
 
-                        if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.BUDGETSTATUS]) == 3)
+                        if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.BUDGETSTATUS]) == 4)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_BUDGETGRAY + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.BUDGETSTATUS]) == 3)
                             sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_BUDGETGREEN + Constants.HTML.TD_END);
                         else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.BUDGETSTATUS]) == 1)
                             sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_BUDGETRED + Constants.HTML.TD_END);
                         else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.BUDGETSTATUS]) == 2)
                             sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_BUDGETYELLOW + Constants.HTML.TD_END);
 
-                        if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.ESCALATESTATUS]) == 3)
+                        if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.ESCALATESTATUS]) == 4)
+                            sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_ESCALATEGRAY + Constants.HTML.TD_END);
+                        else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.ESCALATESTATUS]) == 3)
                             sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_ESCALATEGREEN + Constants.HTML.TD_END);
                         else if (Convert.ToInt32(drRow[Constants.FieldName.ProjectDashboard.ESCALATESTATUS]) == 1)
                             sbSummary.Append(Constants.HTML.TD_START_STATUS + Constants.HTML.IMG_ESCALATERED + Constants.HTML.TD_END);
@@ -2175,10 +2183,14 @@ namespace PMOscar
                             parameter = new List<SqlParameter>();
                             parameter.Add(new SqlParameter("@ProjectID", dtDashboard.Rows[dashBoardCount]["ProjectID"]));
                             parameter.Add(new SqlParameter("@PhaseID", dtDashboard.Rows[dashBoardCount]["PhaseID"]));
-                            parameter.Add(new SqlParameter("@ClientStatus", 3));
-                            parameter.Add(new SqlParameter("@TimelineStatus", 3));
-                            parameter.Add(new SqlParameter("@BudgetStatus", 3));
-                            parameter.Add(new SqlParameter("@EscalateStatus", 3));
+
+                            //not using now .................................
+                            parameter.Add(new SqlParameter("@ClientStatus", 4));
+                            parameter.Add(new SqlParameter("@TimelineStatus", 4));
+                            parameter.Add(new SqlParameter("@BudgetStatus", 4));
+                            parameter.Add(new SqlParameter("@EscalateStatus", 4));
+                            //end of not using .................................
+
                             parameter.Add(new SqlParameter("@CreatedBy", Session["UserID"]));
                             parameter.Add(new SqlParameter("@CreatedDate", DateTime.Now));
                             parameter.Add(new SqlParameter("@UpdatedBy", Session["UserID"]));
@@ -2200,7 +2212,7 @@ namespace PMOscar
                             parameter.Add(new SqlParameter("@Utilization", dtDashboard.Rows[dashBoardCount]["Utilization"]));
                             int projectDashboardID = PMOscar.BaseDAL.ExecuteSPScalar("[ProjectDashboardOperations]", parameter);
                             //insert into ProjectActivityStatus table
-                            BaseDAL.insertProjectActivityStatus(projectDashboardID, 3, 3, 3, 3, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[dashBoardCount]["ProjectID"]), dashBoardId);
+                            BaseDAL.insertProjectActivityStatus(projectDashboardID, 4, 4, 4, 4, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[dashBoardCount]["ProjectID"]), dashBoardId);
                         }
                     }
 
@@ -2594,7 +2606,12 @@ namespace PMOscar
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 System.Web.UI.WebControls.HyperLink hlImg = new System.Web.UI.WebControls.HyperLink();
-                if (e.Row.Cells[7].Text == "3")
+                if (e.Row.Cells[7].Text == "4")
+                {
+                    hlImg.ImageUrl = "../images/clientgray.png";
+                    hlImg.NavigateUrl = "ProjectDashboardEntry.aspx?ProjectDashboardId=" + ddlReports.SelectedValue + "&ProjectDashEditId=" + e.Row.Cells[2].Text + "&projectID=" + e.Row.Cells[0].Text + "&projectName=" + e.Row.Cells[4].Text;
+                }
+                else if (e.Row.Cells[7].Text == "3")
                 {
                     hlImg.ImageUrl = "../images/clientgreen.png";
                     hlImg.NavigateUrl = "ProjectDashboardEntry.aspx?ProjectDashboardId=" + ddlReports.SelectedValue + "&ProjectDashEditId=" + e.Row.Cells[2].Text + "&projectID=" + e.Row.Cells[0].Text + "&projectName=" + e.Row.Cells[4].Text;
@@ -2614,7 +2631,13 @@ namespace PMOscar
                 e.Row.Cells[7].Attributes.Add("align", "Center");
 
                 hlImg = new System.Web.UI.WebControls.HyperLink();
-                if (e.Row.Cells[8].Text == "3")
+                if (e.Row.Cells[8].Text == "4")
+                {
+                    hlImg.ImageUrl = "../images/timelinegray.png";
+                    hlImg.NavigateUrl = "ProjectDashboardEntry.aspx?ProjectDashboardId=" + ddlReports.SelectedValue + "&ProjectDashEditId=" + e.Row.Cells[2].Text + "&projectID=" + e.Row.Cells[0].Text + "&projectName=" + e.Row.Cells[4].Text;
+
+                }
+                else if (e.Row.Cells[8].Text == "3")
                 {
                     hlImg.ImageUrl = "../images/timelinegreen.png";
                     hlImg.NavigateUrl = "ProjectDashboardEntry.aspx?ProjectDashboardId=" + ddlReports.SelectedValue + "&ProjectDashEditId=" + e.Row.Cells[2].Text + "&projectID=" + e.Row.Cells[0].Text + "&projectName=" + e.Row.Cells[4].Text;
@@ -2633,8 +2656,13 @@ namespace PMOscar
                 e.Row.Cells[8].Controls.Add(hlImg);
                 e.Row.Cells[8].Attributes.Add("align", "Center");
                 hlImg = new System.Web.UI.WebControls.HyperLink();
-             
-                if (e.Row.Cells[9].Text == "3")
+
+                if (e.Row.Cells[9].Text == "4")
+                {
+                    hlImg.ImageUrl = "../images/budgetgray.png";
+                    hlImg.NavigateUrl = "ProjectDashboardEntry.aspx?ProjectDashboardId=" + ddlReports.SelectedValue + "&ProjectDashEditId=" + e.Row.Cells[2].Text + "&projectID=" + e.Row.Cells[0].Text + "&projectName=" + e.Row.Cells[4].Text;
+                }
+                else if (e.Row.Cells[9].Text == "3")
                 {
                     hlImg.ImageUrl = "../images/budgetgreen.png";
                     //hlImg.NavigateUrl = "ProjectDashboardEntry.aspx?ProjectDashEditId=" + e.Row.Cells[2].Text + "&projectID=" + e.Row.Cells[0].Text + "&projectName=" + e.Row.Cells[4].Text;
@@ -2657,7 +2685,12 @@ namespace PMOscar
                 e.Row.Cells[9].Attributes.Add("align", "Center");
 
                 hlImg = new System.Web.UI.WebControls.HyperLink();
-                if (e.Row.Cells[10].Text == "3")
+                if (e.Row.Cells[10].Text == "4")
+                {
+                    hlImg.ImageUrl = "../images/escalategray.png";
+                    hlImg.NavigateUrl = "ProjectDashboardEntry.aspx?ProjectDashboardId=" + ddlReports.SelectedValue + "&ProjectDashEditId=" + e.Row.Cells[2].Text + "&projectID=" + e.Row.Cells[0].Text + "&projectName=" + e.Row.Cells[4].Text;
+                }
+                else if (e.Row.Cells[10].Text == "3")
                 {
                     hlImg.ImageUrl = "../images/escalategreen.png";
                     //hlImg.NavigateUrl = "ProjectDashboardEntry.aspx?ProjectDashEditId=" + e.Row.Cells[2].Text + "&projectID=" + e.Row.Cells[0].Text + "&projectName=" + e.Row.Cells[4].Text;   
@@ -3348,10 +3381,13 @@ namespace PMOscar
                             parameter = new List<SqlParameter>();
                             parameter.Add(new SqlParameter("@ProjectID", dtDashboard.Rows[dashBoardCount]["ProjectID"]));
                             parameter.Add(new SqlParameter("@PhaseID", dtDashboard.Rows[dashBoardCount]["PhaseID"]));
-                            parameter.Add(new SqlParameter("@ClientStatus", 3));
-                            parameter.Add(new SqlParameter("@TimelineStatus", 3));
-                            parameter.Add(new SqlParameter("@BudgetStatus", 3));
-                            parameter.Add(new SqlParameter("@EscalateStatus", 3));
+                            //not using now .................................
+                            parameter.Add(new SqlParameter("@ClientStatus", 4));
+                            parameter.Add(new SqlParameter("@TimelineStatus", 4));
+                            parameter.Add(new SqlParameter("@BudgetStatus", 4));
+                            parameter.Add(new SqlParameter("@EscalateStatus", 4));
+                            //end of not using  .................................
+
                             parameter.Add(new SqlParameter("@CreatedBy", Session["UserID"]));
                             parameter.Add(new SqlParameter("@CreatedDate", DateTime.Now));
                             parameter.Add(new SqlParameter("@UpdatedBy", Session["UserID"]));
@@ -3372,7 +3408,7 @@ namespace PMOscar
                             parameter.Add(new SqlParameter("@isActive", 1));
                             int projectDashboardID=PMOscar.BaseDAL.ExecuteSPScalar("[ProjectDashboardOperations]", parameter);
                             //insert into ProjectActivityStatus table
-                            BaseDAL.insertProjectActivityStatus(projectDashboardID, 3, 3, 3, 3, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[dashBoardCount]["ProjectID"]), dashBoardId);
+                            BaseDAL.insertProjectActivityStatus(projectDashboardID, 4, 4, 4, 4, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[dashBoardCount]["ProjectID"]), dashBoardId);
 
                     var queryDashboard = BaseDAL.getProjectDashboard("DashboardID", dashBoardId);
                     DataTable dtDashBoardstatusnew = BaseDAL.ExecuteDataTable(queryDashboard);
@@ -3401,10 +3437,13 @@ namespace PMOscar
                             parameter = new List<SqlParameter>();
                             parameter.Add(new SqlParameter("@ProjectID", dtDashboard.Rows[dashBoardCount]["ProjectID"]));
                             parameter.Add(new SqlParameter("@PhaseID", dtDashboard.Rows[dashBoardCount]["PhaseID"]));
-                            parameter.Add(new SqlParameter("@ClientStatus", 3));
-                            parameter.Add(new SqlParameter("@TimelineStatus", 3));
-                            parameter.Add(new SqlParameter("@BudgetStatus", 3));
-                            parameter.Add(new SqlParameter("@EscalateStatus", 3));
+
+                            //not using now .................................
+                            parameter.Add(new SqlParameter("@ClientStatus", 4));
+                            parameter.Add(new SqlParameter("@TimelineStatus", 4));
+                            parameter.Add(new SqlParameter("@BudgetStatus", 4));
+                            parameter.Add(new SqlParameter("@EscalateStatus", 4));
+                            //end of not using .................................
                             parameter.Add(new SqlParameter("@CreatedBy", Session["UserID"]));
                             parameter.Add(new SqlParameter("@CreatedDate", DateTime.Now));
                             parameter.Add(new SqlParameter("@UpdatedBy", Session["UserID"]));
@@ -3425,7 +3464,7 @@ namespace PMOscar
                             parameter.Add(new SqlParameter("@isActive", 1));
                             int projectDashboardID=PMOscar.BaseDAL.ExecuteSPScalar("[ProjectDashboardOperations]", parameter);
                     //insert into ProjectActivityStatus table
-                    BaseDAL.insertProjectActivityStatus(projectDashboardID, 3, 3, 3, 3, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[dashBoardCount]["ProjectID"]), dashBoardId);
+                    BaseDAL.insertProjectActivityStatus(projectDashboardID, 4, 4, 4, 4, Session["UserID"], Session["UserID"], Convert.ToInt32(dtDashboard.Rows[dashBoardCount]["ProjectID"]), dashBoardId);
 
                 }
                     }
