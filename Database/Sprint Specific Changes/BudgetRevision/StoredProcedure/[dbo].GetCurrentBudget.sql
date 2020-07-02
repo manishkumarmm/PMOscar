@@ -1,23 +1,3 @@
-USE [PMOscar_Dev]
-GO
-
-/****** Object:  StoredProcedure [dbo].[GetCurrentBudget]    Script Date: 24-06-2020 18:10:29 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-
-
-
-
-
-
-
-
-
-
 
 -- =============================================  
 -- Author:  Haritha E.S
@@ -85,7 +65,7 @@ create table #ApprovedBudgetSum
 Insert into #ApprovedBudgetSum
 	SELECT 
 		bd.ResourceID,
-		sum(ac.ActualHours) as ActualHours,
+		ac.ActualHours as ActualHours,
 		EstimationRoleID,
 		bd.PhaseID,
 		p.Phase,
@@ -142,7 +122,8 @@ SELECT  case when Ltrim(RTrim(isnull(bd1.Comments,'')))='' then '' else ',' end 
 		 bd.EstimationRoleID,
 		 bd.PhaseID,
 		 p.Phase,
-		 bd.IsApproved
+		 bd.IsApproved,
+		 ac.ActualHours
 	  order by 		
 		
 		bd.PhaseID,
@@ -229,7 +210,7 @@ BEGIN
 
 SELECT 
 		bd.ResourceID,
-		sum(ac.ActualHours) as ActualHours,
+		ac.ActualHours as ActualHours,
 		EstimationRoleID,
 		bd.PhaseID,
 		p.Phase,
@@ -256,7 +237,7 @@ SELECT
 		and ac.RoleId = bd.EstimationRoleID
 		and ac.PhaseID = bd.PhaseID 
 		and ac.projectid = bl.ProjectID 
-	group by bd.ResourceID,bd.EstimationRoleID,bd.PhaseID,bd.IsApproved,p.Phase
+	group by bd.ResourceID,bd.EstimationRoleID,bd.PhaseID,bd.IsApproved,p.Phase,ac.ActualHours
 	order by 
 		bd.PhaseID,
 		bd.EstimationRoleID,

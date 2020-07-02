@@ -1,15 +1,3 @@
-USE [PMOscar_Dev]
-GO
-
-/****** Object:  StoredProcedure [dbo].[GetBudgetRevision]    Script Date: 25-06-2020 11:04:03 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-
-
 
 -- =============================================
 -- Author:		Joshwa
