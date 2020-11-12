@@ -135,6 +135,30 @@
             $('#warnings').append(input2);
             var input3 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum ' + minOhInMonth[2][1] + ' Optional holidays should be availed till September. </td></tr>';
             $('#warnings').append(input3);
+            var input4 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 2 optional holidays in January. </td></tr>';
+            $('#warnings').append(input4);
+            var input5 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 2 optional holidays till February. </td></tr>';
+            $('#warnings').append(input5);
+            var input6 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 3 optional holidays till March. </td></tr>';
+            $('#warnings').append(input6);
+            var input7 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 4 optional holidays till April. </td></tr>';
+            $('#warnings').append(input7);
+            var input8 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 5 optional holidays till May. </td></tr>';
+            $('#warnings').append(input8);
+            var input9 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 6 optional holidays till June. </td></tr>';
+            $('#warnings').append(input9);
+            var input10 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 6 optional holidays till July. </td></tr>';
+            $('#warnings').append(input10);
+            var input11 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 7 optional holidays till August. </td></tr>';
+            $('#warnings').append(input11);
+            var input12 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 8 optional holidays till September. </td></tr>';
+            $('#warnings').append(input12);
+            var input13 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 8 optional holidays till October. </td></tr>';
+            $('#warnings').append(input13);
+            var input14 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 9 optional holidays till November. </td></tr>';
+            $('#warnings').append(input14);
+            var input15 = '<tr><td colspan="2"  style="color: #611818; font-size: 13px;" >- Minimum 9 optional holidays till December. </td></tr>';
+            $('#warnings').append(input15);
 
         }
 
