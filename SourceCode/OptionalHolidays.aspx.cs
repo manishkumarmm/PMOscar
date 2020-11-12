@@ -284,10 +284,15 @@ namespace PMOscar
             string data = "";
             Int32 Slno = 1;
             StringBuilder sb = new StringBuilder();
-            DateTime StartDate = new DateTime();
-            DateTime EndDate = new DateTime();
-            StartDate = Convert.ToDateTime("01-01-2020");
-            EndDate = Convert.ToDateTime("12-31-2020");
+            // Previous code
+            // DateTime StartDate = new DateTime();
+            // DateTime EndDate = new DateTime();
+            // StartDate = Convert.ToDateTime("01-01-2020");
+            // EndDate = Convert.ToDateTime("12-31-2020");
+
+            // Updated to Manish
+            DateTime StartDate = new DateTime(2021, 01, 01, 0, 0, 0, 0);
+            DateTime EndDate = new DateTime(2021, 12, 31, 0, 0, 0, 0); 
 
             data += "Sl No." + "," + "Date" + "," + "Day" + "," + "Month" + "," + "Holiday" + "," + "Leaves Applied";
             foreach (DataRow employee in dtEmployees.Rows)
