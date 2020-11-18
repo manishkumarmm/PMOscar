@@ -153,7 +153,7 @@ namespace PMOscar
                     ddlMonth.SelectedIndex = Convert.ToInt16(month);
                     BindGridViewForUtilizationReport("ProjectName", "ASC");  // To fill the resouce planning list in the grid (projectwise)                 
 
-
+                   
                 }
                 else
                 {
@@ -201,6 +201,14 @@ namespace PMOscar
                     }
                 }
 
+                if (Request.QueryString["reportId"] !=null && Request.QueryString["reportId"].ToString() == "6")
+                {
+                    DropDownListReports.SelectedValue = "6";
+                    btnExport.Visible = false;
+                    tdOtherReports.Visible = false;
+                    tdCompanyUtilizationReport.Visible = false;
+                    tdopenHoursReport.Visible = true;
+                }
             }
 
             ddlYear.Focus();

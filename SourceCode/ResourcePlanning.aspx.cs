@@ -1775,7 +1775,12 @@ namespace PMOscar
 
             ExportToSpreadsheet(dtExportProjectPlanningDashboard, "ProjectDashboard", lblWeekStatus.Text); // Method to Export Datatable to an excel file...
         }
-       
+
+        protected void btnReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Reports.aspx?reportId=6");
+        }
+
 
         #endregion
 

@@ -92,8 +92,6 @@
 
         });
 
-
-
         function disableOtherThanMonday(date) {
             var day = date.getDay();
             var daysToDisable = [0, 2, 3, 4, 5, 6]; //enable monday only
@@ -127,6 +125,15 @@
 
             var ddlReportId = document.getElementById('<%=DropDownListReports.ClientID%>');
             var ddlSelectedReportValue = ddlReportId.options[ddlReportId.selectedIndex].value;
+
+            var reportId = getUrlParameter('reportId');
+            if ((!ddlSelectedReportValue || ddlSelectedReportValue == 6) && reportId == 6) {
+                dt = new Date();
+                document.getElementById("datepickerStartWeek").value = startOfWeek(dt);
+                document.getElementById("datepickerEndWeek").value = endOfWeek(dt);
+                $('[id$="goButton"]').click();
+            }
+
             if (ddlSelectedReportValue == 4) {
                 $("#tablePeriod").hide();
                 $("#tableMonthandYear").hide();
@@ -263,10 +270,39 @@
 
             });
 
-
+            
         });
 
+        //To fetch the start date of the current week
+        function startOfWeek(date) {
+            var diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
 
+            return new Date(date.setDate(diff)).toLocaleDateString("en-GB");
+
+        }
+
+        //To fetch the end date of the current week
+        function endOfWeek(date) {
+            var diff = date.getDate() - date.getDay() + 7;
+
+            return new Date(date.setDate(diff)).toLocaleDateString("en-GB");
+
+        }
+
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+        };
 
         // function to bind all End week
         function BindEndWeek(startWeekId) {
@@ -328,6 +364,8 @@
 
                 var startDate = document.getElementById("datepickerStartWeek").value;
                 var endDate = document.getElementById("datepickerEndWeek").value;
+
+
 
                 //get which report tyupe is selected
                 var reportTypeSelected = $('[id$="_hiddenRadio"]').val();

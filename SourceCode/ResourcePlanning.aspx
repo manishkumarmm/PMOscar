@@ -82,6 +82,10 @@
                         <asp:Button Text="SyncActualHours" OnClientClick="return confirm('Do you want to sync ?');" runat="server" ID="btnAct_hour"
                             OnClick="btngetActualhours" style="height: 22px; " />
                     </td>
+                     <td>
+                        <asp:Button Text="Report" runat="server" ID="btnReport"
+                            OnClick="btnReport_Click" />
+                    </td>
                     <td>
                         <asp:LinkButton ID="lnkChng" Text="Change History" runat="server" TabIndex="-1" 
                                             onfocus="SetFocus(this)"></asp:LinkButton>
