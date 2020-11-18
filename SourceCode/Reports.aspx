@@ -276,17 +276,13 @@
         //To fetch the start date of the current week
         function startOfWeek(date) {
             var diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
-
             return new Date(date.setDate(diff)).toLocaleDateString("en-GB");
-
         }
 
         //To fetch the end date of the current week
         function endOfWeek(date) {
             var diff = date.getDate() - date.getDay() + 7;
-
             return new Date(date.setDate(diff)).toLocaleDateString("en-GB");
-
         }
 
         var getUrlParameter = function getUrlParameter(sParam) {

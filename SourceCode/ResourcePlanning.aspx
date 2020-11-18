@@ -83,7 +83,7 @@
                             OnClick="btngetActualhours" style="height: 22px; " />
                     </td>
                      <td>
-                        <asp:Button Text="Report" runat="server" ID="btnReport"
+                        <asp:Button Text="Open Hours Report" runat="server" ID="btnReport"
                             OnClick="btnReport_Click" />
                     </td>
                     <td>
