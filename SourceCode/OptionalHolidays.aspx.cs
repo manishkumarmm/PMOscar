@@ -184,6 +184,7 @@ namespace PMOscar
             {
 
                 int noOfOptionalHolidays = Int32.Parse((ConfigurationManager.AppSettings["noOfOptionalHolidays"]));
+                int ohYear = Int32.Parse((ConfigurationManager.AppSettings["ohYear"]));
                 var query = "select row_number() over (order by len(o.Holidays) - len(replace(o.Holidays, ',', '')) + 1 desc, u.UserName) as SerialNo,UPPER(u.FirstName) as FirstName,UPPER(u.LastName) as LastName, u.UserName as Email,u.EmployeeCode, len(o.Holidays) - len(replace(o.Holidays, ',', '')) + 1 as AppliedHolidayCount";
 
                 for (var i = 1; i <= noOfOptionalHolidays; i++)
@@ -191,7 +192,7 @@ namespace PMOscar
                     query = query + "," + "dbo.CSVParser(o.Holidays," + i + ") as OH" + i;
                 }
 
-                query = query + " from[User] u left join OhLog o on u.EmployeeCode = o.emp_Code where u.IsActive = 1 order by AppliedHolidayCount desc, u.UserName";
+                query = query + " from[User] u left join OhLog o on u.EmployeeCode = o.emp_Code and o.Year = " + ohYear + " where u.IsActive = 1 order by AppliedHolidayCount desc, u.UserName";
 
                 DataTable dt1 = BaseDAL.ExecuteDataTable(query);
 
@@ -208,11 +209,12 @@ namespace PMOscar
         public static string downloadEmployeeHolidaysDetail()
         {
             string ohList = "";
+            int ohYear = Int32.Parse((ConfigurationManager.AppSettings["ohYear"]));
             try
             {
                 var employeesQuery = "SELECT U.FirstName+' '+ISNULL(U.MiddleName,'')+' '+ISNULL(U.LastName,'') AS NAME, OH.Holidays, len(OH.Holidays) -len(replace(OH.Holidays,',',''))+ case when Holidays like '%NULL%' then 0 else 1 end as LeaveTotal"
                                         + " FROM [dbo].[User] U"
-                                        + " LEFT JOIN [dbo].[OhLog] OH ON U.EmployeeCode = OH.emp_Code ORDER BY U.FirstName";
+                                        + " LEFT JOIN [dbo].[OhLog] OH ON U.EmployeeCode = OH.emp_Code and OH.Year = " + ohYear + " where U.IsActive = 1 ORDER BY U.FirstName";
                 DataTable dtEmployees = BaseDAL.ExecuteDataTable(employeesQuery);
 
                 var leavesPerDayQuery = "SELECT [Holiday], COUNT(*) AS [Count] FROM(SELECT Split.a.value('.', 'NVARCHAR(MAX)')[Holiday]"
@@ -234,13 +236,14 @@ namespace PMOscar
         public static string downloadOhListForHRMSUpload()
         {
             string ohList = "";
+            int ohYear = Int32.Parse((ConfigurationManager.AppSettings["ohYear"]));
             try
             {
                 var employeesOHQuery = "SELECT CONVERT(VARCHAR(10), cast(Split.a.value('.', 'NVARCHAR(MAX)')AS DATETIME), 121) [Date], 'Optional Holiday' Holiday"
                     + " , MONTH(Split.a.value('.', 'NVARCHAR(MAX)')) Month, YEAR(Split.a.value('.', 'NVARCHAR(MAX)')) Year, RTRIM(LTRIM(A.emp_Code)) EmpCode, a.NAME AS EmployeeName"
                     + " FROM(SELECT OL.emp_Code, CAST('<X>' + REPLACE([Holidays], ',', '</X><X>') + '</X>' AS XML) AS String, U.FirstName + ' ' + ISNULL(U.MiddleName, '') + ' ' + ISNULL(U.LastName, '') AS NAME"
                     + "     FROM[dbo].[Ohlog] OL"
-                    + "     join [dbo].[User] U on U.EmployeeCode = OL.emp_Code"
+                    + "     join [dbo].[User] U on U.EmployeeCode = OL.emp_Code where OL.Year = " + ohYear + " and U.IsActive = 1 "
                     + " ) AS A"
                     + " CROSS APPLY String.nodes('/X') AS Split(a)"
                     + " order by A.NAME, Date";
@@ -283,6 +286,7 @@ namespace PMOscar
         {
             string data = "";
             Int32 Slno = 1;
+            int ohYear = Int32.Parse((ConfigurationManager.AppSettings["ohYear"]));
             StringBuilder sb = new StringBuilder();
             // Previous code
             // DateTime StartDate = new DateTime();
@@ -291,8 +295,8 @@ namespace PMOscar
             // EndDate = Convert.ToDateTime("12-31-2020");
 
             // Updated to Manish
-            DateTime StartDate = new DateTime(2021, 01, 01, 0, 0, 0, 0);
-            DateTime EndDate = new DateTime(2021, 12, 31, 0, 0, 0, 0); 
+            DateTime StartDate = new DateTime(ohYear, 01, 01, 0, 0, 0, 0);
+            DateTime EndDate = new DateTime(ohYear, 12, 31, 0, 0, 0, 0); 
 
             data += "Sl No." + "," + "Date" + "," + "Day" + "," + "Month" + "," + "Holiday" + "," + "Leaves Applied";
             foreach (DataRow employee in dtEmployees.Rows)
