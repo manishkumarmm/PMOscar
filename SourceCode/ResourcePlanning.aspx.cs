@@ -140,6 +140,7 @@ namespace PMOscar
                     btnExport.Visible = false;
                     btnAct_hour.Visible = false;
                     lnkChng.Visible = false;
+                    btnReport.Visible = false;
 
                     HtmlControl hcliadminRP = Page.Master.FindControl("liadminRP") as HtmlControl;
                     if (hcliadminRP != null)
