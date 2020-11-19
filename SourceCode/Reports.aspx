@@ -369,6 +369,8 @@
         function ValidateGo() {
             document.getElementById("openHoursReports").style.display = "none";
 
+            $('[id$="_hiddenstartWeekForReport"]').val($('[id$="datepickerStartWeek"]').val());
+            
             var reportSelected = document.getElementById("<%= DropDownListReports.ClientID %>").value;
             if (reportSelected != "0")  //report has selected
             {
