@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PMOscar {
-    
-    
-    public partial class Reports {
-        
+namespace PMOscar
+{
+
+
+    public partial class Reports
+    {
+
         /// <summary>
         /// Label1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// DropDownListReports control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownListReports;
-        
+
         /// <summary>
         /// tdOtherReports control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTableCell tdOtherReports;
-        
+
         /// <summary>
         /// rdbMonthly control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdbMonthly;
-        
+
         /// <summary>
         /// rdbPeriod control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdbPeriod;
-        
+
         /// <summary>
         /// hiddenRadio control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hiddenRadio;
-        
+
         /// <summary>
         /// tdCompanyUtilizationReport control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTableCell tdCompanyUtilizationReport;
-        
+
         /// <summary>
         /// rdbSummaryReport control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdbSummaryReport;
-        
+
         /// <summary>
         /// rdbDetailedReport control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdbDetailedReport;
-        
+
         /// <summary>
         /// tdopenHoursReport control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTableCell tdopenHoursReport;
-        
+
         /// <summary>
         /// hidden1 control.
         /// </summary>
@@ -110,7 +112,16 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hidden1;
-        
+
+        /// <summary>
+        /// hidden3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hidden3;
+
         /// <summary>
         /// hidden2 control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hidden2;
-        
+
         /// <summary>
         /// goButton control.
         /// </summary>
@@ -128,7 +139,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button goButton;
-        
+
         /// <summary>
         /// btnExport control.
         /// </summary>
@@ -137,7 +148,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnExport;
-        
+
         /// <summary>
         /// ddlYear control.
         /// </summary>
@@ -146,7 +157,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlYear;
-        
+
         /// <summary>
         /// ddlMonth control.
         /// </summary>
@@ -155,7 +166,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMonth;
-        
+
         /// <summary>
         /// hiddenstartWeek control.
         /// </summary>
@@ -164,7 +175,16 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hiddenstartWeek;
-        
+
+        /// <summary>
+        /// hiddenstartWeekForReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hiddenstartWeekForReport;
+
         /// <summary>
         /// hiddenendWeek control.
         /// </summary>
@@ -173,7 +193,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hiddenendWeek;
-        
+
         /// <summary>
         /// ddlProject control.
         /// </summary>
@@ -182,7 +202,25 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProject;
-        
+
+        /// <summary>
+        /// tdopenHoursBreakupReportLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell tdopenHoursBreakupReportLink;
+
+        /// <summary>
+        /// lnkReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkReport;
+
         /// <summary>
         /// ScriptManager1 control.
         /// </summary>
@@ -191,7 +229,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// UpdatePanel control.
         /// </summary>
@@ -200,7 +238,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel;
-        
+
         /// <summary>
         /// lblReportTitle control.
         /// </summary>
@@ -209,7 +247,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblReportTitle;
-        
+
         /// <summary>
         /// gdReport control.
         /// </summary>
@@ -218,7 +256,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gdReport;
-        
+
         /// <summary>
         /// gdCmpnySummReport control.
         /// </summary>
@@ -227,7 +265,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gdCmpnySummReport;
-        
+
         /// <summary>
         /// updateProgress control.
         /// </summary>

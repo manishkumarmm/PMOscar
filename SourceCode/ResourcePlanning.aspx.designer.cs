@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PMOscar {
-    
-    
-    public partial class ResourcePlanning {
-        
+namespace PMOscar
+{
+
+
+    public partial class ResourcePlanning
+    {
+
         /// <summary>
         /// ScriptManager1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// Label4 control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label4;
-        
+
         /// <summary>
         /// ddlYear control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlYear;
-        
+
         /// <summary>
         /// Label5 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label5;
-        
+
         /// <summary>
         /// ddlMonth control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMonth;
-        
+
         /// <summary>
         /// Label6 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label6;
-        
+
         /// <summary>
         /// ddlWeek control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlWeek;
-        
+
         /// <summary>
         /// btnClone control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClone;
-        
+
         /// <summary>
         /// btnExport control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnExport;
-        
+
         /// <summary>
         /// btnAct_hour control.
         /// </summary>
@@ -101,7 +103,16 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAct_hour;
-        
+
+        /// <summary>
+        /// btnReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReport;
+
         /// <summary>
         /// lnkChng control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkChng;
-        
+
         /// <summary>
         /// syncSuccess control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label syncSuccess;
-        
+
         /// <summary>
         /// lblWeekStatus control.
         /// </summary>
@@ -128,7 +139,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblWeekStatus;
-        
+
         /// <summary>
         /// gdResources control.
         /// </summary>
@@ -137,7 +148,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gdResources;
-        
+
         /// <summary>
         /// ModalPopupExtender1 control.
         /// </summary>
@@ -146,7 +157,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender1;
-        
+
         /// <summary>
         /// panEdit control.
         /// </summary>
@@ -155,7 +166,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panEdit;
-        
+
         /// <summary>
         /// gvTimeTrackerAudit control.
         /// </summary>
@@ -164,7 +175,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvTimeTrackerAudit;
-        
+
         /// <summary>
         /// btnCancel1 control.
         /// </summary>
@@ -173,7 +184,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel1;
-        
+
         /// <summary>
         /// ModalPopupExtender2 control.
         /// </summary>
@@ -182,7 +193,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender2;
-        
+
         /// <summary>
         /// Panel1 control.
         /// </summary>
@@ -191,7 +202,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel1;
-        
+
         /// <summary>
         /// lblmsg control.
         /// </summary>
@@ -200,7 +211,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblmsg;
-        
+
         /// <summary>
         /// lbl1 control.
         /// </summary>
@@ -209,7 +220,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTableCell lbl1;
-        
+
         /// <summary>
         /// lblResourceName control.
         /// </summary>
@@ -218,7 +229,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblResourceName;
-        
+
         /// <summary>
         /// lbl2 control.
         /// </summary>
@@ -227,7 +238,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTableCell lbl2;
-        
+
         /// <summary>
         /// lblDate control.
         /// </summary>
@@ -236,7 +247,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDate;
-        
+
         /// <summary>
         /// GridViewbind control.
         /// </summary>
@@ -245,7 +256,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewbind;
-        
+
         /// <summary>
         /// lblSyn control.
         /// </summary>
@@ -254,7 +265,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSyn;
-        
+
         /// <summary>
         /// btnOk control.
         /// </summary>
@@ -263,7 +274,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnOk;
-        
+
         /// <summary>
         /// btnCancel control.
         /// </summary>
@@ -272,7 +283,7 @@ namespace PMOscar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
-        
+
         /// <summary>
         /// btnShowPopup control.
         /// </summary>
