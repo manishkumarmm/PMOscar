@@ -614,7 +614,7 @@
                                             <td class="dropdown" width="0%;">
                                                 <input type="text" id="datepickerStartWeek" value="Select Start Date" readonly="readonly" style="width: 125px;" />
                                                 <input type="hidden" id="hiddenstartWeek" name="hiddenstartWeek" value="select" runat="server" />
-                                                <input type="hidden" id="hiddenstartWeekForReport" name="hiddenstartWeekForReport"  runat="server" />
+                                                <input type="hidden" id="hiddenstartWeekForReport" name="hiddenstartWeekForReport" value="select" runat="server" />
                                                 </td>
                                             <td class="label" width="0%;" align="right">Ending Week:
                                             </td>
