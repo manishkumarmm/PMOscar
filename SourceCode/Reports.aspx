@@ -8,12 +8,11 @@
 
     <script src="Scripts/jquery-1.5.1.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery-ui-1.8.12.custom.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="<%=ConfigurationManager.AppSettings["openHoursReportStyle"] %>"/>
+    <link rel="stylesheet" href="<%=ConfigurationManager.AppSettings["openHoursReportStyle"] %>" />
     <script src="<%=ConfigurationManager.AppSettings["openHoursReportScript"] %>" language="javascript" type="text/javascript"></script>
     <style>
         /* This is the style for the trigger icon. The margin-bottom value causes the icon to shift down to center it. */
-        .ui-datepicker-trigger
-        {
+        .ui-datepicker-trigger {
             margin-left: 5px;
             margin-top: 8px;
             margin-bottom: -3px;
@@ -27,19 +26,19 @@
 
         $(function () {
             document.getElementById("openHoursReports").style.display = "none";
-           // var browserName = navigator.appName;
-           // document.getElementById("divBrowser").innerHTML = browserName;
-           // if (browserName = "Netscape")
-           // {
-           //     $('#ctl00_cntBody_gdReport').attr('style', 'border-collapse:separate');
-             // $("#ctl00_cntBody_gdReport").css({ "border-collapse": "separate" });
+            // var browserName = navigator.appName;
+            // document.getElementById("divBrowser").innerHTML = browserName;
+            // if (browserName = "Netscape")
+            // {
+            //     $('#ctl00_cntBody_gdReport').attr('style', 'border-collapse:separate');
+            // $("#ctl00_cntBody_gdReport").css({ "border-collapse": "separate" });
 
-           // }
-           // else if(browserName ="Microsoft Internet Explorer")
-           // {
-           //     $('#ctl00_cntBody_gdReport').attr('style', 'border-collapse:collapse');
-           //     //$("#ctl00_cntBody_gdReport").css({"border-collapse":"collapse"});
-           // }
+            // }
+            // else if(browserName ="Microsoft Internet Explorer")
+            // {
+            //     $('#ctl00_cntBody_gdReport').attr('style', 'border-collapse:collapse');
+            //     //$("#ctl00_cntBody_gdReport").css({"border-collapse":"collapse"});
+            // }
 
 
             $("#datepickerEndWeek").datepicker({
@@ -122,6 +121,7 @@
         $(document).ready(function () {
             $("#tablePeriod").hide();
             $("#tableMonthandYear").hide();
+            $('[id$="tdopenHoursBreakupReportLink"]').hide();
 
             var ddlReportId = document.getElementById('<%=DropDownListReports.ClientID%>');
             var ddlSelectedReportValue = ddlReportId.options[ddlReportId.selectedIndex].value;
@@ -129,6 +129,20 @@
             var reportId = getUrlParameter('reportId');
             if ((!ddlSelectedReportValue || ddlSelectedReportValue == 6) && reportId == 6) {
                 dt = new Date();
+                document.getElementById("datepickerStartWeek").value = startOfWeek(dt);
+                document.getElementById("datepickerEndWeek").value = endOfWeek(dt);
+                $('[id$="goButton"]').click();
+            }
+
+            if ((!ddlSelectedReportValue || ddlSelectedReportValue == 7) && reportId == 7) {
+                var sdate = getUrlParameter('sdate');
+                if (!sdate || sdate == "select") {
+                    dt = new Date();
+                } else {
+                    dt = new Date(sdate.replace(/(..)\/(..)\/(....)/, "$2/$1/$3"));
+                }
+
+                dt = new Date(dt.setDate(dt.getDate() - 7))
                 document.getElementById("datepickerStartWeek").value = startOfWeek(dt);
                 document.getElementById("datepickerEndWeek").value = endOfWeek(dt);
                 $('[id$="goButton"]').click();
@@ -270,16 +284,16 @@
 
             });
 
-            
+
         });
 
-        //To fetch the start date of the current week
+        //To fetch the start date of the week
         function startOfWeek(date) {
             var diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
             return new Date(date.setDate(diff)).toLocaleDateString("en-GB");
         }
 
-        //To fetch the end date of the current week
+        //To fetch the end date of the week
         function endOfWeek(date) {
             var diff = date.getDate() - date.getDay() + 7;
             return new Date(date.setDate(diff)).toLocaleDateString("en-GB");
@@ -354,6 +368,7 @@
         //validation for GO button (Report)
         function ValidateGo() {
             document.getElementById("openHoursReports").style.display = "none";
+
             var reportSelected = document.getElementById("<%= DropDownListReports.ClientID %>").value;
             if (reportSelected != "0")  //report has selected
             {
@@ -380,6 +395,7 @@
                     if (reportSelected == "6") {
                         document.getElementById("openHoursReports").innerHTML = '<app-open-hours fromdate todate></app-open-hours>';
                         document.getElementById("openHoursReports").style.display = "block";
+                        $('[id$="tdopenHoursBreakupReportLink"]').show();
                         document.querySelector('app-open-hours').setAttribute('fromdate', document.getElementById('datepickerStartWeek').value);
                         document.querySelector('app-open-hours').setAttribute('todate', document.getElementById('datepickerEndWeek').value);
                         return false;
@@ -406,7 +422,6 @@
                 alert("Please select a report!");
                 return false;
             }
-
         }
 
         //Validation for Export Button
@@ -451,14 +466,11 @@
         }
         //for timeout exception
 
-        if (Sys != undefined)
-        {
+        if (Sys != undefined) {
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
         }
-        function EndRequestHandler(sender, args)
-        {
-            if (args.get_error() != undefined)
-            {
+        function EndRequestHandler(sender, args) {
+            if (args.get_error() != undefined) {
                 var errorMessage = args.get_error().message;
                 alert('Sorry, an unexpected error has occured, please retry your last action.');
                 args.set_errorHandled(true);
@@ -468,10 +480,11 @@
     </script>
     <div>
         <div>
-             <style type="text/css" media="screen">
-   
-                BODY {  width:100%}
-     </style>
+            <style type="text/css" media="screen">
+                BODY {
+                    width: 100%
+                }
+            </style>
             <%--heading --%>
             <table width="100%">
                 <%--Heading --%>
@@ -500,14 +513,12 @@
                                                     AutoPostBack="True" Height="20px">
                                                 </asp:DropDownList>
                                             </td>
-                                            <td align="right" width="0%;" runat="server" id="tdOtherReports">
-                                                Report Type:
+                                            <td align="right" width="0%;" runat="server" id="tdOtherReports">Report Type:
                                                 <input id="rdbMonthly" type="radio" name="reportType" value="1" runat="server" checked="true" />Month
                                                 <input id="rdbPeriod" type="radio" name="reportType" value="2" runat="server" />Period
                                                 <input type="hidden" id="hiddenRadio" name="hiddenRadio" value="1" runat="server" />
                                             </td>
-                                            <td align="right" width="0%;" runat="server" id="tdCompanyUtilizationReport" visible="false">
-                                                Report Type:
+                                            <td align="right" width="0%;" runat="server" id="tdCompanyUtilizationReport" visible="false">Report Type:
                                                 <input id="rdbSummaryReport" type="radio" name="reportTypeCmpny" value="3" runat="server"
                                                     checked="true" />Summary Report
                                                 <input id="rdbDetailedReport" type="radio" name="reportTypeCmpny" value="4" runat="server" />Detailed
@@ -521,6 +532,7 @@
                                                         <td class="dropdown" width="0%;" style="padding-bottom: 4px;">
                                                             <input type="text" id="datepickerStartWeek" value="Select Start Date" readonly="readonly" style="width: 125px;" />
                                                             <input type="hidden" id="hidden1" name="hiddenstartWeek" value="select" runat="server" />
+                                                            <input type="hidden" id="hidden3" name="hidden3" value="select" runat="server" />
                                                         </td>
                                                         <td class="label" width="0%;" align="right" style="padding-top: 4px;">Ending Week:
                                                         </td>
@@ -531,6 +543,7 @@
                                                         <%-- hidden variable--%>
                                                     </tr>
                                                 </table>
+
                                             </td>
                                         </tr>
                                     </table>
@@ -542,7 +555,7 @@
                                             <%--Go Button  --%>
                                             <td width="4%;" align="right">
                                                 <asp:Button ID="goButton" runat="server" Text="Go" OnClientClick="return ValidateGo();"
-                                                    OnClick="goButton_Click"/>
+                                                    OnClick="goButton_Click" />
                                             </td>
                                             <td>
                                                 <%--Export Button--%>
@@ -560,15 +573,13 @@
                                     <%--year and month dropdown--%>
                                     <table width="100%" id="tableMonthandYear">
                                         <tr>
-                                            <td class="label" width="18%;" align="right">
-                                                Year:
+                                            <td class="label" width="18%;" align="right">Year:
                                             </td>
                                             <td class="dropdown" width="0%;">
                                                 <asp:DropDownList ID="ddlYear" runat="server" Height="20px" Width="74px">
                                                 </asp:DropDownList>
                                             </td>
-                                            <td class="label" width="0%;" align="right">
-                                                Month:
+                                            <td class="label" width="0%;" align="right">Month:
                                             </td>
                                             <td class="dropdown" width="0%;">
                                                 <asp:DropDownList ID="ddlMonth" runat="server" Height="20px">
@@ -596,15 +607,14 @@
                                     <%--period dropdown --%>
                                     <table width="100%" id="tablePeriod">
                                         <tr>
-                                            <td class="label" width="0%;" align="right">
-                                                Starting Week:
+                                            <td class="label" width="0%;" align="right">Starting Week:
                                             </td>
                                             <td class="dropdown" width="0%;">
                                                 <input type="text" id="datepickerStartWeek" value="Select Start Date" readonly="readonly" style="width: 125px;" />
                                                 <input type="hidden" id="hiddenstartWeek" name="hiddenstartWeek" value="select" runat="server" />
-                                            </td>
-                                            <td class="label" width="0%;" align="right">
-                                                Ending Week:
+                                                <input type="hidden" id="hiddenstartWeekForReport" name="hiddenstartWeekForReport"  runat="server" />
+                                                </td>
+                                            <td class="label" width="0%;" align="right">Ending Week:
                                             </td>
                                             <td class="dropdown" width="0%;">
                                                 <input type="text" id="datepickerEndWeek" value="Select End Date" readonly="readonly" style="width: 125px;" />
@@ -617,13 +627,11 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <table width="100%" id="tblProject" style="display:none;">
+                                    <table width="100%" id="tblProject" style="display: none;">
                                         <tr>
-                                            <td class="label" width="20%" align="right">
-                                                Project:
+                                            <td class="label" width="20%" align="right">Project:
                                             </td>
-                                            <td class="dropdown">
-                                                &nbsp;<asp:DropDownList ID="ddlProject" runat="server" Height="20px" Width="305px"></asp:DropDownList>
+                                            <td class="dropdown">&nbsp;<asp:DropDownList ID="ddlProject" runat="server" Height="20px" Width="305px"></asp:DropDownList>
                                             </td>
                                         </tr>
                                     </table>
@@ -633,38 +641,45 @@
                     </td>
                 </tr>
             </table>
-            <table>
-                <tr>
+            <table width="100%">
+                <tr align="right">
+                    <td colspan="3" style="text-align:right;padding-right: 12px;" runat="server" id="tdopenHoursBreakupReportLink">
+                        <div runat="server">
+                              <asp:LinkButton ID="lnkReport" Text="Open Hours Breakup Report" runat="server" TabIndex="-1" 
+                                         OnClick="btnopenHoursBreakupReport_Click" onfocus="SetFocus(this)"></asp:LinkButton>
+                        </div>
+                    </td>
                 </tr>
             </table>
         </div>
         <table width="100%">
             <tr>
-                <td colspan="8">
-                </td>
+                <td colspan="8"></td>
             </tr>
             <tr>
                 <td colspan="8">
-                    <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="30000"  EnablePageMethods="true" ScriptMode="Release"/>
+                    <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="30000" EnablePageMethods="true" ScriptMode="Release" />
                     <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
                         <ContentTemplate>
                             <div align="center" class="reportTiltle">
-                                <asp:Label ID="lblReportTitle" runat="server"></asp:Label></div>
-                                <div id="openHoursReports" style="width:100%"></div>
-                              <asp:GridView ID="gdReport" runat="server" OnRowDataBound="gdReport_RowDataBound"
-                                OnRowCreated="gdReport_RowCreated" Width="100%" CellPadding="5" AllowSorting="true" cellspacing="0" 
-                                OnSorting="gdReport_Sorting" style="border-collapse:initial;border-bottom: black 1px solid; border-left: black 1px solid;border-top: black 1px solid;">
-                             
-                                  <Columns>
+                                <asp:Label ID="lblReportTitle" runat="server"></asp:Label>
+                            </div>
+                            <div id="openHoursReports" style="width: 100%"></div>
+                            <asp:GridView ID="gdReport" runat="server" OnRowDataBound="gdReport_RowDataBound"
+                                OnRowCreated="gdReport_RowCreated" Width="100%" CellPadding="5" AllowSorting="true" CellSpacing="0"
+                                OnSorting="gdReport_Sorting" Style="border-collapse: initial; border-bottom: black 1px solid; border-left: black 1px solid; border-top: black 1px solid;">
+
+                                <Columns>
                                     <%-- <asp:BoundField HeaderText="Project Name" DataField="ProjectName" />--%>
                                 </Columns>
                                 <EmptyDataTemplate>
                                     <div align="center">
-                                        No data available</div>
+                                        No data available
+                                    </div>
                                 </EmptyDataTemplate>
                             </asp:GridView>
-                            
-                        
+
+
                             <asp:GridView ID="gdCmpnySummReport" runat="server" CellSpacing="0" CellPadding="5"
                                 BorderWidth="1px" Width="90%" AutoGenerateColumns="False" HorizontalAlign="Center"
                                 OnRowDataBound="gdCmpnySummReport_RowDataBound" OnRowCommand="gdCmpnySummReport_RowCommand"
@@ -718,26 +733,20 @@
                         </Triggers>
                     </asp:UpdatePanel>
                 </td>
-                <td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="8">&nbsp;
                 </td>
             </tr>
             <tr>
-                <td colspan="8">
-                    &nbsp;
+                <td>&nbsp;
                 </td>
-            </tr>
-            <tr>
-                <td>
-                    &nbsp;
+                <td>&nbsp;
                 </td>
-                <td>
-                    &nbsp;
+                <td>&nbsp;
                 </td>
-                <td>
-                    &nbsp;
-                </td>
-                <td>
-                    &nbsp;
+                <td>&nbsp;
                 </td>
             </tr>
         </table>

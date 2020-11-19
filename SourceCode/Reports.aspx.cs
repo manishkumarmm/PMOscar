@@ -145,6 +145,7 @@ namespace PMOscar
 
                     }
                     ///////////////////
+                    ///
 
                     FillYears(); // To fill the years in the DropDownList
                     string year = Request.QueryString["year"] != null ? Request.QueryString["year"].ToString() : null;
@@ -204,6 +205,15 @@ namespace PMOscar
                 if (Request.QueryString["reportId"] !=null && Request.QueryString["reportId"].ToString() == "6")
                 {
                     DropDownListReports.SelectedValue = "6";
+                    btnExport.Visible = false;
+                    tdOtherReports.Visible = false;
+                    tdCompanyUtilizationReport.Visible = false;
+                    tdopenHoursReport.Visible = true;
+                }
+
+                if (Request.QueryString["reportId"] != null && Request.QueryString["reportId"].ToString() == "7")
+                {
+                    DropDownListReports.SelectedValue = "7";
                     btnExport.Visible = false;
                     tdOtherReports.Visible = false;
                     tdCompanyUtilizationReport.Visible = false;
@@ -2963,6 +2973,11 @@ namespace PMOscar
             {
                 Logger.Error(exx.Message, exx);
             }
+        }
+
+        protected void btnopenHoursBreakupReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Reports.aspx?reportId=7&sdate="+ hiddenstartWeekForReport.Value);
         }
         #endregion
 
