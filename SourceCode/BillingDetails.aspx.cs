@@ -36,6 +36,7 @@ namespace PMOscar
         #region "Page Events"
         protected void Page_Load(object sender, EventArgs e)
         {
+            checkBoxCat.Visible = false;
             if (Session["UserName"] == null)
                 Response.Redirect("Default.aspx");
             else
@@ -298,8 +299,17 @@ namespace PMOscar
                 DataSet dsProjectDetails = objBillingDAL.GetBillingDetailsByMonthYear(month, year);
                 Session["gdBillingDetails"] = dsProjectDetails;
                 gdBillingDetails.DataSource = dsProjectDetails.Tables[0] as DataTable;
+                if(dsProjectDetails.Tables[0].Rows.Count > 0)
+                {
+                    checkBoxCat.Visible = true;
+                }
                 gdBillingDetails.DataBind();
                 lblMsg.Text = string.Empty;
+                CheckBox1.Checked = false;
+                CheckBox2.Checked = false;
+                CheckBox3.Checked = false;
+                CheckBox4.Checked = false;
+                CheckBox5.Checked = false;
             }
             catch (Exception ex)
             {
@@ -333,6 +343,53 @@ namespace PMOscar
         #endregion
 
         double totalBillableHrs = 0, totalBilledTillLastMonth = 0, totalBilled = 0, totalPlanned = 0, totalActual = 0, totalBilledProject = 0;
+
+        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            var filterVal = string.Empty;
+            if (CheckBox1.Checked)
+            {
+                filterVal += "'Commercial', ";
+            }
+            if (CheckBox2.Checked)
+            {
+                filterVal += "'Semi Commercial', ";
+            }
+            if (CheckBox3.Checked)
+            {
+                filterVal += "'Internal', ";
+            }
+            if (CheckBox4.Checked)
+            {
+                filterVal += "'GIS', ";
+            }
+            if (CheckBox5.Checked)
+            {
+                filterVal += "'Product', ";
+            }
+
+            filterVal = filterVal.Length > 0 ? filterVal.Remove(filterVal.Length - 2) : "";
+            checkBoxCat.Visible = true;
+
+            DataSet dataTable = Session["gdBillingDetails"] as DataSet;
+            DataTable dt = new DataTable();
+            dt = dataTable.Tables[0];
+            if (dt != null)
+            {
+                if (filterVal.Length > 0)
+                {
+                    dt.DefaultView.RowFilter = "Utilization In ( " + filterVal + ") ";
+                }
+                else
+                {
+                    dt.DefaultView.RowFilter = "";
+                }
+                gdBillingDetails.DataSource = dt;
+                gdBillingDetails.DataBind();
+            }
+
+        }
+
 
         #region "giving Total in grid's footer"
         protected void Grview_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -446,6 +503,7 @@ namespace PMOscar
                 dt.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
                 gdBillingDetails.DataSource = dt;
                 gdBillingDetails.DataBind();
+                checkBoxCat.Visible = true;
             }
             
         }

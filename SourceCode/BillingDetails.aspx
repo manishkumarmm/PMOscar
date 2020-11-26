@@ -109,8 +109,18 @@
                         </tr>
                     </table>
                 </td>
+            </tr>           
+            <tr runat="server" id="checkBoxCat">                
+                <td align="left">                    
+                    <asp:Label ID="LabelCat" runat="server" Text="Category: "></asp:Label>
+                    <asp:CheckBox ID="CheckBox1" runat="server" Text="Commercial" style="margin-left: 10px" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="true"/>
+                    <asp:CheckBox ID="CheckBox2" runat="server" Text="Semi Commercial" style="margin-left: 10px" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="true" />                    
+                    <asp:CheckBox ID="CheckBox3" runat="server" Text="Internal" style="margin-left: 10px" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="true" />
+                    <asp:CheckBox ID="CheckBox4" runat="server" Text="GIS" style="margin-left: 10px" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="true" />                    
+                    <asp:CheckBox ID="CheckBox5" runat="server" Text="Product" style="margin-left: 10px" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="true" />
+                </td>
             </tr>
-            <tr>
+             <tr>
                 <td colspan="6" align="right"></td>
             </tr>
             <tr>
@@ -129,7 +139,10 @@
                                 </ItemTemplate>
                                 <ItemStyle Width="200px" HorizontalAlign="left" />
                             </asp:TemplateField>
-
+                            <asp:BoundField HeaderText="Category" DataField="Utilization" SortExpression="Utilization">
+                                <HeaderStyle ForeColor="#FCFF00" Width="100px" />
+                                <ItemStyle HorizontalAlign="left" />
+                            </asp:BoundField>
                             <asp:BoundField HeaderText="Month" DataField="month" SortExpression="month">
                                 <HeaderStyle ForeColor="#FCFF00" Width="100px" />
                                 <ItemStyle HorizontalAlign="left" />
