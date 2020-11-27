@@ -215,6 +215,7 @@ namespace PMOscar
         {
             try
             {
+                checkBoxCat.Visible = true;
                 string filename = "BillingDetails_" + ddlMonth.SelectedItem + "-" + ddlYear.SelectedValue;
                 List<SqlParameter> parameter = new List<SqlParameter>();
                 lblMsg.Text = string.Empty;
@@ -400,38 +401,38 @@ namespace PMOscar
                 {
                     if (e.Row.DataItem != null)
                     {
-                        e.Row.Cells[3].Attributes.Add("Style", "text-align:right;padding-right:15px;");
                         e.Row.Cells[4].Attributes.Add("Style", "text-align:right;padding-right:15px;");
                         e.Row.Cells[5].Attributes.Add("Style", "text-align:right;padding-right:15px;");
                         e.Row.Cells[6].Attributes.Add("Style", "text-align:right;padding-right:15px;");
-                        //e.Row.Cells[7].Attributes.Add("Style", "text-align:right;padding-right:15px;");
-                        totalBillableHrs += Convert.ToDouble(e.Row.Cells[3].Text.ToString() == "" ? "0" : e.Row.Cells[3].Text.ToString());
-                        totalBilledTillLastMonth += Convert.ToDouble(e.Row.Cells[4].Text.ToString() == "" ? "0" : e.Row.Cells[4].Text.ToString());
-                        totalBilled += Convert.ToDouble(e.Row.Cells[5].Text.ToString() == "" ? "0" : e.Row.Cells[5].Text.ToString());  
-                        totalPlanned += Convert.ToDouble(e.Row.Cells[6].Text.ToString() == "" ? "0" : e.Row.Cells[6].Text.ToString());
-                        totalActual += Convert.ToDouble(e.Row.Cells[7].Text.ToString() == "" ? "0" : e.Row.Cells[7].Text.ToString());
-                        totalBilledProject += Convert.ToDouble(e.Row.Cells[8].Text.ToString() == "" ? "0" : e.Row.Cells[8].Text.ToString());
+                        e.Row.Cells[7].Attributes.Add("Style", "text-align:right;padding-right:15px;");
+                        //e.Row.Cells[8].Attributes.Add("Style", "text-align:right;padding-right:15px;");
+                        totalBillableHrs += Convert.ToDouble(e.Row.Cells[4].Text.ToString() == "" ? "0" : e.Row.Cells[4].Text.ToString());
+                        totalBilledTillLastMonth += Convert.ToDouble(e.Row.Cells[5].Text.ToString() == "" ? "0" : e.Row.Cells[5].Text.ToString());
+                        totalBilled += Convert.ToDouble(e.Row.Cells[6].Text.ToString() == "" ? "0" : e.Row.Cells[6].Text.ToString());  
+                        totalPlanned += Convert.ToDouble(e.Row.Cells[7].Text.ToString() == "" ? "0" : e.Row.Cells[7].Text.ToString());
+                        totalActual += Convert.ToDouble(e.Row.Cells[8].Text.ToString() == "" ? "0" : e.Row.Cells[8].Text.ToString());
+                        totalBilledProject += Convert.ToDouble(e.Row.Cells[9].Text.ToString() == "" ? "0" : e.Row.Cells[9].Text.ToString());
 
                     }
                 }
                 else if (e.Row.RowType == DataControlRowType.Footer) // Applying blank spaces if the values are zero
                 {
-                    e.Row.Cells[3].Text = totalBillableHrs.ToString();
-                    e.Row.Cells[4].Text = totalBilledTillLastMonth.ToString();
-                    e.Row.Cells[5].Text = totalBilled.ToString();                  
-                    e.Row.Cells[6].Text = totalPlanned.ToString();
-                    e.Row.Cells[7].Text = totalActual.ToString();
-                    e.Row.Cells[8].Text = totalBilledProject.ToString();
+                    e.Row.Cells[4].Text = totalBillableHrs.ToString();
+                    e.Row.Cells[5].Text = totalBilledTillLastMonth.ToString();
+                    e.Row.Cells[6].Text = totalBilled.ToString();                  
+                    e.Row.Cells[7].Text = totalPlanned.ToString();
+                    e.Row.Cells[8].Text = totalActual.ToString();
+                    e.Row.Cells[9].Text = totalBilledProject.ToString();
 
 
-                    e.Row.Cells[2].Text = "Total";
-                    e.Row.Cells[2].Attributes.Add("style", "text-align: center;");
-                    e.Row.Cells[3].Attributes.Add("style", "text-align: right;padding-right:15px;");
+                    e.Row.Cells[3].Text = "Total";
+                    e.Row.Cells[3].Attributes.Add("style", "text-align: center;");
                     e.Row.Cells[4].Attributes.Add("style", "text-align: right;padding-right:15px;");
                     e.Row.Cells[5].Attributes.Add("style", "text-align: right;padding-right:15px;");
                     e.Row.Cells[6].Attributes.Add("style", "text-align: right;padding-right:15px;");
                     e.Row.Cells[7].Attributes.Add("style", "text-align: right;padding-right:15px;");
                     e.Row.Cells[8].Attributes.Add("style", "text-align: right;padding-right:15px;");
+                    e.Row.Cells[9].Attributes.Add("style", "text-align: right;padding-right:15px;");
                 }
             }
             catch (Exception ex)

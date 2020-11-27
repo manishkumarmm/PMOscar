@@ -178,6 +178,7 @@
                         <HeaderStyle BackColor="#368ac8" Font-Bold="True" ForeColor="White" />
                         <EditRowStyle BackColor="#2461BF" />
                         <AlternatingRowStyle BackColor="White" />
+                        <EmptyDataRowStyle HorizontalAlign="Center" />
                     </asp:GridView>
 
                     &nbsp;</td>
