@@ -406,12 +406,12 @@ namespace PMOscar
                         e.Row.Cells[6].Attributes.Add("Style", "text-align:right;padding-right:15px;");
                         e.Row.Cells[7].Attributes.Add("Style", "text-align:right;padding-right:15px;");
                         //e.Row.Cells[8].Attributes.Add("Style", "text-align:right;padding-right:15px;");
-                        totalBillableHrs += Convert.ToDouble(e.Row.Cells[4].Text.ToString() == "" ? "0" : e.Row.Cells[4].Text.ToString());
-                        totalBilledTillLastMonth += Convert.ToDouble(e.Row.Cells[5].Text.ToString() == "" ? "0" : e.Row.Cells[5].Text.ToString());
-                        totalBilled += Convert.ToDouble(e.Row.Cells[6].Text.ToString() == "" ? "0" : e.Row.Cells[6].Text.ToString());  
-                        totalPlanned += Convert.ToDouble(e.Row.Cells[7].Text.ToString() == "" ? "0" : e.Row.Cells[7].Text.ToString());
-                        totalActual += Convert.ToDouble(e.Row.Cells[8].Text.ToString() == "" ? "0" : e.Row.Cells[8].Text.ToString());
-                        totalBilledProject += Convert.ToDouble(e.Row.Cells[9].Text.ToString() == "" ? "0" : e.Row.Cells[9].Text.ToString());
+                        totalBillableHrs += Convert.ToDouble(string.IsNullOrEmpty(e.Row.Cells[4].Text.ToString()) ? "0" : e.Row.Cells[4].Text.ToString() == "&nbsp;" ? "0" : e.Row.Cells[4].Text.ToString());
+                        totalBilledTillLastMonth += Convert.ToDouble(string.IsNullOrEmpty(e.Row.Cells[5].Text.ToString()) ? "0" : e.Row.Cells[5].Text.ToString() == "&nbsp;" ? "0" : e.Row.Cells[5].Text.ToString());
+                        totalBilled += Convert.ToDouble(string.IsNullOrEmpty(e.Row.Cells[6].Text.ToString()) ? "0" : e.Row.Cells[6].Text.ToString() == "&nbsp;" ? "0" : e.Row.Cells[6].Text.ToString());  
+                        totalPlanned += Convert.ToDouble(string.IsNullOrEmpty(e.Row.Cells[7].Text.ToString()) ? "0" : e.Row.Cells[7].Text.ToString() == "&nbsp;" ? "0" : e.Row.Cells[7].Text.ToString());
+                        totalActual += Convert.ToDouble(string.IsNullOrEmpty(e.Row.Cells[8].Text.ToString()) ? "0" : e.Row.Cells[8].Text.ToString() == "&nbsp;" ? "0" : e.Row.Cells[8].Text.ToString());
+                        totalBilledProject += Convert.ToDouble(string.IsNullOrEmpty(e.Row.Cells[9].Text.ToString()) ? "0" : e.Row.Cells[9].Text.ToString() == "&nbsp;" ? "0" : e.Row.Cells[9].Text.ToString());
 
                     }
                 }
